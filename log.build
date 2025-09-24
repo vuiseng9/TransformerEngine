@@ -1,0 +1,331 @@
+Using pip 25.1.1 from /usr/local/lib/python3.12/dist-packages/pip (python 3.12)
+Obtaining file:///root/work/dev/f4/te
+  Checking if build backend supports build_editable: started
+  Running command Checking if build backend supports build_editable
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Running command Preparing editable metadata (pyproject.toml)
+  running dist_info
+  creating /tmp/pip-modern-metadata-baofxwqq/transformer_engine.egg-info
+  writing /tmp/pip-modern-metadata-baofxwqq/transformer_engine.egg-info/PKG-INFO
+  writing dependency_links to /tmp/pip-modern-metadata-baofxwqq/transformer_engine.egg-info/dependency_links.txt
+  writing requirements to /tmp/pip-modern-metadata-baofxwqq/transformer_engine.egg-info/requires.txt
+  writing top-level names to /tmp/pip-modern-metadata-baofxwqq/transformer_engine.egg-info/top_level.txt
+  writing manifest file '/tmp/pip-modern-metadata-baofxwqq/transformer_engine.egg-info/SOURCES.txt'
+  reading manifest file '/tmp/pip-modern-metadata-baofxwqq/transformer_engine.egg-info/SOURCES.txt'
+  adding license file 'LICENSE'
+  writing manifest file '/tmp/pip-modern-metadata-baofxwqq/transformer_engine.egg-info/SOURCES.txt'
+  creating '/tmp/pip-modern-metadata-baofxwqq/transformer_engine-2.5.0+f05f12c9.dist-info'
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: packaging in /usr/local/lib/python3.12/dist-packages (from transformer_engine==2.5.0+f05f12c9) (23.2)
+Requirement already satisfied: einops in /usr/local/lib/python3.12/dist-packages (from transformer_engine==2.5.0+f05f12c9) (0.8.1)
+Requirement already satisfied: pydantic in /usr/local/lib/python3.12/dist-packages (from transformer_engine==2.5.0+f05f12c9) (2.11.5)
+Collecting nvdlfw-inspect@ git+https://github.com/NVIDIA/nvidia-dlfw-inspect.git@v0.1#egg=nvdlfw-inspect (from transformer_engine==2.5.0+f05f12c9)
+  Cloning https://github.com/NVIDIA/nvidia-dlfw-inspect.git (to revision v0.1) to /tmp/pip-install-pox6qqvo/nvdlfw-inspect_f6b36d64aed548ecb46f1e6c8db57baa
+  Running command git version
+  git version 2.43.0
+  Running command git clone --filter=blob:none https://github.com/NVIDIA/nvidia-dlfw-inspect.git /tmp/pip-install-pox6qqvo/nvdlfw-inspect_f6b36d64aed548ecb46f1e6c8db57baa
+  Cloning into '/tmp/pip-install-pox6qqvo/nvdlfw-inspect_f6b36d64aed548ecb46f1e6c8db57baa'...
+  Running command git show-ref v0.1
+  6b60eb0e675606fb2fbbfcb12667ecbec75eaf87 refs/tags/v0.1
+  Running command git rev-parse HEAD
+  4118044cc84f0183714a2ab1bc215fa49f9aaa82
+  Running command git checkout -q 6b60eb0e675606fb2fbbfcb12667ecbec75eaf87
+  Resolved https://github.com/NVIDIA/nvidia-dlfw-inspect.git to commit 6b60eb0e675606fb2fbbfcb12667ecbec75eaf87
+  Running command git rev-parse HEAD
+  6b60eb0e675606fb2fbbfcb12667ecbec75eaf87
+  Preparing metadata (pyproject.toml): started
+  Running command Preparing metadata (pyproject.toml)
+  running dist_info
+  creating /tmp/pip-modern-metadata-sv2r7ou7/nvdlfw_inspect.egg-info
+  writing /tmp/pip-modern-metadata-sv2r7ou7/nvdlfw_inspect.egg-info/PKG-INFO
+  writing dependency_links to /tmp/pip-modern-metadata-sv2r7ou7/nvdlfw_inspect.egg-info/dependency_links.txt
+  writing requirements to /tmp/pip-modern-metadata-sv2r7ou7/nvdlfw_inspect.egg-info/requires.txt
+  writing top-level names to /tmp/pip-modern-metadata-sv2r7ou7/nvdlfw_inspect.egg-info/top_level.txt
+  writing manifest file '/tmp/pip-modern-metadata-sv2r7ou7/nvdlfw_inspect.egg-info/SOURCES.txt'
+  reading manifest file '/tmp/pip-modern-metadata-sv2r7ou7/nvdlfw_inspect.egg-info/SOURCES.txt'
+  adding license file 'LICENSE'
+  writing manifest file '/tmp/pip-modern-metadata-sv2r7ou7/nvdlfw_inspect.egg-info/SOURCES.txt'
+  creating '/tmp/pip-modern-metadata-sv2r7ou7/nvdlfw_inspect-0.1.0.dist-info'
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: torch>=2.1 in /usr/local/lib/python3.12/dist-packages (from transformer_engine==2.5.0+f05f12c9) (2.8.0a0+5228986c39.nv25.6)
+Requirement already satisfied: importlib-metadata>=1.0 in /usr/local/lib/python3.12/dist-packages (from transformer_engine==2.5.0+f05f12c9) (8.7.0)
+Requirement already satisfied: zipp>=3.20 in /usr/local/lib/python3.12/dist-packages (from importlib-metadata>=1.0->transformer_engine==2.5.0+f05f12c9) (3.22.0)
+Requirement already satisfied: filelock in /usr/local/lib/python3.12/dist-packages (from torch>=2.1->transformer_engine==2.5.0+f05f12c9) (3.18.0)
+Requirement already satisfied: typing-extensions>=4.10.0 in /usr/local/lib/python3.12/dist-packages (from torch>=2.1->transformer_engine==2.5.0+f05f12c9) (4.14.0)
+Requirement already satisfied: sympy>=1.13.3 in /usr/local/lib/python3.12/dist-packages (from torch>=2.1->transformer_engine==2.5.0+f05f12c9) (1.14.0)
+Requirement already satisfied: networkx in /usr/local/lib/python3.12/dist-packages (from torch>=2.1->transformer_engine==2.5.0+f05f12c9) (3.5)
+Requirement already satisfied: jinja2 in /usr/local/lib/python3.12/dist-packages (from torch>=2.1->transformer_engine==2.5.0+f05f12c9) (3.1.6)
+Requirement already satisfied: fsspec in /usr/local/lib/python3.12/dist-packages (from torch>=2.1->transformer_engine==2.5.0+f05f12c9) (2025.5.1)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from torch>=2.1->transformer_engine==2.5.0+f05f12c9) (78.1.1)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /usr/local/lib/python3.12/dist-packages (from sympy>=1.13.3->torch>=2.1->transformer_engine==2.5.0+f05f12c9) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.12/dist-packages (from jinja2->torch>=2.1->transformer_engine==2.5.0+f05f12c9) (3.0.2)
+Requirement already satisfied: annotated-types>=0.6.0 in /usr/local/lib/python3.12/dist-packages (from pydantic->transformer_engine==2.5.0+f05f12c9) (0.7.0)
+Requirement already satisfied: pydantic-core==2.33.2 in /usr/local/lib/python3.12/dist-packages (from pydantic->transformer_engine==2.5.0+f05f12c9) (2.33.2)
+Requirement already satisfied: typing-inspection>=0.4.0 in /usr/local/lib/python3.12/dist-packages (from pydantic->transformer_engine==2.5.0+f05f12c9) (0.4.1)
+Building wheels for collected packages: transformer_engine
+  Building editable for transformer_engine (pyproject.toml): started
+  Running command Building editable for transformer_engine (pyproject.toml)
+  running editable_wheel
+  creating /tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine.egg-info
+  writing /tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine.egg-info/PKG-INFO
+  writing dependency_links to /tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine.egg-info/dependency_links.txt
+  writing requirements to /tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine.egg-info/requires.txt
+  writing top-level names to /tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine.egg-info/top_level.txt
+  writing manifest file '/tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine.egg-info/SOURCES.txt'
+  reading manifest file '/tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine.egg-info/SOURCES.txt'
+  adding license file 'LICENSE'
+  writing manifest file '/tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine.egg-info/SOURCES.txt'
+  creating '/tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine-2.5.0+f05f12c9.dist-info'
+  creating /tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine-2.5.0+f05f12c9.dist-info/WHEEL
+  running build_py
+  running build_ext
+  -- cudnn found at /usr/lib/x86_64-linux-gnu/libcudnn.so.
+  -- cuDNN: /usr/lib/x86_64-linux-gnu/libcudnn.so
+  -- cuDNN: /usr/include/x86_64-linux-gnu
+  -- cudnn_graph found at /usr/lib/x86_64-linux-gnu/libcudnn_graph.so.
+  -- cudnn_engines_runtime_compiled found at /usr/lib/x86_64-linux-gnu/libcudnn_engines_runtime_compiled.so.
+  -- cudnn_ops found at /usr/lib/x86_64-linux-gnu/libcudnn_ops.so.
+  -- cudnn_cnn found at /usr/lib/x86_64-linux-gnu/libcudnn_cnn.so.
+  -- cudnn_adv found at /usr/lib/x86_64-linux-gnu/libcudnn_adv.so.
+  -- cudnn_engines_precompiled found at /usr/lib/x86_64-linux-gnu/libcudnn_engines_precompiled.so.
+  -- cudnn_heuristic found at /usr/lib/x86_64-linux-gnu/libcudnn_heuristic.so.
+  -- Parallel build jobs: max
+  -- Threads per parallel build job: 1
+  -- Configuring done (0.1s)
+  -- Generating done (0.0s)
+  -- Build files have been written to: /root/work/dev/f4/te/build/cmake
+  Change Dir: '/root/work/dev/f4/te/build/cmake'
+
+  Run Build Command(s): /usr/local/bin/ninja -v -j 8
+  ninja: no work to do.
+
+  -- Install configuration: "Debug"
+  -- Up-to-date: /root/work/dev/f4/te/./libtransformer_engine.so
+  Building CMake extension transformer_engine
+  Running command /usr/local/lib/python3.12/dist-packages/cmake/data/bin/cmake -S /root/work/dev/f4/te/transformer_engine/common -B /root/work/dev/f4/te/build/cmake -DPython_EXECUTABLE=/usr/bin/python -DPython_INCLUDE_DIR=/usr/include/python3.12 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/root/work/dev/f4/te -DCMAKE_CUDA_ARCHITECTURES=100 -DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=-O0 -DCMAKE_CUDA_FLAGS=-O0 -Dpybind11_DIR=/usr/local/lib/python3.12/dist-packages/pybind11/share/cmake/pybind11 -GNinja
+  Running command /usr/local/lib/python3.12/dist-packages/cmake/data/bin/cmake --build /root/work/dev/f4/te/build/cmake --verbose --parallel 8
+  Running command /usr/local/lib/python3.12/dist-packages/cmake/data/bin/cmake --install /root/work/dev/f4/te/build/cmake --verbose
+  Time for build_ext: 0.16 seconds
+  building 'transformer_engine_torch' extension
+  creating /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc
+  creating /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions
+  creating /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor
+  Emitting ninja build file /tmp/tmpnp6w9bow.build-temp/build.ninja...
+  Compiling objects...
+  Using envvar MAX_JOBS (8) as the number of workers...
+  [1/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/activation.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/activation.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/activation.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [2/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [3/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/common.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/common.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/common.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [4/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/cast.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/cast.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/cast.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [5/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [6/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/attention.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/attention.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp: In function ‘void {anonymous}::mha_fill(const transformer_engine::TensorWrapper&, const at::Tensor&)’:
+  /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp:21:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<long unsigned int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+     21 |   for (int i = 1; i <= shape.size(); i++) {
+        |                   ~~^~~~~~~~~~~~~~~
+  /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp: In function ‘at::Tensor transformer_engine::pytorch::thd_read_half_tensor(const at::Tensor&, const at::Tensor&, int)’:
+  /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp:564:7: warning: unused variable ‘batch’ [-Wunused-variable]
+    564 |   int batch = cu_seqlens.size(0) - 1;
+        |       ^~~~~
+  /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp: In function ‘at::Tensor transformer_engine::pytorch::thd_get_partitioned_indices(const at::Tensor&, int, int, int)’:
+  /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp:728:7: warning: unused variable ‘batch’ [-Wunused-variable]
+    728 |   int batch = cu_seqlens.size(0) - 1;
+        |       ^~~~~
+  /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp: In function ‘at::Tensor transformer_engine::pytorch::convert_bshd_to_thd(at::Tensor, at::Tensor, int)’:
+  /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp:767:7: warning: unused variable ‘max_seq_len’ [-Wunused-variable]
+    767 |   int max_seq_len = tensor.size(1);
+        |       ^~~~~~~~~~~
+  [7/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/apply_rope.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/apply_rope.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/apply_rope.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [8/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/bias.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/bias.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/bias.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [9/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/misc.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/misc.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/misc.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [10/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [11/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [12/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [13/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [14/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/gemm.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/gemm.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/gemm.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [15/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/normalization.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/normalization.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/normalization.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [16/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [17/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/padding.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/padding.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/padding.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [18/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/permutation.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/permutation.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/permutation.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [19/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/nvshmem_comm.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/nvshmem_comm.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/nvshmem_comm.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [20/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/recipe.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/recipe.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/recipe.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [21/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/quantizer.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/quantizer.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/quantizer.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [22/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/softmax.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/softmax.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/softmax.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [23/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/transpose.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/transpose.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/transpose.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [24/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/type_converters.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/type_converters.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/type_converters.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [25/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/pybind.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/pybind.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/pybind.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  [26/26] c++ -MMD -MF /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/util.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/util.cpp -o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/util.o -O3 -fvisibility=hidden -g -O0 -UNDEBUG -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+  x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -shared -Wl,-O1 -Wl,-Bsymbolic-functions /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/common.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/activation.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/apply_rope.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/attention.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/bias.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/cast.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/gemm.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/misc.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/normalization.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/nvshmem_comm.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/padding.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/permutation.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/pybind.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/recipe.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/softmax.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/extensions/transpose.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/quantizer.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/type_converters.o /tmp/tmpnp6w9bow.build-temp/transformer_engine/pytorch/csrc/util.o -L/usr/local/lib/python3.12/dist-packages/torch/lib -L/usr/lib/x86_64-linux-gnu -lc10 -ltorch -ltorch_cpu -ltorch_python -o /tmp/tmpx7_531ih.build-lib/transformer_engine_torch.cpython-312-x86_64-linux-gnu.so
+  copying /tmp/tmpx7_531ih.build-lib/transformer_engine_torch.cpython-312-x86_64-linux-gnu.so ->
+  running egg_info
+  creating /tmp/tmpnp6w9bow.build-temp/transformer_engine.egg-info
+  writing /tmp/tmpnp6w9bow.build-temp/transformer_engine.egg-info/PKG-INFO
+  writing dependency_links to /tmp/tmpnp6w9bow.build-temp/transformer_engine.egg-info/dependency_links.txt
+  writing requirements to /tmp/tmpnp6w9bow.build-temp/transformer_engine.egg-info/requires.txt
+  writing top-level names to /tmp/tmpnp6w9bow.build-temp/transformer_engine.egg-info/top_level.txt
+  writing manifest file '/tmp/tmpnp6w9bow.build-temp/transformer_engine.egg-info/SOURCES.txt'
+  reading manifest file '/tmp/tmpnp6w9bow.build-temp/transformer_engine.egg-info/SOURCES.txt'
+  adding license file 'LICENSE'
+  writing manifest file '/tmp/tmpnp6w9bow.build-temp/transformer_engine.egg-info/SOURCES.txt'
+  /usr/local/lib/python3.12/dist-packages/setuptools/command/build_py.py:212: _Warning: Package 'transformer_engine.pytorch.csrc' is absent from the `packages` configuration.
+  !!
+
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'transformer_engine.pytorch.csrc' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'transformer_engine.pytorch.csrc' is explicitly added
+          to the `packages` configuration field.
+
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+
+          You can read more about "package discovery" on setuptools documentation page:
+
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+
+          If you don't want 'transformer_engine.pytorch.csrc' to be distributed and are
+          already explicitly excluding 'transformer_engine.pytorch.csrc' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+
+          You can read more about "package data files" on setuptools documentation page:
+
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+
+
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+
+  !!
+    check.warn(importable)
+  /usr/local/lib/python3.12/dist-packages/setuptools/command/build_py.py:212: _Warning: Package 'transformer_engine.pytorch.csrc.extensions' is absent from the `packages` configuration.
+  !!
+
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'transformer_engine.pytorch.csrc.extensions' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'transformer_engine.pytorch.csrc.extensions' is explicitly added
+          to the `packages` configuration field.
+
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+
+          You can read more about "package discovery" on setuptools documentation page:
+
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+
+          If you don't want 'transformer_engine.pytorch.csrc.extensions' to be distributed and are
+          already explicitly excluding 'transformer_engine.pytorch.csrc.extensions' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+
+          You can read more about "package data files" on setuptools documentation page:
+
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+
+
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+
+  !!
+    check.warn(importable)
+  /usr/local/lib/python3.12/dist-packages/setuptools/command/build_py.py:212: _Warning: Package 'transformer_engine.pytorch.csrc.extensions.multi_tensor' is absent from the `packages` configuration.
+  !!
+
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'transformer_engine.pytorch.csrc.extensions.multi_tensor' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'transformer_engine.pytorch.csrc.extensions.multi_tensor' is explicitly added
+          to the `packages` configuration field.
+
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+
+          You can read more about "package discovery" on setuptools documentation page:
+
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+
+          If you don't want 'transformer_engine.pytorch.csrc.extensions.multi_tensor' to be distributed and are
+          already explicitly excluding 'transformer_engine.pytorch.csrc.extensions.multi_tensor' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+
+          You can read more about "package data files" on setuptools documentation page:
+
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+
+
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+
+  !!
+    check.warn(importable)
+  Editable install will be performed using a meta path finder.
+
+  Options like `package-data`, `include/exclude-package-data` or
+  `packages.find.exclude/include` may have no effect.
+
+  adding '__editable___transformer_engine_2_5_0_f05f12c9_finder.py'
+  adding '__editable__.transformer_engine-2.5.0+f05f12c9.pth'
+  creating '/tmp/pip-wheel-i91twiuy/.tmp-d__zdxip/transformer_engine-2.5.0+f05f12c9-0.editable-cp312-cp312-linux_x86_64.whl' and adding '/tmp/tmp2fyfdvuntransformer_engine-2.5.0+f05f12c9-0.editable-cp312-cp312-linux_x86_64.whl' to it
+  adding 'transformer_engine-2.5.0+f05f12c9.dist-info/licenses/LICENSE'
+  adding 'transformer_engine-2.5.0+f05f12c9.dist-info/METADATA'
+  adding 'transformer_engine-2.5.0+f05f12c9.dist-info/WHEEL'
+  adding 'transformer_engine-2.5.0+f05f12c9.dist-info/top_level.txt'
+  adding 'transformer_engine-2.5.0+f05f12c9.dist-info/RECORD'
+  /usr/local/lib/python3.12/dist-packages/setuptools/command/editable_wheel.py:342: InformationOnly: Editable installation.
+  !!
+
+          ********************************************************************************
+          Please be careful with folders in your working directory with the same
+          name as your package as they may take precedence during imports.
+          ********************************************************************************
+
+  !!
+    with strategy, WheelFile(wheel_path, "w") as wheel_obj:
+  Building editable for transformer_engine (pyproject.toml): finished with status 'done'
+  Created wheel for transformer_engine: filename=transformer_engine-2.5.0+f05f12c9-0.editable-cp312-cp312-linux_x86_64.whl size=14552 sha256=6f8915cebcd849bfed67fb81f140b8c382d36efbfa8c60eab57fe32f9d4068ec
+  Stored in directory: /tmp/pip-ephem-wheel-cache-j75ezsoa/wheels/99/95/4a/eac98c0ac0b278c7e2f411b1e9d6e8d8f9f4051652f0e31289
+Successfully built transformer_engine
+Installing collected packages: transformer_engine
+  Attempting uninstall: transformer_engine
+    Found existing installation: transformer_engine 2.5.0+f05f12c9
+    Uninstalling transformer_engine-2.5.0+f05f12c9:
+      Removing file or directory /usr/local/lib/python3.12/dist-packages/__editable__.transformer_engine-2.5.0+f05f12c9.pth
+      Removing file or directory /usr/local/lib/python3.12/dist-packages/__editable___transformer_engine_2_5_0_f05f12c9_finder.py
+      Removing file or directory /usr/local/lib/python3.12/dist-packages/__pycache__/__editable___transformer_engine_2_5_0_f05f12c9_finder.cpython-312.pyc
+      Removing file or directory /usr/local/lib/python3.12/dist-packages/transformer_engine-2.5.0+f05f12c9.dist-info/
+      Successfully uninstalled transformer_engine-2.5.0+f05f12c9
+Successfully installed transformer_engine-2.5.0+f05f12c9
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.

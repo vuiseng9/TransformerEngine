@@ -216,6 +216,22 @@ class MXFP8Quantizer : public Quantizer {
       std::optional<at::Tensor> rowwise_data = std::nullopt) const override;
 };
 
+class NVFP4Quantizer final : public MXFP8Quantizer {
+ public:
+  explicit NVFP4Quantizer(const py::handle& quantizer)
+      : MXFP8Quantizer(quantizer) {
+  }
+
+  NVTEScalingMode get_scaling_mode() const override {
+    return NVTE_NVFP4_1D_SCALING;
+  }
+
+  std::pair<TensorWrapper, py::object> create_tensor(
+      const std::vector<size_t>& shape, DType dtype,
+      std::optional<at::Tensor> rowwise_data = std::nullopt) const override;
+};
+
+
 std::unique_ptr<Quantizer> convert_quantizer(py::handle quantizer);
 
 std::vector<size_t> getTensorShape(at::Tensor t);
@@ -328,6 +344,8 @@ transformer_engine::TensorWrapper makeTransformerEngineTensor(at::Tensor tensor)
 std::tuple<std::vector<transformer_engine::TensorWrapper>, std::vector<std::vector<NVTETensor>>,
            std::vector<NVTETensor*>, size_t, size_t>
 makeTransformerEngineTensorList(std::vector<std::vector<at::Tensor>> at_tensor_lists);
+
+TensorWrapper makeTransformerEngineTensor(py::handle tensor, bool use_rowwise);
 
 TensorWrapper makeTransformerEngineTensor(py::handle tensor, py::handle quantizer);
 

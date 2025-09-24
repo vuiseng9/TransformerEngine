@@ -37,6 +37,9 @@ extern PyTypeObject *Float8CurrentScalingQuantizerClass;
 extern PyTypeObject *MXFP8TensorPythonClass;
 extern PyTypeObject *MXFP8TensorBasePythonClass;
 extern PyTypeObject *MXFP8QuantizerClass;
+extern PyTypeObject *NVFP4TensorPythonClass;
+extern PyTypeObject *NVFP4TensorBasePythonClass;
+extern PyTypeObject *NVFP4QuantizerClass;
 extern PyTypeObject *Float8BlockwiseQTensorPythonClass;
 extern PyTypeObject *Float8BlockwiseQTensorBasePythonClass;
 extern PyTypeObject *Float8BlockwiseQuantizerClass;
@@ -46,6 +49,8 @@ void init_extension();
 void init_float8_extension();
 
 void init_mxfp8_extension();
+
+void init_nvfp4_extension();
 
 namespace detail {
 
@@ -63,6 +68,12 @@ inline bool IsMXFP8Quantizers(PyObject *obj) { return Py_TYPE(obj) == MXFP8Quant
 
 inline bool IsMXFP8Tensor(PyObject *obj) {
   return Py_TYPE(obj) == MXFP8TensorPythonClass || Py_TYPE(obj) == MXFP8TensorBasePythonClass;
+}
+
+inline bool IsNVFP4Quantizers(PyObject *obj) { return Py_TYPE(obj) == NVFP4QuantizerClass; }
+
+inline bool IsNVFP4Tensor(PyObject *obj) {
+  return Py_TYPE(obj) == NVFP4TensorPythonClass || Py_TYPE(obj) == NVFP4TensorBasePythonClass;
 }
 
 inline bool IsFloat8BlockwiseQuantizers(PyObject *obj) {
@@ -85,6 +96,8 @@ TensorWrapper NVTETensorFromMXFP8Tensor(py::handle tensor, Quantizer *quantizati
 
 std::unique_ptr<Quantizer> CreateMXFP8Params(const py::handle params);
 
+TensorWrapper NVTETensorFromNVFP4Tensor(py::handle tensor, Quantizer *quantization_params);
+
 TensorWrapper NVTETensorFromFloat8BlockwiseQTensor(py::handle tensor,
                                                    Quantizer *quantization_params);
 
@@ -99,6 +112,8 @@ constexpr std::array custom_types_converters = {
                     CreateQuantizer<Float8CurrentScalingQuantizer>),
     std::make_tuple(IsMXFP8Tensor, IsMXFP8Quantizers, NVTETensorFromMXFP8Tensor,
                     CreateQuantizer<MXFP8Quantizer>),
+    std::make_tuple(IsNVFP4Tensor, IsNVFP4Quantizers, NVTETensorFromNVFP4Tensor,
+                    CreateQuantizer<NVFP4Quantizer>),
     std::make_tuple(IsFloat8BlockwiseQTensor, IsFloat8BlockwiseQuantizers,
                     NVTETensorFromFloat8BlockwiseQTensor, CreateQuantizer<Float8BlockQuantizer>)};
 

@@ -93,34 +93,42 @@ void CheckScaleTensorShape(const Tensor &t, const std::string &name) {
     }
   } else {
     if (t.scaling_mode == NVTE_MXFP8_1D_SCALING ||
+        t.scaling_mode == NVTE_NVFP4_1D_SCALING ||
         t.scaling_mode == NVTE_FWD_NVFP4_BWD_MXFP8_SCALING) {
       // Need (4, 128) alignment even for e8 scaling factor
       auto block_alignment = std::vector<size_t>{128ul, 4ul};
       size_t expected_x, expected_y, alignment;
       const size_t block_size_rowwise = (t.scaling_mode == NVTE_MXFP8_1D_SCALING) ? 32 : 16;
-      const size_t block_size_colwise = 32;
+      const size_t block_size_colwise = (t.scaling_mode == NVTE_NVFP4_1D_SCALING) ? 16 : 32;
+
+      // t.flat_first_dim()/.flat_first_dim() depends on t.shape() which has a rather odd design
+      // t.shape returns rowwise data shape when it exists and colwise data shape only if rowwise data does not exist
+      // when both exist, rowwise data shape gets returned.
+      size_t flat_first_dim, flat_last_dim;
+      if (t.has_data()) {
+        flat_first_dim = t.flat_first_dim();
+        flat_last_dim  = t.scaling_mode == NVTE_NVFP4_1D_SCALING ? t.flat_last_dim() * 2 : t.flat_last_dim();
+      } else if (t.has_columnwise_data()) {
+        flat_first_dim = t.scaling_mode == NVTE_NVFP4_1D_SCALING ? t.flat_first_dim() * 2 : t.flat_first_dim();
+        flat_last_dim  = t.flat_last_dim();
+      }
 
       if (t.has_data()) {
-        alignment = block_alignment[0];
-        expected_x =
-            DIVUP(DIVUP(t.flat_first_dim(), static_cast<size_t>(1)), alignment) * alignment;
-        alignment = block_alignment[1];
-        expected_y =
-            DIVUP(DIVUP(t.flat_last_dim(), static_cast<size_t>(block_size_rowwise)), alignment) *
-            alignment;
-        const auto &expected = std::vector<size_t>{expected_x, expected_y};
+        alignment  = block_alignment[0];
+        expected_y = DIVUP(DIVUP(flat_first_dim, static_cast<size_t>(1)), alignment) * alignment;
+        alignment  = block_alignment[1];
+        expected_x = DIVUP(DIVUP(flat_last_dim, static_cast<size_t>(block_size_rowwise)), alignment) * alignment;
+        const auto &expected = std::vector<size_t>{expected_y, expected_x};
         NVTE_CHECK(t.scale_inv.shape == expected, "Tensor \"", name,
                    "\" has invalid scale_inv shape (expected ", expected, ", got ",
                    t.scale_inv.shape, ")");
       }
       if (t.has_columnwise_data()) {
         alignment = block_alignment[1];
-        expected_x =
-            DIVUP(DIVUP(t.flat_first_dim(), static_cast<size_t>(block_size_colwise)), alignment) *
-            alignment;
+        expected_y =DIVUP(DIVUP(flat_first_dim, static_cast<size_t>(block_size_colwise)), alignment) * alignment;
         alignment = block_alignment[0];
-        expected_y = DIVUP(DIVUP(t.flat_last_dim(), static_cast<size_t>(1)), alignment) * alignment;
-        const auto &expected = std::vector<size_t>{expected_x, expected_y};
+        expected_x = DIVUP(DIVUP(flat_last_dim, static_cast<size_t>(1)), alignment) * alignment;
+        const auto &expected = std::vector<size_t>{expected_y, expected_x};
         NVTE_CHECK(t.columnwise_scale_inv.shape == expected, "Tensor \"", name,
                    "\"  has invalid columnwise_scale_inv shape (expected ", expected, ", got ",
                    t.columnwise_scale_inv.shape, ")");
@@ -131,12 +139,14 @@ void CheckScaleTensorShape(const Tensor &t, const std::string &name) {
 
 void CheckInputTensor(const Tensor &t, const std::string &name) {
   const DType type = t.dtype();
-  if (is_fp8_dtype(type)) {
+  if (is_narrow_dtype(type)) {
     // FP8 input needs to have scale_inv
     if (t.has_data()) {
       NVTE_CHECK(t.scale_inv.dptr != nullptr, "FP8 scaling factor input ", name,
                  "_scale_inverse must be allocated");
-      NVTE_CHECK(t.scale_inv.dtype == DType::kFloat32 || t.scale_inv.dtype == DType::kFloat8E8M0,
+      NVTE_CHECK(t.scale_inv.dtype == DType::kFloat32 || 
+                    t.scale_inv.dtype == DType::kFloat8E8M0 ||
+                      t.scale_inv.dtype == DType::kFloat8E4M3,
                  "FP8 scaling factor input ", name,
                  "_scale_inverse has invalid dtype "
                  "(expected Float32 or Byte, got ",
@@ -146,7 +156,8 @@ void CheckInputTensor(const Tensor &t, const std::string &name) {
       NVTE_CHECK(t.columnwise_scale_inv.dptr != nullptr, "FP8 scaling factor input ", name,
                  "_columnwise_scale_inverse must be allocated");
       NVTE_CHECK(t.columnwise_scale_inv.dtype == DType::kFloat32 ||
-                     t.columnwise_scale_inv.dtype == DType::kFloat8E8M0,
+                    t.columnwise_scale_inv.dtype == DType::kFloat8E8M0 ||
+                      t.columnwise_scale_inv.dtype == DType::kFloat8E4M3,
                  "FP8 scaling factor input ", name,
                  "_columnwise_scale_inverse has invalid dtype "
                  "(expected Float32 or Byte, got ",

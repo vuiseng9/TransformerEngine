@@ -39,7 +39,7 @@ std::unique_ptr<Quantizer> convert_quantizer(py::handle quantizer) {
   if (quantizer.is_none()) {
     return std::make_unique<NoneQuantizer>(quantizer);
   }
-  for (auto [_check_type, check_quantizer_type, _create_tensor, create_quantizer] :
+  for (auto [_check_type, check_quantizer_type, _create_tensor_from, create_quantizer] :
        detail::custom_types_converters) {
     if (check_quantizer_type(quantizer.ptr())) {
       return create_quantizer(quantizer);
@@ -58,6 +58,31 @@ transformer_engine::DType getTransformerEngineFP8Type(bool e4m3_if_hybrid,
   return transformer_engine::DType::kFloat8E5M2;
 }
 
+TensorWrapper makeTransformerEngineTensor(py::handle tensor, bool use_rowwise) {
+  // VS: Current design is based on the assumption
+  // this is only called to create tensor (scales fp8e4m3 and FP4 data) before gemm call
+  // due to the shape complexity and not impacting other parts of the codes,
+  // only set either data or columnwise_data only, not both.
+  auto ret = TensorWrapper(NVTE_NVFP4_1D_SCALING);
+  if (use_rowwise) {
+    NVTE_CHECK(!(tensor.attr("_rowwise_data").is_none()), "No _rowwise_data found for NVFP4 Tensor.");
+    const DType fp8_dtype = tensor.attr("_fp8_dtype").cast<DType>(); // TODO(VS) factorize to _fp8_dtype, fp8_dtype
+    const auto &data = tensor.attr("_rowwise_data").cast<at::Tensor>();
+    const auto &scale_inv = tensor.attr("_rowwise_scale_inv").cast<at::Tensor>();
+    ret.set_rowwise_data(data.data_ptr(), fp8_dtype, getTensorShape(data));
+    ret.set_rowwise_scale_inv(scale_inv.data_ptr(), DType::kFloat8E4M3, getTensorShape(scale_inv));
+  } else {
+    NVTE_CHECK(!(tensor.attr("_columnwise_data").is_none()), "No _columnwise_data found for NVFP4 Tensor.");
+    const DType fp8_dtype = tensor.attr("_fp8_dtype").cast<DType>(); // TODO(VS) factorize to _fp8_dtype, fp8_dtype
+    const auto &data = tensor.attr("_columnwise_data").cast<at::Tensor>();
+    const auto &scale_inv = tensor.attr("_columnwise_scale_inv").cast<at::Tensor>();
+    ret.set_columnwise_data(data.data_ptr(), fp8_dtype, getTensorShape(data));
+    ret.set_columnwise_scale_inv(scale_inv.data_ptr(), DType::kFloat8E4M3,
+                                 getTensorShape(scale_inv));
+  }
+  return ret;
+}
+
 TensorWrapper makeTransformerEngineTensor(py::handle tensor, py::handle quantizer) {
   NVTE_CHECK(!tensor.is_none(), "Tensor is not allocated!");
   std::unique_ptr<Quantizer> my_quantizer = convert_quantizer(quantizer);
@@ -65,13 +90,13 @@ TensorWrapper makeTransformerEngineTensor(py::handle tensor, py::handle quantize
   // mxfp8 tensor -> mxfp8 quantizer
   // float8 tensor -> delayed scaling quantizer OR current scaling quantizer
   // also during dequantize, the quantizer param is unknown -> so quantizer is NoneQuantizer
-  for (auto [check_type, check_quantizer_type, create_tensor, _] :
+  for (auto [check_type, check_quantizer_type, create_tensor_from, _] :
        detail::custom_types_converters) {
     if (check_type(tensor.ptr())) {
       if (!(quantizer.is_none() || check_quantizer_type(quantizer.ptr()))) {
         continue;
       }
-      auto x = create_tensor(tensor, my_quantizer.get());
+      auto x = create_tensor_from(tensor, my_quantizer.get());
       return x;
     }
   }

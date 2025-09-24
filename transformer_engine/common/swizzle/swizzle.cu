@@ -201,7 +201,7 @@ __global__ void swizzle_row_scaling_kernel(const void* input, void* output, cons
 namespace transformer_engine {
 
 void swizzle_scaling_factors(const Tensor* input, Tensor* output, cudaStream_t stream) {
-  if (!is_fp8_dtype(input->dtype()) || is_delayed_tensor_scaling(input->scaling_mode)) {
+  if (!is_narrow_dtype(input->dtype()) || is_delayed_tensor_scaling(input->scaling_mode)) {
     NVTE_ERROR("Not implemented caling mode " + to_string(input->scaling_mode) + ".");
   }
 
@@ -216,7 +216,7 @@ void swizzle_scaling_factors(const Tensor* input, Tensor* output, cudaStream_t s
   auto& scaling_mode = input->scaling_mode;
 
   // 1D block scaling, row-wise or colum-wise
-  if (scaling_mode == NVTE_MXFP8_1D_SCALING) {
+  if (scaling_mode == NVTE_MXFP8_1D_SCALING || scaling_mode == NVTE_NVFP4_1D_SCALING) {
     const int m =
         input->has_data() ? input->scale_inv.shape[0] : input->columnwise_scale_inv.shape[1];
     const int k =

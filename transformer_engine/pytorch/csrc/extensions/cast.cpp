@@ -32,9 +32,13 @@ void quantize_impl(const TensorWrapper &input, py::handle &quantizer_py,
                    std::unique_ptr<Quantizer> &quantizer_cpp, TensorWrapper &output,
                    TensorWrapper &noop_flag) {
   // Check tensor dims
-  NVTE_CHECK(get_tensor_shape(input) == get_tensor_shape(output),
-             "Input tensor (shape=", get_tensor_shape(input),
-             ") and output tensor (shape=", get_tensor_shape(output), ") do not match");
+  if (output.scaling_mode() == NVTE_NVFP4_1D_SCALING) {
+    ; // TODO(VS)
+  } else {
+    NVTE_CHECK(get_tensor_shape(input) == get_tensor_shape(output),
+              "Input tensor (shape=", get_tensor_shape(input),
+              ") and output tensor (shape=", get_tensor_shape(output), ") do not match");
+  }
   if (input.numel() == 0) {
     return;
   }
@@ -126,7 +130,12 @@ py::object dequantize(const py::handle &input, transformer_engine::DType otype) 
 
   NoneQuantizer q(none);
 
-  const auto &shape = convertShape(input_tensor.shape());
+  auto shape = convertShape(input_tensor.shape());
+
+  // only rowwise data get passed from pytorch, shape() will correspond to that
+  if (input_tensor.scaling_mode() == NVTE_NVFP4_1D_SCALING) {
+    shape[1] *= 2;
+  }
 
   auto [out_tensor, out] = q.create_tensor(shape, otype);
 

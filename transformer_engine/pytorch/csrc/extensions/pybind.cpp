@@ -29,6 +29,9 @@ PyTypeObject *Float8CurrentScalingQuantizerClass = nullptr;
 PyTypeObject *MXFP8TensorPythonClass = nullptr;  /// TODO Remove
 PyTypeObject *MXFP8TensorBasePythonClass = nullptr;
 PyTypeObject *MXFP8QuantizerClass = nullptr;
+PyTypeObject *NVFP4TensorPythonClass = nullptr;  /// TODO Remove
+PyTypeObject *NVFP4TensorBasePythonClass = nullptr;
+PyTypeObject *NVFP4QuantizerClass = nullptr;
 PyTypeObject *Float8BlockwiseQTensorPythonClass = nullptr;
 PyTypeObject *Float8BlockwiseQTensorBasePythonClass = nullptr;
 PyTypeObject *Float8BlockwiseQuantizerClass = nullptr;
@@ -65,6 +68,21 @@ void init_mxfp8_extension() {
              "Internal error: could not initialize pyTorch MXFP8 extension.");
 }
 
+void init_nvfp4_extension() {
+  if (NVFP4TensorPythonClass) return;
+  auto fp4_module = py::module_::import("transformer_engine.pytorch.tensor.mxfp8_tensor"); // TODO(VS) need to organize python side later
+  NVFP4QuantizerClass =
+      reinterpret_cast<PyTypeObject *>(PyObject_GetAttrString(fp4_module.ptr(), "NVFP4Quantizer"));
+  NVFP4TensorPythonClass =
+      reinterpret_cast<PyTypeObject *>(PyObject_GetAttrString(fp4_module.ptr(), "NVFP4Tensor"));
+  auto fp4_base_module =
+      py::module_::import("transformer_engine.pytorch.tensor._internal.mxfp8_tensor_base"); // TODO(VS) need to organize python side later
+  NVFP4TensorBasePythonClass = reinterpret_cast<PyTypeObject *>(
+      PyObject_GetAttrString(fp4_base_module.ptr(), "NVFP4TensorBase"));
+  NVTE_CHECK(NVFP4TensorPythonClass != nullptr,
+             "Internal error: could not initialize pyTorch NVFP4 extension.");
+}
+
 void init_float8blockwise_extension() {
   if (Float8BlockwiseQTensorBasePythonClass) return;
   auto fp8_module =
@@ -89,6 +107,7 @@ void init_float8blockwise_extension() {
 void init_extension() {
   init_float8_extension();
   init_mxfp8_extension();
+  init_nvfp4_extension();
   init_float8blockwise_extension();
 }
 

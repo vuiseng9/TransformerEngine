@@ -50,6 +50,8 @@ inline bool is_delayed_tensor_scaling(const NVTEScalingMode &mode) {
 
 inline bool is_mxfp_scaling(const NVTEScalingMode &mode) { return mode == NVTE_MXFP8_1D_SCALING; }
 
+inline bool is_nvfp_scaling(const NVTEScalingMode &mode) { return mode == NVTE_NVFP4_1D_SCALING; }
+
 inline size_t product(const std::vector<size_t> &shape, const size_t begin, const size_t end) {
   NVTE_CHECK(begin <= end && end <= shape.size(), "Attempted to access entries ", begin, " to ",
              end, " in a vector with ", shape.size(), " entries");
@@ -189,6 +191,7 @@ struct Tensor {
         }
         break;
       case NVTE_MXFP8_1D_SCALING:
+      case NVTE_NVFP4_1D_SCALING:
       case NVTE_FWD_NVFP4_BWD_MXFP8_SCALING:
         if (!has_data() && has_columnwise_data()) {
           return columnwise_data.shape;
@@ -561,6 +564,26 @@ struct TypeInfo {
       NVTE_ERROR("Invalid type.");                               \
   }
 
+// TODO(VS): how to deal with e2m1, right way to do this?
+#define TRANSFORMER_ENGINE_TYPE_SWITCH_NARROW_PRECISION(dtype, type, ...) \
+  switch (dtype) {                                               \
+    using namespace transformer_engine;                          \
+    case DType::kFloat8E5M2: {                                   \
+      using type = fp8e5m2;                                      \
+      { __VA_ARGS__ }                                            \
+    } break;                                                     \
+    case DType::kFloat8E4M3: {                                   \
+      using type = fp8e4m3;                                      \
+      { __VA_ARGS__ }                                            \
+    } break;                                                     \
+    case DType::kFloat4E2M1: {                                   \
+      using type = fp4e2m1;                                      \
+      { __VA_ARGS__ }                                            \
+    } break;                                                     \
+    default:                                                     \
+      NVTE_ERROR("Invalid type.");                               \
+  }
+
 #define TRANSFORMER_ENGINE_TYPE_SWITCH_INPUT(dtype, type, ...) \
   switch (dtype) {                                             \
     using namespace transformer_engine;                        \
@@ -608,6 +631,26 @@ struct TypeInfo {
   switch (SCALE_DIM) {                                              \
     case 1: {                                                       \
       constexpr size_t DIM = 1;                                     \
+      { __VA_ARGS__ }                                               \
+    } break;                                                        \
+    case 32: {                                                      \
+      constexpr size_t DIM = 32;                                    \
+      { __VA_ARGS__ }                                               \
+    } break;                                                        \
+    default: {                                                      \
+      NVTE_ERROR("Invalid size of the MX scaling factor.");         \
+    }                                                               \
+  }
+
+  // TODO(VS) - to consolidate
+#define TRANSFORMER_ENGINE_MXNV_SCALE_DIM_SWITCH(SCALE_DIM, DIM, ...) \
+  switch (SCALE_DIM) {                                              \
+    case 1: {                                                       \
+      constexpr size_t DIM = 1;                                     \
+      { __VA_ARGS__ }                                               \
+    } break;                                                        \
+    case 16: {                                                      \
+      constexpr size_t DIM = 16;                                    \
       { __VA_ARGS__ }                                               \
     } break;                                                        \
     case 32: {                                                      \

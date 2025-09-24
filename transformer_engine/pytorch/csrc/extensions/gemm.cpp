@@ -37,7 +37,7 @@ namespace transformer_engine::pytorch {
 namespace detail {
 
 bool is_low_precision(const DType type) {
-  return type == DType::kFloat8E4M3 || type == DType::kFloat8E5M2;
+  return type == DType::kFloat8E4M3 || type == DType::kFloat8E5M2 || type == DType::kFloat4E2M1;
 }
 
 std::vector<size_t> getGemmOutputShape(const NVTEShape& A_shape, const bool transa,
@@ -96,9 +96,24 @@ std::vector<py::object> gemm(py::handle A, bool transa, py::handle B, bool trans
   // Input tensors
   NVTE_CHECK(!A.is_none(), "Tensor A has not been provided");
   NVTE_CHECK(!B.is_none(), "Tensor B has not been provided");
-  auto none = py::none();
-  TensorWrapper A_tensor = makeTransformerEngineTensor(A, none);
-  TensorWrapper B_tensor = makeTransformerEngineTensor(B, none);
+
+  TensorWrapper A_tensor;
+  TensorWrapper B_tensor;
+
+  if (transformer_engine::pytorch::detail::IsNVFP4Tensor(A.ptr()) && 
+      transformer_engine::pytorch::detail::IsNVFP4Tensor(B.ptr())) {
+    // use only intented data only due to original shape codes seems buggy.
+    // currently for nvfp4 only
+    bool A_use_rowwise = transa == CUBLAS_OP_T;
+    bool B_use_rowwise = transb == CUBLAS_OP_N;
+    
+    A_tensor = makeTransformerEngineTensor(A, A_use_rowwise);
+    B_tensor = makeTransformerEngineTensor(B, B_use_rowwise);
+  } else {
+    auto none = py::none();
+    A_tensor = makeTransformerEngineTensor(A, none);
+    B_tensor = makeTransformerEngineTensor(B, none);
+  }
 
   const bool low_precision =
       detail::is_low_precision(A_tensor.dtype()) || detail::is_low_precision(B_tensor.dtype());
@@ -181,8 +196,7 @@ std::vector<py::object> gemm(py::handle A, bool transa, py::handle B, bool trans
   if (A_tensor.numel() != 0 && B_tensor.numel() != 0) {
     // Optionally swizzle the scaling factors
     swizzled_scale_inverses_list.emplace_back(std::move(swizzle_scaling_factors(A_tensor, transa)));
-    swizzled_scale_inverses_list.emplace_back(
-        std::move(swizzle_scaling_factors(B_tensor, !transb)));
+    swizzled_scale_inverses_list.emplace_back(std::move(swizzle_scaling_factors(B_tensor, !transb)));
 
     if (comm_overlap) {
       // Prepare extra output tensor

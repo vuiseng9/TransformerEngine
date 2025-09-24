@@ -70,7 +70,7 @@ from ..tensor._internal.float8_blockwise_tensor_base import Float8BlockwiseQTens
 from ..cpu_offload import is_cpu_offload_enabled, mark_activation_offload
 from ...debug.pytorch.debug_state import TEDebugState
 from ...debug.pytorch.utils import any_feature_enabled
-
+from custom.quantize import q_mxfp8_rowwise, q_nvfp4_rowwise
 __all__ = ["Linear"]
 
 
@@ -194,6 +194,17 @@ class _Linear(torch.autograd.Function):
                 )
 
         else:  # Do not all-gather input tensor
+
+            def noraise_allclose(*args, **kwargs):
+                try:
+                    # Attempt the assertion
+                    torch.testing.assert_close(*args, **kwargs)
+                    print("✅ Tensors are close!")
+                except AssertionError as e:
+                    # If it fails, catch the error and print its message
+                    print("❌ Tensors are NOT close. See comparison below:")
+                    print(e)
+
             if fp8 or debug:
                 if isinstance(inputmat, QuantizedTensorBase):
                     inputmat.update_usage(rowwise_usage=True)
@@ -201,7 +212,22 @@ class _Linear(torch.autograd.Function):
                     if input_quantizer is None:
                         raise ValueError("Missing quantizer for input tensor")
                     input_quantizer.set_usage(rowwise=True, columnwise=backward_needs_input)
-                    inputmat = input_quantizer(inputmat)
+                    if True:
+                        # quantfn = q_mxfp8_rowwise
+                        quantfn = q_nvfp4_rowwise
+
+                        inputmat = inputmat.reshape(-1, inputmat.shape[-1])
+                        unquantized = inputmat
+                        q, scale = quantfn(inputmat)
+                        inputmat = input_quantizer(inputmat)
+                        teq = inputmat._rowwise_data
+                        tescale = inputmat._rowwise_scale_inv
+                        dequantized = inputmat.dequantize()
+                        # dequantized = dequantized.reshape(unquantized.shape)
+                        # noraise_allclose(dequantized, unquantized, atol=0.00, rtol=0.15)
+                        inputmat.__repr__()
+                    else:
+                        inputmat = input_quantizer(inputmat)
                     own_quantized_input = True
             else:
                 inputmat = cast_if_needed(inp, activation_dtype)  # Cast for AMP
@@ -295,6 +321,7 @@ class _Linear(torch.autograd.Function):
             ub_type=ub_type,
             extra_output=reduce_scatter_out,
         )
+        gemm_out = gemm_out.reshape(inp.shape[:2] + (-1,))
         nvtx_range_pop(f"{nvtx_label}.gemm")
         # ------------------------------------------------------
         # Finished forward GEMM...

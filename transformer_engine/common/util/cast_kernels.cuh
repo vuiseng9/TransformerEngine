@@ -28,41 +28,41 @@
 
 namespace transformer_engine {
 
-constexpr size_t MXFP8_CHUNK_DIM_Y = 64;
-constexpr size_t MXFP8_CHUNK_DIM_X = 64;
-constexpr size_t MXFP8_CHUNKS_PER_BLOCK_Y = 1;
-constexpr size_t MXFP8_CHUNKS_PER_BLOCK_X = 1;
-constexpr size_t MXFP8_CHUNKS_PER_BLOCK = MXFP8_CHUNKS_PER_BLOCK_Y * MXFP8_CHUNKS_PER_BLOCK_X;
-constexpr size_t MXFP8_THREADS_PER_CHUNK = 64;
-constexpr size_t MXFP8_BUFFERS_NUM = 2;
-constexpr size_t MXFP8_PREFETCH_BUFFERS_NUM = 1;
-static_assert(MXFP8_PREFETCH_BUFFERS_NUM < MXFP8_BUFFERS_NUM);
+constexpr size_t MXNV_CHUNK_DIM_Y = 64;
+constexpr size_t MXNV_CHUNK_DIM_X = 64;
+constexpr size_t MXNV_CHUNKS_PER_BLOCK_Y = 1;
+constexpr size_t MXNV_CHUNKS_PER_BLOCK_X = 1;
+constexpr size_t MXNV_CHUNKS_PER_BLOCK = MXNV_CHUNKS_PER_BLOCK_Y * MXNV_CHUNKS_PER_BLOCK_X;
+constexpr size_t MXNV_THREADS_PER_CHUNK = 64;
+constexpr size_t MXNV_BUFFERS_NUM = 2;
+constexpr size_t MXNV_PREFETCH_BUFFERS_NUM = 1;
+static_assert(MXNV_PREFETCH_BUFFERS_NUM < MXNV_BUFFERS_NUM);
 
 constexpr size_t ELEMS_PER_THREAD = 16;
-constexpr size_t MXFP8_BUFFER_DIM_Y = 32;                 // only 32 is supported
-constexpr size_t MXFP8_BUFFER_DIM_X = MXFP8_CHUNK_DIM_X;  // 64
-constexpr size_t MXFP8_SHMEM_DIM_Y = MXFP8_BUFFER_DIM_Y;  // 32
-constexpr size_t MXFP8_SHMEM_DIM_X = MXFP8_BUFFER_DIM_X;  // 64
+constexpr size_t MXNV_BUFFER_DIM_Y = 32;                 // only 32 is supported
+constexpr size_t MXNV_BUFFER_DIM_X = MXNV_CHUNK_DIM_X;  // 64
+constexpr size_t MXNV_SHMEM_DIM_Y = MXNV_BUFFER_DIM_Y;  // 32
+constexpr size_t MXNV_SHMEM_DIM_X = MXNV_BUFFER_DIM_X;  // 64
 
 constexpr size_t THREADS_PER_CHUNK_X_ROWWISE =
-    MXFP8_CHUNK_DIM_X / ELEMS_PER_THREAD;  //   4 = 64 / 16
+    MXNV_CHUNK_DIM_X / ELEMS_PER_THREAD;  //   4 = 64 / 16
 constexpr size_t THREADS_PER_CHUNK_Y_ROWWISE =
-    MXFP8_THREADS_PER_CHUNK / THREADS_PER_CHUNK_X_ROWWISE;         //  16 = 64 / 4
-constexpr size_t THREADS_PER_CHUNK_X_COLWISE = MXFP8_CHUNK_DIM_X;  //  64
-constexpr size_t MXFP8_BUFF_STAGES_NUM =
-    MXFP8_BUFFER_DIM_Y / THREADS_PER_CHUNK_Y_ROWWISE;                        //   2 = 32 / 16
-constexpr size_t MXFP8_ITERATIONS = MXFP8_CHUNK_DIM_Y / MXFP8_BUFFER_DIM_Y;  //   2 = 64 / 32
-static_assert(MXFP8_ITERATIONS >= MXFP8_PREFETCH_BUFFERS_NUM);
+    MXNV_THREADS_PER_CHUNK / THREADS_PER_CHUNK_X_ROWWISE;         //  16 = 64 / 4
+constexpr size_t THREADS_PER_CHUNK_X_COLWISE = MXNV_CHUNK_DIM_X;  //  64
+constexpr size_t MXNV_BUFF_STAGES_NUM =
+    MXNV_BUFFER_DIM_Y / THREADS_PER_CHUNK_Y_ROWWISE;                        //   2 = 32 / 16
+constexpr size_t MXNV_ITERATIONS = MXNV_CHUNK_DIM_Y / MXNV_BUFFER_DIM_Y;  //   2 = 64 / 32
+static_assert(MXNV_ITERATIONS >= MXNV_PREFETCH_BUFFERS_NUM);
 
 template <bool IS_DBIAS, bool IS_DACT, bool IS_ACT, typename ParamOP,
           float (*OP)(float, const ParamOP &), typename IType, typename OType, size_t SCALE_DIM_Y,
-          size_t SCALE_DIM_X>
-__global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
-    cast_mxfp8_2D_kernel(const __grid_constant__ CUtensorMap tensor_map_input,
+          size_t SCALE_DIM_X, typename ScaleType>
+__global__ void __launch_bounds__(MXNV_THREADS_PER_CHUNK)
+    cast_mxnv_2D_kernel(const __grid_constant__ CUtensorMap tensor_map_input,
                          const __grid_constant__ CUtensorMap tensor_map_act_input,
                          const __grid_constant__ CUtensorMap tensor_map_output_rowwise,
                          const __grid_constant__ CUtensorMap tensor_map_output_colwise,
-                         e8m0_t *const scales_rowwise, e8m0_t *const scales_colwise,
+                         ScaleType *const scales_rowwise, ScaleType *const scales_colwise,
                          const float *noop, float *const dbias_workspace, float *const amax_ptr,
                          const size_t rows, const size_t cols, const size_t scale_stride_rowwise,
                          const size_t scale_stride_colwise) {
@@ -75,26 +75,28 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
   constexpr bool USE_COLWISE_SCALING = SCALE_DIM_Y > 1;
   constexpr bool COMPUTE_DBIAS_IN_ROWWISE_SECTION = !USE_COLWISE_SCALING;
 
-  constexpr size_t SCALES_ROWWISE_PER_CHUNK_Y = MXFP8_CHUNK_DIM_Y;                //   2 = 64 / 32
-  constexpr size_t SCALES_ROWWISE_PER_CHUNK_X = MXFP8_CHUNK_DIM_X / SCALE_DIM_X;  //  64 = 64 / 1
+  constexpr size_t SCALES_ROWWISE_PER_CHUNK_Y = MXNV_CHUNK_DIM_Y;                //  64 = 64 / 1
+  constexpr size_t SCALES_ROWWISE_PER_CHUNK_X = MXNV_CHUNK_DIM_X / SCALE_DIM_X;  //   2 = 64 / 32
   constexpr size_t SCALES_ROWWISE_PER_BLOCK_Y =
-      SCALES_ROWWISE_PER_CHUNK_Y * MXFP8_CHUNKS_PER_BLOCK_Y;  //   2 = 2 * 1
+      SCALES_ROWWISE_PER_CHUNK_Y * MXNV_CHUNKS_PER_BLOCK_Y;  //  64 = 64 * 1
   constexpr size_t SCALES_ROWWISE_PER_BLOCK_X =
-      SCALES_ROWWISE_PER_CHUNK_X * MXFP8_CHUNKS_PER_BLOCK_X;  //  64 = 64 * 1
+      SCALES_ROWWISE_PER_CHUNK_X * MXNV_CHUNKS_PER_BLOCK_X;  //   2 = 2 * 1
 
-  constexpr size_t SCALES_COLWISE_PER_CHUNK_Y = MXFP8_CHUNK_DIM_Y / SCALE_DIM_Y;  //   2 = 64 / 32
-  constexpr size_t SCALES_COLWISE_PER_CHUNK_X = MXFP8_CHUNK_DIM_X;                //  64 = 64 / 1
+  constexpr size_t SCALES_COLWISE_PER_CHUNK_Y = MXNV_CHUNK_DIM_Y / SCALE_DIM_Y;  //   2 = 64 / 32
+  constexpr size_t SCALES_COLWISE_PER_CHUNK_X = MXNV_CHUNK_DIM_X;                //  64 = 64 / 1
   constexpr size_t SCALES_COLWISE_PER_BLOCK_Y =
-      SCALES_COLWISE_PER_CHUNK_Y * MXFP8_CHUNKS_PER_BLOCK_Y;  //   2 = 2 * 1
+      SCALES_COLWISE_PER_CHUNK_Y * MXNV_CHUNKS_PER_BLOCK_Y;  //   2 = 2 * 1
   constexpr size_t SCALES_COLWISE_PER_BLOCK_X =
-      SCALES_COLWISE_PER_CHUNK_X * MXFP8_CHUNKS_PER_BLOCK_X;  //  64 = 64 * 1
+      SCALES_COLWISE_PER_CHUNK_X * MXNV_CHUNKS_PER_BLOCK_X;  //  64 = 64 * 1
 
   constexpr size_t THREADS_PER_SCALE_X_ROWWISE =
-      DIVUP(SCALE_DIM_X, ELEMS_PER_THREAD);                      //   2 = 32 / 16
-  constexpr size_t SUBWARP_WIDTH = THREADS_PER_SCALE_X_ROWWISE;  //   2
+      DIVUP(SCALE_DIM_X, ELEMS_PER_THREAD);                      //   depends on block size, 2 threads for 32, 1 thread for 16
+  constexpr size_t SUBWARP_WIDTH = THREADS_PER_SCALE_X_ROWWISE;  //   
 
-  const int block_offset_Y = blockIdx.y * MXFP8_CHUNKS_PER_BLOCK_Y * MXFP8_CHUNK_DIM_Y;
-  const int block_offset_X = blockIdx.x * MXFP8_CHUNKS_PER_BLOCK_X * MXFP8_CHUNK_DIM_X;
+  constexpr size_t SCALES_COLWISE_PER_BUFFER_Y = MXNV_BUFFER_DIM_Y / SCALE_DIM_Y;
+
+  const int block_offset_Y = blockIdx.y * MXNV_CHUNKS_PER_BLOCK_Y * MXNV_CHUNK_DIM_Y;
+  const int block_offset_X = blockIdx.x * MXNV_CHUNKS_PER_BLOCK_X * MXNV_CHUNK_DIM_X;
   const int scales_rowwise_block_offset_Y = blockIdx.y * SCALES_ROWWISE_PER_BLOCK_Y;
   const int scales_rowwise_block_offset_X = blockIdx.x * SCALES_ROWWISE_PER_BLOCK_X;
   const int scales_colwise_block_offset_Y = blockIdx.y * SCALES_COLWISE_PER_BLOCK_Y;
@@ -109,39 +111,50 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
   const int thread_offset_X_rowwise = tid_rowwise_X * ELEMS_PER_THREAD;
   // const int thread_offset_X_colwise = tid_colwise_X;
 
-  const int dbias_rowwise_offset_Y = blockIdx.y * MXFP8_CHUNKS_PER_BLOCK_Y + tid_rowwise_Y;
+  const int dbias_rowwise_offset_Y = blockIdx.y * MXNV_CHUNKS_PER_BLOCK_Y + tid_rowwise_Y;
   const int dbias_rowwise_block_offset_X =
-      blockIdx.x * MXFP8_CHUNKS_PER_BLOCK_X * MXFP8_CHUNK_DIM_X + thread_offset_X_rowwise;
+      blockIdx.x * MXNV_CHUNKS_PER_BLOCK_X * MXNV_CHUNK_DIM_X + thread_offset_X_rowwise;
   const int dbias_colwise_offset_Y = blockIdx.y;
   const int dbias_colwise_block_offset_X =
-      blockIdx.x * MXFP8_CHUNKS_PER_BLOCK_X * MXFP8_CHUNK_DIM_X + tid_colwise_X;
+      blockIdx.x * MXNV_CHUNKS_PER_BLOCK_X * MXNV_CHUNK_DIM_X + tid_colwise_X;
   const int dbias_stride = cols;
 
-  Vec<float, ELEMS_PER_THREAD> partial_dbias_rowwise[MXFP8_CHUNKS_PER_BLOCK_X];
-  float partial_dbias_colwise[MXFP8_CHUNKS_PER_BLOCK_X];
+  Vec<float, ELEMS_PER_THREAD> partial_dbias_rowwise[MXNV_CHUNKS_PER_BLOCK_X];
+  float partial_dbias_colwise[MXNV_CHUNKS_PER_BLOCK_X];
   if constexpr (IS_DBIAS) {
     if constexpr (COMPUTE_DBIAS_IN_ROWWISE_SECTION) {
 #pragma unroll
-      for (int i = 0; i < MXFP8_CHUNKS_PER_BLOCK_X; ++i) {
+      for (int i = 0; i < MXNV_CHUNKS_PER_BLOCK_X; ++i) {
         partial_dbias_rowwise[i].clear();
       }
     } else {
 #pragma unroll
-      for (int i = 0; i < MXFP8_CHUNKS_PER_BLOCK_X; ++i) {
+      for (int i = 0; i < MXNV_CHUNKS_PER_BLOCK_X; ++i) {
         partial_dbias_colwise[i] = 0;
       }
     }
   }
 
-  // The destination shared memory buffer of a bulk tensor operation should be 128 e8m0_t aligned
-  __shared__ alignas(128) IType in_sh[MXFP8_BUFFERS_NUM][MXFP8_SHMEM_DIM_Y][MXFP8_SHMEM_DIM_X];
-  __shared__ alignas(128) IType act_in_sh[MXFP8_BUFFERS_NUM][MXFP8_SHMEM_DIM_Y][MXFP8_SHMEM_DIM_X];
-  __shared__ alignas(128)
-      OType out_rowwise_sh[MXFP8_BUFFERS_NUM][MXFP8_SHMEM_DIM_Y][MXFP8_SHMEM_DIM_X];
-  __shared__ alignas(128)
-      OType out_colwise_sh[MXFP8_BUFFERS_NUM][MXFP8_SHMEM_DIM_Y][MXFP8_SHMEM_DIM_X];
+  const size_t packing = [&] {
+    if constexpr (std::is_same_v<OType, fp8e4m3> || std::is_same_v<OType, fp8e5m2>) {
+      return 1;
+    } else if constexpr (std::is_same_v<OType, fp4e2m1>) {
+      return 2;
+    } else {
+      static_assert(!std::is_same_v<OType, OType>, "Unsupported OType");
+      return 0;
+    }
+  }();
 
-  constexpr int shmem_buff_size = sizeof(in_sh) / MXFP8_BUFFERS_NUM;
+  // The destination shared memory buffer of a bulk tensor operation should be 128 e8m0_t/fp8e4m3 aligned
+  __shared__ alignas(128) IType in_sh[MXNV_BUFFERS_NUM][MXNV_SHMEM_DIM_Y][MXNV_SHMEM_DIM_X];
+  __shared__ alignas(128) IType act_in_sh[MXNV_BUFFERS_NUM][MXNV_SHMEM_DIM_Y][MXNV_SHMEM_DIM_X];
+  __shared__ alignas(128)
+      OType out_rowwise_sh[MXNV_BUFFERS_NUM][MXNV_SHMEM_DIM_Y][MXNV_SHMEM_DIM_X / packing];
+  __shared__ alignas(128)
+      OType out_colwise_sh[MXNV_BUFFERS_NUM][MXNV_SHMEM_DIM_Y / packing][MXNV_SHMEM_DIM_X];
+
+  constexpr int shmem_buff_size = sizeof(in_sh) / MXNV_BUFFERS_NUM;
 
   const bool is_master_thread = (threadIdx.x == 0);
 
@@ -149,21 +162,21 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
 
 // Initialize shared memory barrier with the number of threads participating in the barrier.
 #pragma nv_diag_suppress static_var_with_dynamic_init
-  __shared__ alignas(8) uint64_t mbar[MXFP8_ITERATIONS];
+  __shared__ alignas(8) uint64_t mbar[MXNV_ITERATIONS];
 
-  initialize_barriers<MXFP8_ITERATIONS, MXFP8_THREADS_PER_CHUNK>(mbar, is_master_thread);
+  initialize_barriers<MXNV_ITERATIONS, MXNV_THREADS_PER_CHUNK>(mbar, is_master_thread);
 
   int parity = 0;
 #pragma unroll
-  for (int chunk = 0; chunk < MXFP8_CHUNKS_PER_BLOCK; ++chunk) {
-    const int chunk_Y = chunk / MXFP8_CHUNKS_PER_BLOCK_X;
-    const int chunk_X = chunk % MXFP8_CHUNKS_PER_BLOCK_X;
+  for (int chunk = 0; chunk < MXNV_CHUNKS_PER_BLOCK; ++chunk) {
+    const int chunk_Y = chunk / MXNV_CHUNKS_PER_BLOCK_X;
+    const int chunk_X = chunk % MXNV_CHUNKS_PER_BLOCK_X;
 
-    const int chunk_offset_Y = block_offset_Y + chunk_Y * MXFP8_CHUNK_DIM_Y;
-    const int chunk_offset_X = block_offset_X + chunk_X * MXFP8_CHUNK_DIM_X;
+    const int chunk_offset_Y = block_offset_Y + chunk_Y * MXNV_CHUNK_DIM_Y;
+    const int chunk_offset_X = block_offset_X + chunk_X * MXNV_CHUNK_DIM_X;
 
-    const int dbias_rowwise_offset_X = dbias_rowwise_block_offset_X + chunk_X * MXFP8_CHUNK_DIM_X;
-    const int dbias_colwise_offset_X = dbias_colwise_block_offset_X + chunk_X * MXFP8_CHUNK_DIM_X;
+    const int dbias_rowwise_offset_X = dbias_rowwise_block_offset_X + chunk_X * MXNV_CHUNK_DIM_X;
+    const int dbias_colwise_offset_X = dbias_colwise_block_offset_X + chunk_X * MXNV_CHUNK_DIM_X;
 
     const int scales_rowwise_chunk_offset_Y =
         scales_rowwise_block_offset_Y + chunk_Y * SCALES_ROWWISE_PER_CHUNK_Y;
@@ -175,8 +188,8 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
         scales_colwise_block_offset_X + chunk_X * SCALES_COLWISE_PER_CHUNK_X;
 
 #pragma unroll
-    for (int prefetch_buff = 0; prefetch_buff < MXFP8_PREFETCH_BUFFERS_NUM; ++prefetch_buff) {
-      const int chunk_stage_offset_Y = chunk_offset_Y + prefetch_buff * MXFP8_BUFFER_DIM_Y;
+    for (int prefetch_buff = 0; prefetch_buff < MXNV_PREFETCH_BUFFERS_NUM; ++prefetch_buff) {
+      const int chunk_stage_offset_Y = chunk_offset_Y + prefetch_buff * MXNV_BUFFER_DIM_Y;
       const int chunk_stage_offset_X = chunk_offset_X;
       if constexpr (IS_DACT) {
         copy_2d_to_sharedx2(&in_sh[prefetch_buff], &tensor_map_input, chunk_stage_offset_X,
@@ -191,14 +204,14 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
     }
 
 #pragma unroll
-    for (int iter = 0; iter < MXFP8_ITERATIONS; ++iter) {
-      const int buff = iter % MXFP8_BUFFERS_NUM;
-      const int next_iter = iter + MXFP8_PREFETCH_BUFFERS_NUM;
-      const size_t row_base = chunk_offset_Y + iter * MXFP8_BUFFER_DIM_Y;
+    for (int iter = 0; iter < MXNV_ITERATIONS; ++iter) {
+      const int buff = iter % MXNV_BUFFERS_NUM;
+      const int next_iter = iter + MXNV_PREFETCH_BUFFERS_NUM;
+      const size_t row_base = chunk_offset_Y + iter * MXNV_BUFFER_DIM_Y;
 
-      if (next_iter < MXFP8_ITERATIONS) {
-        const int next_buff = next_iter % MXFP8_BUFFERS_NUM;
-        const int chunk_it_offset_y = chunk_offset_Y + next_iter * MXFP8_BUFFER_DIM_Y;
+      if (next_iter < MXNV_ITERATIONS) {
+        const int next_buff = next_iter % MXNV_BUFFERS_NUM;
+        const int chunk_it_offset_y = chunk_offset_Y + next_iter * MXNV_BUFFER_DIM_Y;
         const int chunk_it_offset_x = chunk_offset_X;
         if constexpr (IS_DACT) {
           copy_2d_to_sharedx2(&in_sh[next_buff], &tensor_map_input, chunk_it_offset_x,
@@ -222,10 +235,10 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
         Vec<OType, ELEMS_PER_THREAD> out_c;
 
         const int iteration_scale_rowwise_offset_Y =
-            scales_rowwise_chunk_offset_Y + iter * MXFP8_BUFFER_DIM_Y;
+            scales_rowwise_chunk_offset_Y + iter * MXNV_BUFFER_DIM_Y;
 
 #pragma unroll
-        for (int stage = 0; stage < MXFP8_BUFF_STAGES_NUM; ++stage) {
+        for (int stage = 0; stage < MXNV_BUFF_STAGES_NUM; ++stage) {
           const int stage_offset_Y = stage * THREADS_PER_CHUNK_Y_ROWWISE;
           const int shmem_offset_y = thread_offset_Y + stage_offset_Y;
           const int shmem_offset_x = thread_offset_X_rowwise;
@@ -275,9 +288,25 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
           __builtin_assume(thread_amax >= 0);
           block_amax = fmaxf(block_amax, thread_amax);
 
-          const float subwarp_amax = subwarp_reduce_max_broadcast<SUBWARP_WIDTH>(thread_amax);
-          const e8m0_t biased_exponent =
-              float_to_e8m0(subwarp_amax * Quantized_Limits<OType>::max_norm_rcp);
+          float subwarp_amax;
+          if constexpr (SUBWARP_WIDTH == 1) {
+            // 1 thread has amax of 16 elements, therefore if width is 1 (block size of 16), we have the amax for the block
+            subwarp_amax = thread_amax;
+          } else {
+            // block size 32 would have SUBWARP_WIDTH=2, need to choose larger betweent the two
+            subwarp_amax = subwarp_reduce_max_broadcast<SUBWARP_WIDTH>(thread_amax);
+          }
+
+          const float x = subwarp_amax * Quantized_Limits<OType>::max_norm_rcp;
+
+          ScaleType thread_scales_rowwise{};
+          if constexpr (std::is_same_v<ScaleType, e8m0_t>) {
+            thread_scales_rowwise = float_to_e8m0(x); // power of 2 values
+          } else if constexpr (std::is_same_v<ScaleType, fp8e4m3>) {
+            thread_scales_rowwise = ScaleType(x); 
+          } else {
+            static_assert(!std::is_same_v<ScaleType, ScaleType>, "Unsupported ScaleType");
+          }
 
           // Only single thread writes the computed scaling factor
           if (tid_rowwise_X % THREADS_PER_SCALE_X_ROWWISE == 0) {
@@ -287,16 +316,38 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
                 scales_rowwise_chunk_offset_X + tid_rowwise_X / THREADS_PER_SCALE_X_ROWWISE;
             const int scale_idx =
                 global_scales_offset_Y * scale_stride_rowwise + global_scales_offset_X;
-            scales_rowwise[scale_idx] = biased_exponent;
+            scales_rowwise[scale_idx] = thread_scales_rowwise;
           }
 
-          const float block_scale_inverse = exp2f_rcp(biased_exponent);
+          const float block_scale_inverse = [&] {
+            if constexpr (std::is_same_v<ScaleType, e8m0_t>) {
+              return exp2f_rcp(thread_scales_rowwise);
+            } else if constexpr (std::is_same_v<ScaleType, fp8e4m3>) {
+              return __frcp_rn(x);
+            } else {
+              static_assert(!std::is_same_v<ScaleType, ScaleType>, "Unsupported ScaleType");
+              return 0.0f; 
+            }
+          }();
 
+          if constexpr (std::is_same_v<OType, fp4e2m1>) {
+            // pack 2-fp4 as a byte
+            uint8_t *s_mem = reinterpret_cast<uint8_t *>(&out_rowwise_sh[buff][shmem_offset_y][0]);
+            const int packed_shmem_offset_x = shmem_offset_x / 2;
 #pragma unroll
-          for (int j = 0; j < ELEMS_PER_THREAD; ++j) {
-            out_c.data.elt[j] = static_cast<OType>(in_compute[j] * block_scale_inverse);
+            for (int j = 0; j < ELEMS_PER_THREAD / 2; ++j) {
+              // Use the CUDA intrinsic to convert and pack float2 -> fp4x2 (uint8_t)
+              const float2 f2 = {in_compute[2 * j], in_compute[2 * j + 1]};
+              s_mem[packed_shmem_offset_x + j] =
+                  __nv_cvt_float2_to_fp4x2(f2, __NV_E2M1, cudaRoundNearest);
+            }            
+          } else {
+#pragma unroll
+            for (int j = 0; j < ELEMS_PER_THREAD; ++j) {
+              out_c.data.elt[j] = static_cast<OType>(in_compute[j] * block_scale_inverse);
+            }
+            out_c.store_to(&out_rowwise_sh[buff][shmem_offset_y][shmem_offset_x]);
           }
-          out_c.store_to(&out_rowwise_sh[buff][shmem_offset_y][shmem_offset_x]);
         }
       }
 
@@ -305,53 +356,87 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
         float in_compute[SCALE_DIM_Y];
 
         float amax = 0;
-#pragma unroll
-        for (int i = 0; i < SCALE_DIM_Y; ++i) {
-          const size_t row = row_base + i;
-          const bool row_out_of_bounds = (row >= rows);
-          const bool out_of_bounds = (col_out_of_bounds || row_out_of_bounds);
 
-          float elt = static_cast<float>(in_sh[buff][i][tid_colwise_X]);
-          if constexpr (IS_ACT) {
-            elt = OP(elt, {});
-          }
-          if constexpr (IS_DACT) {
-            float act_in_elt = static_cast<float>(act_in_sh[buff][i][tid_colwise_X]);
-            elt *= OP(act_in_elt, {});
-          }
-          if constexpr (IS_DBIAS) {
-            if (!out_of_bounds) {
-              partial_dbias_colwise[chunk_X] += elt;
+        for (int j = 0; j < SCALES_COLWISE_PER_BUFFER_Y; ++j) {
+          // if block size 16,  total j = 2
+#pragma unroll
+          for (int i = 0; i < SCALE_DIM_Y; ++i) {
+            const size_t row = row_base + j*SCALE_DIM_Y + i;
+            const bool row_out_of_bounds = (row >= rows);
+            const bool out_of_bounds = (col_out_of_bounds || row_out_of_bounds);
+
+            float elt = static_cast<float>(in_sh[buff][i][tid_colwise_X]);
+            if constexpr (IS_ACT) {
+              elt = OP(elt, {});
             }
-          }
-          in_compute[i] = elt;
-          if constexpr (IS_ACT || IS_DACT) {
-            if (!out_of_bounds) {
+            if constexpr (IS_DACT) {
+              float act_in_elt = static_cast<float>(act_in_sh[buff][i][tid_colwise_X]);
+              elt *= OP(act_in_elt, {});
+            }
+            if constexpr (IS_DBIAS) {
+              if (!out_of_bounds) {
+                partial_dbias_colwise[chunk_X] += elt;
+              }
+            }
+            in_compute[i] = elt;
+            if constexpr (IS_ACT || IS_DACT) {
+              if (!out_of_bounds) {
+                amax = fmaxf(amax, fabsf(elt));
+              }
+            } else {
+              // If no activation, elt is 0 so we can safely do this
               amax = fmaxf(amax, fabsf(elt));
             }
-          } else {
-            // If no activation, elt is 0 so we can safely do this
-            amax = fmaxf(amax, fabsf(elt));
           }
-        }
 
-        __builtin_assume(block_amax >= 0);
-        __builtin_assume(amax >= 0);
-        block_amax = fmaxf(block_amax, amax);
+          __builtin_assume(block_amax >= 0);
+          __builtin_assume(amax >= 0);
+          block_amax = fmaxf(block_amax, amax);
+      
+          const float x = amax * Quantized_Limits<OType>::max_norm_rcp;
 
-        const e8m0_t biased_exponent = float_to_e8m0(amax * Quantized_Limits<OType>::max_norm_rcp);
+          ScaleType thread_scales_colwise{};
+          if constexpr (std::is_same_v<ScaleType, e8m0_t>) {
+            thread_scales_colwise = float_to_e8m0(x);
+          } else if constexpr (std::is_same_v<ScaleType, fp8e4m3>) {
+            thread_scales_colwise = ScaleType(x);
+          } else {
+            static_assert(!std::is_same_v<ScaleType, ScaleType>, "Unsupported ScaleType");
+          }
 
-        const int global_scales_offset_Y = scales_colwise_chunk_offset_Y + iter;
-        const int global_scales_offset_X = scales_colwise_chunk_offset_X + tid_colwise_X;
-        const int scale_idx =
-            global_scales_offset_Y * scale_stride_colwise + global_scales_offset_X;
-        scales_colwise[scale_idx] = biased_exponent;
+          const int global_scales_offset_Y = scales_colwise_chunk_offset_Y + iter*SCALES_COLWISE_PER_BUFFER_Y  + j; // iter is buffer steps
+          const int global_scales_offset_X = scales_colwise_chunk_offset_X + tid_colwise_X;
+          const int scale_idx =
+              global_scales_offset_Y * scale_stride_colwise + global_scales_offset_X;
+          scales_colwise[scale_idx] = thread_scales_colwise;
 
-        const float block_scale_inverse = exp2f_rcp(biased_exponent);
+          const float block_scale_inverse = [&] {
+            if constexpr (std::is_same_v<ScaleType, e8m0_t>) {
+              return exp2f_rcp(thread_scales_colwise);
+            } else if constexpr (std::is_same_v<ScaleType, fp8e4m3>) {
+              return __frcp_rn(x);
+            } else {
+              static_assert(!std::is_same_v<ScaleType, ScaleType>, "Unsupported ScaleType");
+              return 0.0f; 
+            }
+          }();
+
+          if constexpr (std::is_same_v<OType, fp4e2m1>) {
+            uint8_t *s_mem =
+                reinterpret_cast<uint8_t *>(&out_colwise_sh[buff][0][tid_colwise_X]);
 #pragma unroll
-        for (int i = 0; i < SCALE_DIM_Y; ++i) {
-          out_colwise_sh[buff][i][tid_colwise_X] =
-              static_cast<OType>(in_compute[i] * block_scale_inverse);
+            for (int i = 0; i < SCALE_DIM_Y / 2; ++i) {
+              const float2 f2 = {in_compute[2 * i] * block_scale_inverse,
+                                 in_compute[2 * i + 1] * block_scale_inverse};
+              s_mem[i] = __nv_cvt_float2_to_fp4x2(f2, __NV_E2M1, cudaRoundNearest);
+            }
+          } else {
+#pragma unroll
+            for (int i = 0; i < SCALE_DIM_Y; ++i) {
+              out_colwise_sh[buff][i][tid_colwise_X] =
+                  static_cast<OType>(in_compute[i] * block_scale_inverse);
+            }
+          }
         }
       }
 
@@ -362,7 +447,7 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
 
       // Initiate TMA transfer to copy shared memory to global memory
       if (is_master_thread) {
-        const int chunk_it_offset_y = chunk_offset_Y + iter * MXFP8_BUFFER_DIM_Y;
+        const int chunk_it_offset_y = chunk_offset_Y + iter * MXNV_BUFFER_DIM_Y;
         const int chunk_it_offset_x = chunk_offset_X;
         if constexpr (USE_ROWWISE_SCALING) {
           ptx::cp_async_bulk_tensor_2d_shared_to_global(
@@ -378,7 +463,7 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
         ptx::cp_async_bulk_commit_group();
 
         // Wait for TMA transfer to have finished reading shared memory.
-        ptx::cp_async_bulk_wait_group_read<MXFP8_PREFETCH_BUFFERS_NUM>();
+        ptx::cp_async_bulk_wait_group_read<MXNV_PREFETCH_BUFFERS_NUM>();
       }
     }
     ptx::cp_async_bulk_wait_group_read<0>();
@@ -389,14 +474,14 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
 
   if constexpr (IS_DBIAS) {
     if constexpr (COMPUTE_DBIAS_IN_ROWWISE_SECTION) {
-      constexpr size_t CZ = MXFP8_CHUNKS_PER_BLOCK_X;
+      constexpr size_t CZ = MXNV_CHUNKS_PER_BLOCK_X;
       constexpr size_t Y = THREADS_PER_CHUNK_Y_ROWWISE - 1;
       constexpr size_t X = THREADS_PER_CHUNK_X_ROWWISE;
       __shared__ float shmem_partial_dbias_rowwise[CZ][Y][X][ELEMS_PER_THREAD];
 
       if (tid_rowwise_Y > 0) {
 #pragma unroll
-        for (int c = 0; c < MXFP8_CHUNKS_PER_BLOCK_X; ++c) {
+        for (int c = 0; c < MXNV_CHUNKS_PER_BLOCK_X; ++c) {
           partial_dbias_rowwise[c].store_to(
               &shmem_partial_dbias_rowwise[c][tid_rowwise_Y - 1][tid_rowwise_X]);
         }
@@ -405,9 +490,9 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
 
       if (tid_rowwise_Y == 0) {
 #pragma unroll
-        for (int c = 0; c < MXFP8_CHUNKS_PER_BLOCK_X; ++c) {
+        for (int c = 0; c < MXNV_CHUNKS_PER_BLOCK_X; ++c) {
           Vec<float, ELEMS_PER_THREAD> other_row_dbias;
-          const int dbias_rowwise_offset_X = dbias_rowwise_block_offset_X + c * MXFP8_CHUNK_DIM_X;
+          const int dbias_rowwise_offset_X = dbias_rowwise_block_offset_X + c * MXNV_CHUNK_DIM_X;
           const int dbias_offset = dbias_rowwise_offset_Y * dbias_stride + dbias_rowwise_offset_X;
 
           const int left_bound = dbias_rowwise_offset_X;
@@ -435,8 +520,8 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
       }
     } else {
 #pragma unroll
-      for (int i = 0; i < MXFP8_CHUNKS_PER_BLOCK_X; ++i) {
-        const int dbias_colwise_offset_X = dbias_colwise_block_offset_X + i * MXFP8_CHUNK_DIM_X;
+      for (int i = 0; i < MXNV_CHUNKS_PER_BLOCK_X; ++i) {
+        const int dbias_colwise_offset_X = dbias_colwise_block_offset_X + i * MXNV_CHUNK_DIM_X;
         const int dbias_offset = dbias_colwise_offset_Y * dbias_stride + dbias_colwise_offset_X;
         const bool col_out_of_bounds = (dbias_colwise_offset_X >= cols);
         if (!col_out_of_bounds) {
@@ -449,14 +534,14 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
   if (amax_ptr != nullptr) {
     const int warp_id = threadIdx.x / THREADS_PER_WARP;
     // Reduce the amax over the block
-    block_amax = reduce_max<MXFP8_THREADS_PER_CHUNK / THREADS_PER_WARP>(block_amax, warp_id);
+    block_amax = reduce_max<MXNV_THREADS_PER_CHUNK / THREADS_PER_WARP>(block_amax, warp_id);
   }
 
   if (is_master_thread && amax_ptr != nullptr) {
     atomicMaxFloat(amax_ptr, block_amax);
   }
 
-  destroy_barriers<MXFP8_ITERATIONS>(mbar, is_master_thread);
+  destroy_barriers<MXNV_ITERATIONS>(mbar, is_master_thread);
 #endif  // #if (defined __CUDA_ARCH__) && (__CUDA_ARCH__ >= 1000)
 }
 
@@ -917,15 +1002,15 @@ void cast_fp8_2D(const Tensor &input, const Tensor *act_input, Tensor *output, T
 }
 
 template <bool IS_DBIAS, bool IS_DACT, bool IS_ACT, typename ParamOP,
-          float (*OP)(float, const ParamOP &)>
-void mxfp8_quantize(const Tensor &input, const Tensor *act_input,
+          float (*OP)(float, const ParamOP &), const size_t ScaleDim, typename ScaleType>
+void mxnv_quantize(const Tensor &input, const Tensor *act_input,
                     const Tensor *noop,  // TODO (ksivamani)
                     Tensor *output, Tensor *dbias, Tensor *workspace, cudaStream_t stream) {
   bool use_rowwise_scaling = output->has_data();
   bool use_colwise_scaling = output->has_columnwise_data();
   checkCuDriverContext(stream);
   NVTE_CHECK(input.has_data(), "Cannot quantize tensor without rowwise data.");
-  NVTE_CHECK(is_fp8_dtype(output->dtype()), "Output must have FP8 type.");
+  NVTE_CHECK(is_narrow_dtype(output->dtype()), "Output must have FP8 or FP4type.");
 
   if (use_rowwise_scaling) {
     NVTE_CHECK(output->scale_inv.dptr != nullptr, "Scaling tensor must be allocated");
@@ -937,24 +1022,25 @@ void mxfp8_quantize(const Tensor &input, const Tensor *act_input,
   CheckNoopTensor(*noop, "cast_noop");
 
   // TODO: Make more general
-  const size_t scale_dim_X_rowwise = use_rowwise_scaling ? 32 : 1;
-  const size_t scale_dim_Y_colwise = use_colwise_scaling ? 32 : 1;
+  const size_t scale_dim_X_rowwise = use_rowwise_scaling ? ScaleDim : 1;
+  const size_t scale_dim_Y_colwise = use_colwise_scaling ? ScaleDim : 1;
 
   const size_t rows = input.flat_first_dim();
   const size_t cols = input.flat_last_dim();
-  const size_t chunks_Y = DIVUP(rows, MXFP8_CHUNK_DIM_Y);
-  const size_t chunks_X = DIVUP(cols, MXFP8_CHUNK_DIM_X);
-  const size_t blocks_Y = DIVUP(chunks_Y, MXFP8_CHUNKS_PER_BLOCK_Y);
-  const size_t blocks_X = DIVUP(chunks_X, MXFP8_CHUNKS_PER_BLOCK_X);
+  const size_t chunks_Y = DIVUP(rows, MXNV_CHUNK_DIM_Y);
+  const size_t chunks_X = DIVUP(cols, MXNV_CHUNK_DIM_X);
+  const size_t blocks_Y = DIVUP(chunks_Y, MXNV_CHUNKS_PER_BLOCK_Y);
+  const size_t blocks_X = DIVUP(chunks_X, MXNV_CHUNKS_PER_BLOCK_X);
 
   const size_t scale_stride_rowwise = use_rowwise_scaling ? output->scale_inv.shape[1] : 1;
   const size_t scale_stride_colwise =
       use_colwise_scaling ? output->columnwise_scale_inv.shape[1] : 1;
 
-  e8m0_t *const scales_rowwise_ptr =
-      use_rowwise_scaling ? reinterpret_cast<e8m0_t *>(output->scale_inv.dptr) : nullptr;
-  e8m0_t *const scales_colwise_ptr =
-      use_colwise_scaling ? reinterpret_cast<e8m0_t *>(output->columnwise_scale_inv.dptr) : nullptr;
+  ScaleType *const scales_rowwise_ptr =
+      use_rowwise_scaling ? reinterpret_cast<ScaleType*>(output->scale_inv.dptr) : nullptr;
+  ScaleType *const scales_colwise_ptr =
+      use_colwise_scaling ? reinterpret_cast<ScaleType*>(output->columnwise_scale_inv.dptr) : nullptr;
+
   const size_t dbias_rows = blocks_Y;
   const size_t dbias_cols = cols;
 
@@ -973,16 +1059,16 @@ void mxfp8_quantize(const Tensor &input, const Tensor *act_input,
   float *const workspace_ptr = IS_DBIAS ? reinterpret_cast<float *>(workspace->data.dptr) : nullptr;
   float *const amax_ptr = reinterpret_cast<float *>(output->amax.dptr);
 
-  const dim3 block(MXFP8_THREADS_PER_CHUNK);
+  const dim3 block(MXNV_THREADS_PER_CHUNK);
   const dim3 grid(blocks_X, blocks_Y);
 
-  TRANSFORMER_ENGINE_MX_SCALE_DIM_SWITCH(
+  TRANSFORMER_ENGINE_MXNV_SCALE_DIM_SWITCH(
       scale_dim_Y_colwise, SCALE_DIM_Y,
-      TRANSFORMER_ENGINE_MX_SCALE_DIM_SWITCH(
+      TRANSFORMER_ENGINE_MXNV_SCALE_DIM_SWITCH(
           scale_dim_X_rowwise, SCALE_DIM_X,
           TRANSFORMER_ENGINE_TYPE_SWITCH_INPUT(
               input.dtype(), IType,
-              TRANSFORMER_ENGINE_TYPE_SWITCH_FP8ONLY(
+              TRANSFORMER_ENGINE_TYPE_SWITCH_NARROW_PRECISION(
                   output->dtype(), OType,
 
                   alignas(64) CUtensorMap tensor_map_input{};
@@ -990,29 +1076,29 @@ void mxfp8_quantize(const Tensor &input, const Tensor *act_input,
                   alignas(64) CUtensorMap tensor_map_output_rowwise{};
                   alignas(64) CUtensorMap tensor_map_output_colwise{};
 
-                  create_2D_tensor_map(tensor_map_input, input.data, rows, cols, MXFP8_SHMEM_DIM_Y,
-                                       MXFP8_SHMEM_DIM_X, cols, 0, typeToNumBits(input.dtype()));
+                  create_2D_tensor_map(tensor_map_input, input.data, rows, cols, MXNV_SHMEM_DIM_Y,
+                                       MXNV_SHMEM_DIM_X, cols, 0, typeToNumBits(input.dtype()));
 
                   if constexpr (IS_DACT) {
                     create_2D_tensor_map(tensor_map_act_input, act_input->data, rows, cols,
-                                         MXFP8_SHMEM_DIM_Y, MXFP8_SHMEM_DIM_X, cols, 0,
+                                         MXNV_SHMEM_DIM_Y, MXNV_SHMEM_DIM_X, cols, 0,
                                          typeToNumBits(input.dtype()));
                   }
 
                   if (use_rowwise_scaling) {
                     create_2D_tensor_map(tensor_map_output_rowwise, output->data, rows, cols,
-                                         MXFP8_SHMEM_DIM_Y, MXFP8_SHMEM_DIM_X, cols, 0,
+                                         MXNV_SHMEM_DIM_Y, MXNV_SHMEM_DIM_X, cols, 0,
                                          typeToNumBits(output->dtype()));
                   }
 
                   if (use_colwise_scaling) {
                     create_2D_tensor_map(tensor_map_output_colwise, output->columnwise_data, rows,
-                                         cols, MXFP8_SHMEM_DIM_Y, MXFP8_SHMEM_DIM_X, cols, 0,
+                                         cols, MXNV_SHMEM_DIM_Y, MXNV_SHMEM_DIM_X, cols, 0,
                                          typeToNumBits(output->dtype()));
                   }
 
-                  cast_mxfp8_2D_kernel<IS_DBIAS, IS_DACT, IS_ACT, ParamOP, OP, IType, OType,
-                                       SCALE_DIM_Y, SCALE_DIM_X><<<grid, block, 0, stream>>>(
+                  cast_mxnv_2D_kernel<IS_DBIAS, IS_DACT, IS_ACT, ParamOP, OP, IType, OType,
+                                       SCALE_DIM_Y, SCALE_DIM_X, ScaleType><<<grid, block, 0, stream>>>(
                       tensor_map_input, tensor_map_act_input, tensor_map_output_rowwise,
                       tensor_map_output_colwise, scales_rowwise_ptr, scales_colwise_ptr,
                       reinterpret_cast<const float *>(noop->data.dptr), workspace_ptr, amax_ptr,
@@ -1144,8 +1230,8 @@ void fp8_quantize_arch_ge_100(const Tensor &input, const Tensor *act_input, cons
       break;
     }
     case NVTE_MXFP8_1D_SCALING: {
-      mxfp8_quantize<IS_DBIAS, IS_DACT, IS_ACT, ParamOP, OP>(input, act_input, noop, output, dbias,
-                                                             workspace, stream);
+      mxnv_quantize<IS_DBIAS, IS_DACT, IS_ACT, ParamOP, OP, 32, e8m0_t>(input, act_input, noop, output,
+                                                                            dbias, workspace, stream);
       break;
     }
     default:
@@ -1260,7 +1346,13 @@ void quantize_helper(const NVTETensor input, const NVTETensor grad, NVTETensor o
       break;
     }
     case NVTE_MXFP8_1D_SCALING: {
-      mxfp8_quantize<IS_DBIAS, IS_DACT, IS_ACT, ParamOP, OP>(
+      mxnv_quantize<IS_DBIAS, IS_DACT, IS_ACT, ParamOP, OP, 32, e8m0_t>(
+          *input_tensor, activation_input_tensor, &noop_tensor, output_tensor, dbias_tensor,
+          workspace_tensor, stream);
+      break;
+    }
+    case NVTE_NVFP4_1D_SCALING: {
+      mxnv_quantize<IS_DBIAS, IS_DACT, IS_ACT, ParamOP, OP, 16, fp8e4m3>(
           *input_tensor, activation_input_tensor, &noop_tensor, output_tensor, dbias_tensor,
           workspace_tensor, stream);
       break;

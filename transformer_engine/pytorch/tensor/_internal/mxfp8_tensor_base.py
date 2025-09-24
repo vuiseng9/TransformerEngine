@@ -200,3 +200,7 @@ class MXFP8TensorBase(QuantizedTensorBase):
         else:
             self._columnwise_data = None
             self._columnwise_scale_inv = None
+
+
+class NVFP4TensorBase(MXFP8TensorBase):
+    pass
