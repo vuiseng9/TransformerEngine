@@ -207,7 +207,7 @@ class MXFP8Quantizer : public Quantizer {
 
   explicit MXFP8Quantizer(const py::handle& quantizer);
 
-  NVTEScalingMode get_scaling_mode() const override { return NVTE_NVFP4_1D_SCALING; }
+  NVTEScalingMode get_scaling_mode() const override { return NVTE_MXFP8_1D_SCALING; }
 
   void set_quantization_params(TensorWrapper* tensor) const override;
 
