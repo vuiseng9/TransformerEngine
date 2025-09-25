@@ -131,23 +131,26 @@ void CheckScaleTensorShape(const Tensor &t, const std::string &name) {
 
 void CheckInputTensor(const Tensor &t, const std::string &name) {
   const DType type = t.dtype();
-  if (is_fp8_dtype(type)) {
-    // FP8 input needs to have scale_inv
+  if (is_narrow_dtype(type)) {
+    // FP8/FP4 input needs to have scale_inv
     if (t.has_data()) {
-      NVTE_CHECK(t.scale_inv.dptr != nullptr, "FP8 scaling factor input ", name,
+      NVTE_CHECK(t.scale_inv.dptr != nullptr, "FP8/FP4 scaling factor input ", name,
                  "_scale_inverse must be allocated");
-      NVTE_CHECK(t.scale_inv.dtype == DType::kFloat32 || t.scale_inv.dtype == DType::kFloat8E8M0,
-                 "FP8 scaling factor input ", name,
+      NVTE_CHECK(t.scale_inv.dtype == DType::kFloat32 || 
+                  t.scale_inv.dtype == DType::kFloat8E8M0 ||
+                    t.scale_inv.dtype == DType::kFloat8E4M3 ,
+                 "FP8/FP4 scaling factor input ", name,
                  "_scale_inverse has invalid dtype "
                  "(expected Float32 or Byte, got ",
                  to_string(t.scale_inv.dtype), ")");
     }
     if (t.has_columnwise_data()) {
-      NVTE_CHECK(t.columnwise_scale_inv.dptr != nullptr, "FP8 scaling factor input ", name,
+      NVTE_CHECK(t.columnwise_scale_inv.dptr != nullptr, "FP8/FP4 scaling factor input ", name,
                  "_columnwise_scale_inverse must be allocated");
       NVTE_CHECK(t.columnwise_scale_inv.dtype == DType::kFloat32 ||
-                     t.columnwise_scale_inv.dtype == DType::kFloat8E8M0,
-                 "FP8 scaling factor input ", name,
+                  t.columnwise_scale_inv.dtype == DType::kFloat8E8M0 ||
+                    t.columnwise_scale_inv.dtype  == DType::kFloat8E4M3 ,
+                 "FP8/FP4 scaling factor input ", name,
                  "_columnwise_scale_inverse has invalid dtype "
                  "(expected Float32 or Byte, got ",
                  to_string(t.columnwise_scale_inv.dtype), ")");
@@ -166,8 +169,8 @@ void CheckInputTensor(const Tensor &t, const std::string &name) {
 
 void CheckOutputTensor(const Tensor &t, const std::string &name, bool allow_empty) {
   const DType type = t.dtype();
-  if (is_fp8_dtype(type)) {
-    // FP8 output needs to have scale, scale_inv and (if delayed scaling) amax
+  if (is_narrow_dtype(type)) {
+    // FP8/FP4 output needs to have scale, scale_inv and (if delayed scaling) amax
     if (t.scaling_mode == NVTE_DELAYED_TENSOR_SCALING && t.amax.dptr != nullptr) {
       NVTE_CHECK(t.amax.dtype == DType::kFloat32, "Invalid amax dtype (expected ",
                  to_string(DType::kFloat32), ", got ", to_string(t.amax.dtype), ")");

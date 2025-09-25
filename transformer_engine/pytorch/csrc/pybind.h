@@ -83,6 +83,8 @@ std::unique_ptr<Quantizer> CreateQuantizer(const py::handle quantizer) {
 
 TensorWrapper NVTETensorFromMXFP8Tensor(py::handle tensor, Quantizer *quantization_params);
 
+TensorWrapper NVTETensorFromNVFP4Tensor(py::handle tensor, Quantizer *quantization_params);
+
 std::unique_ptr<Quantizer> CreateMXFP8Params(const py::handle params);
 
 TensorWrapper NVTETensorFromFloat8BlockwiseQTensor(py::handle tensor,
@@ -97,7 +99,7 @@ constexpr std::array custom_types_converters = {
                     CreateQuantizer<Float8Quantizer>),
     std::make_tuple(IsFloat8Tensor, IsFloat8CurrentScalingQuantizers, NVTETensorFromFloat8Tensor,
                     CreateQuantizer<Float8CurrentScalingQuantizer>),
-    std::make_tuple(IsMXFP8Tensor, IsMXFP8Quantizers, NVTETensorFromMXFP8Tensor,
+    std::make_tuple(IsMXFP8Tensor, IsMXFP8Quantizers, NVTETensorFromNVFP4Tensor,
                     CreateQuantizer<NVFP4Quantizer>),
     std::make_tuple(IsFloat8BlockwiseQTensor, IsFloat8BlockwiseQuantizers,
                     NVTETensorFromFloat8BlockwiseQTensor, CreateQuantizer<Float8BlockQuantizer>)};

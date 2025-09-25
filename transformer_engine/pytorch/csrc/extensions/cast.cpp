@@ -131,7 +131,11 @@ py::object dequantize(const py::handle &input, transformer_engine::DType otype) 
 
   NoneQuantizer q(none);
 
-  const auto &shape = convertShape(input_tensor.shape());
+  auto shape = convertShape(input_tensor.shape());
+
+  if (input_tensor.scaling_mode() == NVTE_NVFP4_1D_SCALING) {
+    shape[1] *= 2; // assumption: always 2D input, corresponding to rowwise data 
+  }
 
   auto [out_tensor, out] = q.create_tensor(shape, otype);
 
