@@ -207,9 +207,27 @@ class MXFP8Quantizer : public Quantizer {
 
   explicit MXFP8Quantizer(const py::handle& quantizer);
 
-  NVTEScalingMode get_scaling_mode() const override { return NVTE_MXFP8_1D_SCALING; }
+  NVTEScalingMode get_scaling_mode() const override { return NVTE_NVFP4_1D_SCALING; }
 
   void set_quantization_params(TensorWrapper* tensor) const override;
+
+  std::pair<TensorWrapper, py::object> create_tensor(
+      const std::vector<size_t>& shape, DType dtype,
+      std::optional<at::Tensor> rowwise_data = std::nullopt) const override;
+};
+
+
+class NVFP4Quantizer final : public MXFP8Quantizer {
+ public:
+  explicit NVFP4Quantizer(const py::handle& quantizer)
+      : MXFP8Quantizer(quantizer) {
+  }
+
+  NVTEScalingMode get_scaling_mode() const override {
+    return NVTE_NVFP4_1D_SCALING;
+  }
+  
+  // use MXFP8Quantizer set_quantization_params since it is common param setting operation
 
   std::pair<TensorWrapper, py::object> create_tensor(
       const std::vector<size_t>& shape, DType dtype,

@@ -98,7 +98,7 @@ constexpr std::array custom_types_converters = {
     std::make_tuple(IsFloat8Tensor, IsFloat8CurrentScalingQuantizers, NVTETensorFromFloat8Tensor,
                     CreateQuantizer<Float8CurrentScalingQuantizer>),
     std::make_tuple(IsMXFP8Tensor, IsMXFP8Quantizers, NVTETensorFromMXFP8Tensor,
-                    CreateQuantizer<MXFP8Quantizer>),
+                    CreateQuantizer<NVFP4Quantizer>),
     std::make_tuple(IsFloat8BlockwiseQTensor, IsFloat8BlockwiseQuantizers,
                     NVTETensorFromFloat8BlockwiseQTensor, CreateQuantizer<Float8BlockQuantizer>)};
 

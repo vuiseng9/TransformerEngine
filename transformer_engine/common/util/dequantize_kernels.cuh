@@ -306,9 +306,9 @@ static void mxfp8_dequantize(const Tensor &input, Tensor *output, cudaStream_t s
   const dim3 block(THREADS_PER_CHUNK);
   const dim3 grid(chunks_X, chunks_Y);
 
-  TRANSFORMER_ENGINE_MX_SCALE_DIM_SWITCH(
+  TRANSFORMER_ENGINE_MXNV_SCALE_DIM_SWITCH(
       scale_dim_Y_colwise, SCALE_DIM_Y,
-      TRANSFORMER_ENGINE_MX_SCALE_DIM_SWITCH(
+      TRANSFORMER_ENGINE_MXNV_SCALE_DIM_SWITCH(
           scale_dim_X_rowwise, SCALE_DIM_X,
           TRANSFORMER_ENGINE_TYPE_SWITCH_FP8ONLY(
               input.dtype(), IType,

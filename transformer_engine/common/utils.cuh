@@ -7,6 +7,7 @@
 #ifndef TRANSFORMER_ENGINE_COMMON_UTILS_CUH_
 #define TRANSFORMER_ENGINE_COMMON_UTILS_CUH_
 
+#include <cuda.h>
 #include <cuda_bf16.h>
 #include <cuda_fp16.h>
 #include <cuda_fp8.h>
@@ -903,6 +904,7 @@ __device__ __forceinline__ void reciprocal<float>(float *value_inv, const float 
 
 using fp8e4m3 = __nv_fp8_e4m3;
 using fp8e5m2 = __nv_fp8_e5m2;
+using fp4e2m1 = __nv_fp4_e2m1;
 using e8m0_t = uint8_t;
 
 constexpr uint32_t FP32_MANTISSA_BITS = 23;
@@ -923,6 +925,12 @@ template <>
 struct Numeric_Traits<fp8e5m2> {
   static constexpr int maxUnbiasedExponent = 15;
   static constexpr double maxNorm = 57344;
+};
+
+template <>
+struct Numeric_Traits<fp4e2m1> {
+  static constexpr int maxUnbiasedExponent = 2;
+  static constexpr double maxNorm = 6;
 };
 
 template <typename T>

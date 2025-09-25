@@ -25,7 +25,12 @@ namespace {
 
 std::vector<size_t> get_tensor_shape(const TensorWrapper &tensor) {
   const auto &shape = tensor.shape();
-  return std::vector<size_t>(shape.data, shape.data + shape.ndim);
+  std::vector<size_t> logical_shape(shape.data, shape.data + shape.ndim);
+
+  if (tensor.scaling_mode() == NVTE_NVFP4_1D_SCALING) {
+    logical_shape[1] *= 2; // we only support 2D tensor for NVFP4 for now, and shape() 
+  }
+  return logical_shape;
 }
 
 void quantize_impl(const TensorWrapper &input, py::handle &quantizer_py,
