@@ -19,6 +19,7 @@ from transformer_engine.common.recipe import (
     DelayedScaling,
     Format,
     MXFP8BlockScaling,
+    NVFP4BlockScaling,
     Float8CurrentScaling,
     Float8BlockScaling,
 )
@@ -87,6 +88,12 @@ def get_fp8_te_dtype(fp8_recipe: Recipe, fprop_tensor: bool = True) -> tex.DType
     return tex.DType.kFloat8E5M2
 
 
+def get_fp4_te_dtype(fp4_recipe: Recipe, fprop_tensor: bool = True) -> tex.DType:
+    """Get fp4 data type according to recipe and tensor"""
+    # TODO(VS) recipe still abusing fp8 prefix, change in future
+    if fp4_recipe.fp8_format == Format.E2M1:
+        return tex.DType.kFloat4E2M1
+    
 def get_fp8_max(fp8_recipe: Recipe, fprop_tensor: bool = True) -> tex.DType:
     """Get max representible FP8 value."""
     if fp8_recipe.fp8_format == Format.E4M3 or (
@@ -813,6 +820,8 @@ class RecipeState(abc.ABC):
             cls = DelayedScalingRecipeState
         elif recipe.mxfp8():
             cls = MXFP8BlockScalingRecipeState
+        elif recipe.nvfp4():
+            cls = NVFP4BlockScalingRecipeState
         elif recipe.float8_current_scaling():
             cls = Float8CurrentScalingRecipeState
         elif recipe.float8_block_scaling():
@@ -960,6 +969,35 @@ class MXFP8BlockScalingRecipeState(RecipeState):
 
         return [MXFP8Quantizer(self.dtype) for i in range(self.num_quantizers)]
 
+
+class NVFP4BlockScalingRecipeState(RecipeState):
+    """TODO(VS) documentation"""
+    recipe: NVFP4BlockScaling
+    mode: str
+    dtype: tex.DType
+
+    def __init__(
+        self,
+        recipe: NVFP4BlockScaling,
+        *,
+        mode: str,
+        num_quantizers: int = 1,
+        device: Optional[torch.device] = None,
+    ) -> None:
+        self.recipe = recipe
+        self.mode = mode
+        self.num_quantizers = num_quantizers
+        self.dtype = get_fp4_te_dtype(recipe, mode == "forward")
+
+        # Allocate buffers
+        if device is None:
+            device = torch.device("cuda")
+
+    def make_quantizers(self) -> list:
+        # TODO; Find better design for this, adding here to avoid circular import.
+        from .tensor.nvfp4_tensor import NVFP4Quantizer
+
+        return [NVFP4Quantizer(self.dtype) for i in range(self.num_quantizers)]
 
 class Float8BlockScalingRecipeState(RecipeState):
     """Configuration for Float8BlockScaling quantization.

@@ -591,14 +591,14 @@ std::pair<TensorWrapper, py::object> NVFP4Quantizer::create_tensor(
 
   py::object ret;
   if (internal) {
-    py::handle MXFP8TensorClass(reinterpret_cast<PyObject*>(MXFP8TensorBasePythonClass));
-    ret = MXFP8TensorClass("rowwise_data"_a = data, "columnwise_data"_a = columnwise_data,
+    py::handle NVFP4TensorClass(reinterpret_cast<PyObject*>(NVFP4TensorBasePythonClass));
+    ret = NVFP4TensorClass("rowwise_data"_a = data, "columnwise_data"_a = columnwise_data,
                            "rowwise_scale_inv"_a = rowwise_scale_inv,
                            "columnwise_scale_inv"_a = columnwise_scale_inv,
                            "fp8_dtype"_a = this->dtype, "quantizer"_a = this->quantizer);
   } else {
-    py::handle MXFP8TensorClass(reinterpret_cast<PyObject*>(MXFP8TensorPythonClass));
-    ret = MXFP8TensorClass("shape"_a = rowwise_data_shape, "dtype"_a = GetATenDType(dtype), // TODO; should we use logical shape? or
+    py::handle NVFP4TensorClass(reinterpret_cast<PyObject*>(NVFP4TensorPythonClass));
+    ret = NVFP4TensorClass("shape"_a = rowwise_data_shape, "dtype"_a = GetATenDType(dtype), // TODO; should we use logical shape? or
                            "rowwise_data"_a = data, "columnwise_data"_a = columnwise_data,
                            "rowwise_scale_inv"_a = rowwise_scale_inv,
                            "columnwise_scale_inv"_a = columnwise_scale_inv,

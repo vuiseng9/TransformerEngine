@@ -76,7 +76,7 @@ void init_nvfp4_extension() {
   NVFP4TensorPythonClass =
       reinterpret_cast<PyTypeObject *>(PyObject_GetAttrString(fp4_module.ptr(), "NVFP4Tensor"));
   auto fp4_base_module =
-      py::module_::import("transformer_engine.pytorch.tensor._internal.nvfp4_tensor_base"); // TODO(VS) need to organize python side later
+      py::module_::import("transformer_engine.pytorch.tensor._internal.mxfp8_tensor_base"); // NVFP4TensorBase is currently lives here, TODO: generalize MXFP8TensorBase
   NVFP4TensorBasePythonClass = reinterpret_cast<PyTypeObject *>(
       PyObject_GetAttrString(fp4_base_module.ptr(), "NVFP4TensorBase"));
   NVTE_CHECK(NVFP4TensorPythonClass != nullptr,
@@ -107,7 +107,7 @@ void init_float8blockwise_extension() {
 void init_extension() {
   init_float8_extension();
   init_mxfp8_extension();
-//   init_nvfp4_extension();
+  init_nvfp4_extension();
   init_float8blockwise_extension();
 }
 

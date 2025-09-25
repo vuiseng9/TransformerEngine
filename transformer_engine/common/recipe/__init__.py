@@ -22,10 +22,12 @@ class _FormatHelper(NamedTuple):
 
 class Format(Enum):
     """
-    Supported FP8 formats.
+    Supported FP8/FP4 formats.
 
     Values
     ------
+    E2M1 :
+          All FP8 tensors are in e2m1 format
     E4M3 :
           All FP8 tensors are in e4m3 format
     E5M2 :
@@ -35,6 +37,7 @@ class Format(Enum):
             FP8 tensors in the backward pass are in e5m2 format
     """
 
+    E2M1 = _FormatHelper(max_fwd=6, max_bwd=6)
     E4M3 = _FormatHelper(max_fwd=448, max_bwd=448)
     E5M2 = _FormatHelper(max_fwd=57344, max_bwd=57344)
     HYBRID = _FormatHelper(max_fwd=E4M3.max_fwd, max_bwd=E5M2.max_bwd)
@@ -66,6 +69,10 @@ class Recipe:
     Base recipe class.
     """
 
+    def nvfp4(self):
+        """Whether the given recipe is NVFP4 block scaling."""
+        return isinstance(self, NVFP4BlockScaling)
+    
     def mxfp8(self):
         """Whether the given recipe is MXFP8 block scaling."""
         return isinstance(self, MXFP8BlockScaling)
@@ -229,6 +236,28 @@ class Float8CurrentScaling(Recipe):
             f"fp8_gemm_wgrad={self.fp8_gemm_wgrad}, "
             f"fp8_dpa={self.fp8_dpa}, "
             f"fp8_mha={self.fp8_mha}"
+        )
+
+
+@dataclass()
+class NVFP4BlockScaling(Recipe):
+    """
+    TODO(VS): documentation
+    abusing fp8 prefix now as refactoring requires broader changes
+    """
+    margin: int = 0
+    fp8_format: Format = Format.E2M1
+    fp8_dpa: bool = False
+    fp8_mha: bool = False
+
+    def __post_init__(self) -> None:
+        assert self.fp8_format == Format.E2M1, "Only E2M1 training is supported, fwd and bwd in E2M1."
+
+    def __repr__(self) -> str:
+        return (
+            f"recipe_type={self.__class__.__name__}, "
+            f"margin={self.margin}, "
+            f"format={str(self.fp8_format).split('.')[1]}"
         )
 
 

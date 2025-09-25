@@ -200,3 +200,10 @@ class MXFP8TensorBase(QuantizedTensorBase):
         else:
             self._columnwise_data = None
             self._columnwise_scale_inv = None
+
+class NVFP4TensorBase(MXFP8TensorBase):
+    pass
+    # Note: probably good to generalize MXFP8TensorBase as MXNVTensorBase in the future
+    # but too much change at this point, we just subclass it for NVFP4
+    # fp8_dtype: TE_DType  attr name is misleading for NVFP4 but all fp8 recipe uses it, 
+    #    would require some refactoring to change it.
