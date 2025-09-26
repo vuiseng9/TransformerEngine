@@ -202,8 +202,17 @@ class MXFP8TensorBase(QuantizedTensorBase):
             self._columnwise_scale_inv = None
 
 class NVFP4TensorBase(MXFP8TensorBase):
-    pass
     # Note: probably good to generalize MXFP8TensorBase as MXNVTensorBase in the future
     # but too much change at this point, we just subclass it for NVFP4
     # fp8_dtype: TE_DType  attr name is misleading for NVFP4 but all fp8 recipe uses it, 
     #    would require some refactoring to change it.
+    def __repr__(self):
+        data_rowwise = self.dequantize()
+
+        return (
+            "NVFP4TensorBase("
+            f"fp8_dtype={self._fp8_dtype}, "
+            f"rowwise_scaled_data={data_rowwise}"
+            f"rowwise_scale_inv={self._rowwise_scale_inv}, "
+            ")"
+        )

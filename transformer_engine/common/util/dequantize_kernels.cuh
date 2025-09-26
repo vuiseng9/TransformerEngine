@@ -45,7 +45,7 @@ constexpr size_t SHMEM_DIM_X = BUFFER_DIM_X;  // 128
 
 constexpr size_t THREADS_PER_CHUNK_X_ROWWISE = CHUNK_DIM_X / ELEMS_PER_THREAD;  //  8 = 128 / 16
 constexpr size_t THREADS_PER_CHUNK_X_COLWISE = CHUNK_DIM_X;                     //  128
-constexpr size_t ITERATIONS = CHUNK_DIM_Y / BUFFER_DIM_Y;                       //    8 = 128 / 16
+constexpr size_t ITERATIONS = CHUNK_DIM_Y / BUFFER_DIM_Y;                       //  8 = 128 / 16
 static_assert(ITERATIONS >= 1);
 
 template <typename IType, typename OType, size_t SCALE_DIM_Y, size_t SCALE_DIM_X, typename ScaleType>
@@ -194,15 +194,21 @@ __global__ void __launch_bounds__(THREADS_PER_CHUNK)
 
       const int shmem_offset_y = thread_offset_Y;
       const int shmem_offset_x = thread_offset_X_rowwise;
-      in.load_from(&in_sh[buff][shmem_offset_y][shmem_offset_x]);
+      const int shmem_offset_x_in = (tid_rowwise_X/packing) * ELEMS_PER_THREAD;
+      in.load_from(&in_sh[buff][shmem_offset_y][shmem_offset_x_in]);
 
+      // only used for packed fp4
+      // every 2 threads loading the same 16 elements
+      // thread 0 unpacked and dequantized to first 16, 
+      // thread 1 unpacked and dequantized to second 16
+      const int base_idx = (tid_rowwise_X % packing) * (ELEMS_PER_THREAD/packing); //only used for packed fp4
 #pragma unroll
       for (int j = 0; j < ELEMS_PER_THREAD/packing; ++j) {
         if constexpr (std::is_same_v<IType, fp8e4m3> || std::is_same_v<IType, fp8e5m2>) {
           out.data.elt[j] = static_cast<OType>(block_scale * static_cast<float>(in.data.elt[j]));
         } else if constexpr (std::is_same_v<IType, fp4e2m1>) {
           // fp4(y), fp4(x) -> fp16.x, fp16.y (no need special handling, just reversing the convention of how we pack)
-          __half2_raw hfraw2 = __nv_cvt_fp4x2_to_halfraw2(in.data.elt[j].__x, __NV_E2M1);
+          __half2_raw hfraw2 = __nv_cvt_fp4x2_to_halfraw2(in.data.elt[base_idx+j].__x, __NV_E2M1);
           __half2 h2;
           memcpy(&h2, &hfraw2, sizeof(h2));
           out.data.elt[j*2]   = static_cast<OType>(block_scale * static_cast<float>(h2.x));
