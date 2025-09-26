@@ -919,6 +919,7 @@ template <>
 struct Numeric_Traits<fp8e4m3> {
   static constexpr int maxUnbiasedExponent = 8;
   static constexpr double maxNorm = 448;
+  static constexpr double minSubNorm = 1.0 / 512.0; //2e-9
 };
 
 template <>

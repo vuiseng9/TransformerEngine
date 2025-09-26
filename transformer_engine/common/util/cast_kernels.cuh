@@ -296,12 +296,16 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
             subwarp_amax = subwarp_reduce_max_broadcast<SUBWARP_WIDTH>(thread_amax);
           }
 
-          const float x = subwarp_amax * Quantized_Limits<OType>::max_norm_rcp;
+          float x = subwarp_amax * Quantized_Limits<OType>::max_norm_rcp;
 
           ScaleType thread_scales_rowwise{};
           if constexpr (std::is_same_v<ScaleType, e8m0_t>) {
             thread_scales_rowwise = float_to_e8m0(x); // power of 2 values
           } else if constexpr (std::is_same_v<ScaleType, fp8e4m3>) {
+            // (amax/E2M1_NORM_MAX).clamp(E4M3_SUBNORM_MIN, E4M3_NORM_MAX)
+            const float maxNorm    = static_cast<float>(Numeric_Traits<ScaleType>::maxNorm);
+            const float minSubNorm = static_cast<float>(Numeric_Traits<ScaleType>::minSubNorm);
+            x = fminf(fmaxf(x, minSubNorm), maxNorm);
             thread_scales_rowwise = ScaleType(x); 
           } else {
             static_assert(!std::is_same_v<ScaleType, ScaleType>, "Unsupported ScaleType");
@@ -391,12 +395,16 @@ __global__ void __launch_bounds__(MXFP8_THREADS_PER_CHUNK)
           __builtin_assume(amax >= 0);
           block_amax = fmaxf(block_amax, amax);
 
-          const float x = amax * Quantized_Limits<OType>::max_norm_rcp;
+          float x = amax * Quantized_Limits<OType>::max_norm_rcp;
 
           ScaleType thread_scales_colwise{};
           if constexpr (std::is_same_v<ScaleType, e8m0_t>) {
             thread_scales_colwise = float_to_e8m0(x);
           } else if constexpr (std::is_same_v<ScaleType, fp8e4m3>) {
+            // (amax/E2M1_NORM_MAX).clamp(E4M3_SUBNORM_MIN, E4M3_NORM_MAX)
+            const float maxNorm    = static_cast<float>(Numeric_Traits<ScaleType>::maxNorm);
+            const float minSubNorm = static_cast<float>(Numeric_Traits<ScaleType>::minSubNorm);
+            x = fminf(fmaxf(x, minSubNorm), maxNorm);
             thread_scales_colwise = ScaleType(x);
           } else {
             static_assert(!std::is_same_v<ScaleType, ScaleType>, "Unsupported ScaleType");
