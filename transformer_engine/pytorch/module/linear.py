@@ -201,6 +201,8 @@ class _Linear(torch.autograd.Function):
                     if input_quantizer is None:
                         raise ValueError("Missing quantizer for input tensor")
                     input_quantizer.set_usage(rowwise=True, columnwise=backward_needs_input)
+                    if input_quantizer.__class__.__name__ == "NVFP4Quantizer":
+                        inputmat = inputmat.reshape(-1, inputmat.shape[-1])
                     inputmat = input_quantizer(inputmat)
                     own_quantized_input = True
             else:
@@ -295,6 +297,8 @@ class _Linear(torch.autograd.Function):
             ub_type=ub_type,
             extra_output=reduce_scatter_out,
         )
+        if input_quantizer.__class__.__name__ == "NVFP4Quantizer":
+            gemm_out = gemm_out.reshape(inp.shape[:2] + (-1,))
         nvtx_range_pop(f"{nvtx_label}.gemm")
         # ------------------------------------------------------
         # Finished forward GEMM...
