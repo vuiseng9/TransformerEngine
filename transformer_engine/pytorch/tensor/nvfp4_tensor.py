@@ -17,8 +17,29 @@ aten = torch.ops.aten
 
 class NVFP4Quantizer(MXFP8Quantizer):
     # no override on 
-    # __init__
     # calibrate
+    def __init__(
+        self,
+        fp8_dtype: TE_DType = TE_DType.kFloat4E2M1,  # default to NVFP4
+        *,
+        rowwise: bool = True,
+        columnwise: bool = True,
+        mxfp8_bw_quantize: bool = False,
+    ) -> None:
+        super().__init__(fp8_dtype, rowwise=rowwise, columnwise=columnwise)
+        self.dtype = fp8_dtype
+        self.mxfp8_bw_quantize = mxfp8_bw_quantize
+        if mxfp8_bw_quantize:
+            self.mxfp8_quantizer = MXFP8Quantizer(fp8_dtype=TE_DType.kFloat8E4M3, rowwise=rowwise, columnwise=columnwise)
+
+    def quantize(self, tensor, *, out = None, dtype = None):
+        nvfp4_quantized = super().quantize(tensor, out=out, dtype=dtype)
+        if self.mxfp8_bw_quantize:
+            # Use MXFP8 quantizer for backward pass quantization
+            nvfp4_quantized.bw_quantizer = self.mxfp8_quantizer
+            nvfp4_quantized.bw_tensor    = self.mxfp8_quantizer(tensor)
+        return nvfp4_quantized
+
     def update_quantized(
         self,
         src: torch.Tensor,

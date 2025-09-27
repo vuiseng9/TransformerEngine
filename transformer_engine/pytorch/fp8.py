@@ -20,6 +20,7 @@ from transformer_engine.common.recipe import (
     Format,
     MXFP8BlockScaling,
     NVFP4BlockScaling,
+    NVFP4FwdMXFP8BwdScaling,
     Float8CurrentScaling,
     Float8BlockScaling,
 )
@@ -822,6 +823,8 @@ class RecipeState(abc.ABC):
             cls = MXFP8BlockScalingRecipeState
         elif recipe.nvfp4():
             cls = NVFP4BlockScalingRecipeState
+        elif recipe.nvfp4_fwd_mxfp8_bwd():
+            cls = NVFP4FwdMXFP8BwdRecipeState
         elif recipe.float8_current_scaling():
             cls = Float8CurrentScalingRecipeState
         elif recipe.float8_block_scaling():
@@ -998,6 +1001,44 @@ class NVFP4BlockScalingRecipeState(RecipeState):
         from .tensor.nvfp4_tensor import NVFP4Quantizer
 
         return [NVFP4Quantizer(self.dtype) for i in range(self.num_quantizers)]
+
+class NVFP4FwdMXFP8BwdRecipeState(RecipeState):
+    """TODO(VS) documentation"""
+    recipe: NVFP4FwdMXFP8BwdScaling
+    mode: str
+    dtype: tex.DType
+
+    def __init__(
+        self,
+        recipe: NVFP4FwdMXFP8BwdScaling,
+        *,
+        mode: str,
+        num_quantizers: int = 1,
+        device: Optional[torch.device] = None,
+    ) -> None:
+        self.recipe = recipe
+        self.mode = mode
+        self.num_quantizers = num_quantizers
+        self.dtype = get_fp4_te_dtype(recipe, mode == "forward")
+
+        # Allocate buffers
+        if device is None:
+            device = torch.device("cuda")
+
+    def make_quantizers(self) -> list:
+        # TODO; Find better design for this, adding here to avoid circular import.
+        from .tensor.nvfp4_tensor import NVFP4Quantizer, MXFP8Quantizer
+        if self.mode == "forward" and self.num_quantizers == 3:
+            return [
+                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=True), # input
+                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=True), # weight
+                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=False), # output (unused)
+            ]
+        elif self.mode == "backward" and self.num_quantizers == 2:
+            # grad_output and grad_input (unused)
+            return [MXFP8Quantizer(tex.DType.kFloat8E4M3) for i in range(self.num_quantizers)]
+        else:
+            raise NotImplementedError("Unexpected entry, pls debug")
 
 class Float8BlockScalingRecipeState(RecipeState):
     """Configuration for Float8BlockScaling quantization.

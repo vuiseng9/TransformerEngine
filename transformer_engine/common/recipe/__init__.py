@@ -77,6 +77,10 @@ class Recipe:
         """Whether the given recipe is MXFP8 block scaling."""
         return isinstance(self, MXFP8BlockScaling)
 
+    def nvfp4_fwd_mxfp8_bwd(self):
+        """Whether the given recipe is NVFP4 forward and MXFP8 backward scaling."""
+        return isinstance(self, NVFP4FwdMXFP8BwdScaling)
+    
     def delayed(self):
         """Whether the given recipe is delayed scaling."""
         return isinstance(self, DelayedScaling)
@@ -252,6 +256,7 @@ class NVFP4BlockScaling(Recipe):
 
     def __post_init__(self) -> None:
         assert self.fp8_format == Format.E2M1, "Only E2M1 training is supported, fwd and bwd in E2M1."
+        raise NotImplementedError("NVFP4BlockScaling is not fully implemented yet, limited by TN layout cublaslt gemm support.Please consider NVFP4FwdMXFP8BwdScaling()")
 
     def __repr__(self) -> str:
         return (
@@ -260,6 +265,26 @@ class NVFP4BlockScaling(Recipe):
             f"format={str(self.fp8_format).split('.')[1]}"
         )
 
+@dataclass()
+class NVFP4FwdMXFP8BwdScaling(Recipe):
+    """
+    TODO(VS): documentation
+    abusing fp8 prefix now as refactoring requires broader changes
+    """
+    margin: int = 0
+    fp8_format: Format = Format.E2M1
+    fp8_dpa: bool = False
+    fp8_mha: bool = False
+
+    def __post_init__(self) -> None:
+        assert self.fp8_format == Format.E2M1, "Only E2M1 training is supported, fwd and bwd in E2M1."
+
+    def __repr__(self) -> str:
+        return (
+            f"recipe_type={self.__class__.__name__}, "
+            f"margin={self.margin}, "
+            f"format={str(self.fp8_format).split('.')[1]}"
+        )
 
 @dataclass()
 class MXFP8BlockScaling(Recipe):

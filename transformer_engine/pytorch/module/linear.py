@@ -624,7 +624,7 @@ class _Linear(torch.autograd.Function):
                 # Note: dx = dy * w
                 nvtx_range_push(f"{nvtx_label}.dgrad_gemm")
                 gemm_out, *_, reduce_scatter_out = general_gemm(
-                    weight_fp8,
+                    weight_fp8.bw_tensor if hasattr(weight_fp8, "bw_tensor") else weight_fp8,
                     grad_output,
                     get_workspace(),
                     layout="NN",
@@ -792,7 +792,10 @@ class _Linear(torch.autograd.Function):
                 else:
 
                     # Call wgrad GEMM now
-                    wgrad, grad_bias_ = wgrad_gemm(inputmat_total, grad_output)
+                    wgrad, grad_bias_ = wgrad_gemm(
+                        inputmat_total.bw_tensor if hasattr(inputmat_total, "bw_tensor") else inputmat_total,
+                        grad_output
+                        )
 
                     # Update grad bias if needed
                     if grad_bias is None:

@@ -37,7 +37,7 @@ namespace transformer_engine::pytorch {
 namespace detail {
 
 bool is_low_precision(const DType type) {
-  return type == DType::kFloat8E4M3 || type == DType::kFloat8E5M2;
+  return type == DType::kFloat8E4M3 || type == DType::kFloat8E5M2 || type == DType::kFloat4E2M1;
 }
 
 std::vector<size_t> getGemmOutputShape(const NVTEShape& A_shape, const bool transa,
