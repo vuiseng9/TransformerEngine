@@ -30,7 +30,8 @@ class NVFP4Quantizer(MXFP8Quantizer):
         self.dtype = fp8_dtype
         self.mxfp8_bw_quantize = mxfp8_bw_quantize
         if mxfp8_bw_quantize:
-            self.mxfp8_quantizer = MXFP8Quantizer(fp8_dtype=TE_DType.kFloat8E4M3, rowwise=rowwise, columnwise=columnwise)
+            # tensor are typically quantized in different axis between forward and backward
+            self.mxfp8_quantizer = MXFP8Quantizer(fp8_dtype=TE_DType.kFloat8E4M3, rowwise=not rowwise, columnwise=not columnwise)
 
     def quantize(self, tensor, *, out = None, dtype = None):
         nvfp4_quantized = super().quantize(tensor, out=out, dtype=dtype)

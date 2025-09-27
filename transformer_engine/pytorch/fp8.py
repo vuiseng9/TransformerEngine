@@ -1030,9 +1030,9 @@ class NVFP4FwdMXFP8BwdRecipeState(RecipeState):
         from .tensor.nvfp4_tensor import NVFP4Quantizer, MXFP8Quantizer
         if self.mode == "forward" and self.num_quantizers == 3:
             return [
-                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=True), # input
-                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=True), # weight
-                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=False), # output (unused)
+                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=True, rowwise=True, columnwise=False), # input
+                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=True, rowwise=True, columnwise=False), # weight
+                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=False, rowwise=False, columnwise=True), # output (unused)
             ]
         elif self.mode == "backward" and self.num_quantizers == 2:
             # grad_output and grad_input (unused)
