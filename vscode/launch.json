@@ -1,0 +1,121 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Train TinyVit",
+            "type": "debugpy",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/qt",
+                // "CUBLASLT_LOG_LEVEL": "2",
+                // "CUBLASLT_LOG_LEVEL": "5",
+                // "CUBLASLT_LOG_MASK": "31",
+            },
+            "cwd": "${workspaceFolder}/qt",
+            "program": 
+                // "scripts/one_te_linear.py",
+                // "scripts/107_custom_cublaslt_nvfp4_mixed_bf16.py",
+                // "scripts/106_custom_cublaslt_nvfp4_mixed_fp32.py",
+                // "scripts/105_custom_cublaslt_fwd_nvfp4_bwd_mxfp8_mixed_bf16.py",
+                // "scripts/104_custom_cublaslt_fwd_nvfp4_bwd_mxfp8_mixed_fp32.py",
+                // "scripts/103_custom_cublaslt_mxfp8_mixed_bf16.py",
+                // "scripts/102_custom_cublaslt_mxfp8_mixed_fp32.py",
+                // "scripts/101_custom_fake_mxfp8.py",
+                // "scripts/100_custom_fp32.py",
+                "scripts/06_nvfp4_forward_mxfp8_backward.py",
+                // "scripts/05_mxfp8_block_scaling.py",
+                // "scripts/04_fp8_block_scaling.py",
+                // "scripts/03_fp8_current_scaling.py",
+                // "scripts/02_fp8_delayed_scaling.py",
+                // "scripts/01_fp16.py",
+                // "scripts/00_fp32.py",
+            "args": []
+        },
+        {
+            "name": "interactive debugpy",
+            "type": "debugpy",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                // "CUBLASLT_LOG_LEVEL": "2",
+                // "CUBLASLT_LOG_LEVEL": "5",
+                // "CUBLASLT_LOG_MASK": "31",
+            },
+            "cwd": "${workspaceFolder}",
+            "program": "${file}",
+            "args": []
+        },
+        {
+            "name": "[cuda-gdb] lt-cublas sample",
+            "type": "cuda-gdb",
+            "request": "launch",
+            "stopAtEntry": true,
+            "environment": [
+                {"name": "CUBLASLT_LOG_LEVEL", "value": "2"}
+            ],
+            "cwd": "/root/work/dev/vsqt/CUDALibrarySamples/lt-cublas/LtMxfp8Matmul",
+            "program": "/root/work/dev/vsqt/CUDALibrarySamples/lt-cublas/build/LtMxfp8Matmul/sample_cublasLt_LtMxfp8Matmul",
+            // "cwd": "/root/work/dev/non-te/cuda-lib-samples/lt-cublas/LtNvfp4Matmul",
+            // "program": "/root/work/dev/non-te/cuda-lib-samples/lt-cublas/build/LtNvfp4Matmul/sample_cublasLt_LtNvfp4Matmul",
+        },
+                {
+            "name": "[cuda-gdb] train tinyvit sample",
+            "type": "cuda-gdb",
+            "request": "launch",
+            "stopAtEntry": true,
+            "environment": [
+                // {"name": "CUBLASLT_LOG_LEVEL", "value": "2"},
+                {"name": "PYTHONPATH", "value": "${workspaceFolder}/qt"},
+            ],
+            "cwd": "/root/work/dev/f4/qt",
+            "program": "/usr/bin/python3",
+            "args": [
+                // "scripts/05_mxfp8_block_scaling.py",
+                // "scripts/06_nvfp4_forward_mxfp8_backward.py",
+                // "scripts/one_te_linear.py",
+            ],
+        },
+        {
+            "name": "[CPP] Launch Python, break at CPP only",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/usr/bin/python3",  // or path to your Python interpreter
+            "args": [
+                "scripts/106_custom_cublaslt_nvfp4_mixed_fp32.py",
+                // "scripts/05_mxfp8_block_scaling.py",
+                // "scripts/06_nvfp4_forward_mxfp8_backward.py",
+                // "scripts/one_te_linear.py",
+            ],
+            "stopAtEntry": false,
+            "cwd": "/root/work/dev/f4/qt",
+            "environment": [
+                {"name": "PYTHONPATH", "value": "${workspaceFolder}/qt"},
+                // {"name": "CUBLASLT_LOG_LEVEL", "value": "5"},
+                // {"name": "CUBLASLT_LOG_MASK","value": "31"}
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",  // or "lldb" on macOS
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Load Python extensions",
+                    "text": "source /usr/share/gdb/auto-load/usr/bin/python3.12-gdb.py", // not working (no stopping at python script), not sure why
+                    "ignoreFailures": true
+                }
+            ],
+            // "preLaunchTask": "build-debug"  // Optional: build your extension first
+        },
+
+    ]
+}
