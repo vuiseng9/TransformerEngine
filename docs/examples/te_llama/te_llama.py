@@ -75,7 +75,7 @@ class TELlamaDecoderLayer(te.pytorch.TransformerLayer):
         return (
             super().forward(
                 hidden_states, attention_mask=attention_mask, rotary_pos_emb=self.te_rope_emb
-            ),
+            )
         )
 
 
