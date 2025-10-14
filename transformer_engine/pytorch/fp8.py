@@ -1028,17 +1028,19 @@ class NVFP4FwdMXFP8BwdRecipeState(RecipeState):
     def make_quantizers(self) -> list:
         # TODO; Find better design for this, adding here to avoid circular import.
         from .tensor.nvfp4_tensor import NVFP4Quantizer, MXFP8Quantizer
-        if self.mode == "forward" and self.num_quantizers == 3:
-            return [
-                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=True, rowwise=True, columnwise=False), # input
-                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=True, rowwise=True, columnwise=False), # weight
-                NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=False, rowwise=False, columnwise=True), # output (unused)
-            ]
-        elif self.mode == "backward" and self.num_quantizers == 2:
+        if self.mode == "forward" and self.num_quantizers % 3 == 0:
+            quantizers = []
+            for _ in range(self.num_quantizers//3):
+                quantizers.append(NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=True, rowwise=True, columnwise=False)) # input
+                quantizers.append(NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=True, rowwise=True, columnwise=False)) # weight
+                quantizers.append(NVFP4Quantizer(self.dtype, mxfp8_bw_quantize=False, rowwise=False, columnwise=True))
+            return quantizers
+        elif self.mode == "backward":
             # grad_output and grad_input (unused)
             return [MXFP8Quantizer(tex.DType.kFloat8E4M3) for i in range(self.num_quantizers)]
         else:
-            raise NotImplementedError("Unexpected entry, pls debug")
+            raise NotImplementedError("pls debug.")
+
 
 class Float8BlockScalingRecipeState(RecipeState):
     """Configuration for Float8BlockScaling quantization.

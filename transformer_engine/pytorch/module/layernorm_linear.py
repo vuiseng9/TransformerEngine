@@ -177,7 +177,8 @@ class _LayerNormLinear(torch.autograd.Function):
         if fp8:
             if input_quantizer is None:
                 raise ValueError("Missing quantizer for input tensor")
-            input_quantizer.set_usage(rowwise=True, columnwise=backward_needs_input)
+            input_quantizer.set_usage(
+                        rowwise=True, columnwise=False if hasattr(input_quantizer, "mxfp8_bw_quantize") else backward_needs_input)
             if with_input_all_gather and isinstance(
                 input_quantizer, (Float8Quantizer, Float8CurrentScalingQuantizer)
             ):
@@ -191,6 +192,7 @@ class _LayerNormLinear(torch.autograd.Function):
             and not debug
             and not return_layernorm_output
             and not return_layernorm_output_gathered
+            and not hasattr(input_quantizer, "mxfp8_bw_quantize") # Disable quantized norm for NVFP4 forward and MXFP8 backward due to serial (two) quantization design at torch level
         )
 
         # Apply normalization
@@ -271,7 +273,8 @@ class _LayerNormLinear(torch.autograd.Function):
 
             # Configure quantizer
             if weight_quantizer is not None:
-                weight_quantizer.set_usage(rowwise=True, columnwise=is_grad_enabled)
+                weight_quantizer.set_usage(
+                    rowwise=True, columnwise=False if hasattr(weight_quantizer, "mxfp8_bw_quantize") else is_grad_enabled)
 
             # Get quantized weight
             update_workspace = is_first_microbatch is None or is_first_microbatch
@@ -397,11 +400,12 @@ class _LayerNormLinear(torch.autograd.Function):
                         isinstance(ln_out, (MXFP8TensorBase, Float8BlockwiseQTensorBase))
                         or not ctx.ln_out_needs_gather
                     ):
-                        ln_out.update_usage(rowwise_usage=False)
+                        ln_out.update_usage(
+                            rowwise_usage=False, columnwise_usage=False if hasattr(weight_quantizer, "mxfp8_bw_quantize") else True)
 
             # Weight with column-wise usage is needed for dgrad GEMM.
             if isinstance(weightmat, QuantizedTensorBase):
-                weightmat.update_usage(columnwise_usage=True)
+                weightmat.update_usage(columnwise_usage=False if hasattr(weight_quantizer, "mxfp8_bw_quantize") else True)
 
             if cpu_offloading:
                 mark_activation_offload(inputmat, mu, rsigma, ln_out)
@@ -667,7 +671,7 @@ class _LayerNormLinear(torch.autograd.Function):
             if isinstance(grad_output, QuantizedTensorBase):
                 grad_output.update_usage(rowwise_usage=True)
             if ctx.weight_quantizer is not None and isinstance(weight, QuantizedTensorBase):
-                weight.update_usage(columnwise_usage=True)
+                weight.update_usage(columnwise_usage=False if hasattr(ctx.weight_quantizer, "mxfp8_bw_quantize") else True)
 
             # Choose whether to use GEMM kernel with split accumulator
             use_split_accumulator = _2X_ACC_DGRAD
@@ -694,7 +698,7 @@ class _LayerNormLinear(torch.autograd.Function):
             # Note: dx = dy * w
             nvtx_range_push(f"{nvtx_label}.dgrad_gemm")
             gemm_out, *_, reduce_scatter_out = general_gemm(
-                weight,
+                weight.bw_tensor if hasattr(weight, "bw_tensor") else weight,
                 grad_output,
                 get_workspace(),
                 layout="NN",
@@ -777,7 +781,7 @@ class _LayerNormLinear(torch.autograd.Function):
                     ln_out_total_work = None
                 if ctx.fp8 or ctx.debug:
                     if isinstance(ln_out_total, QuantizedTensorBase):
-                        ln_out_total.update_usage(columnwise_usage=True)
+                        ln_out_total.update_usage(columnwise_usage=False if hasattr(ctx.weight_quantizer, "mxfp8_bw_quantize") else True)
                     else:
                         ctx.input_quantizer.set_usage(rowwise=False, columnwise=True)
                         ln_out_total = ctx.input_quantizer(ln_out_total)
@@ -864,7 +868,9 @@ class _LayerNormLinear(torch.autograd.Function):
                 else:
 
                     # Call wgrad GEMM now
-                    wgrad, grad_bias_ = wgrad_gemm(ln_out_total, grad_output)
+                    wgrad, grad_bias_ = wgrad_gemm(
+                        ln_out_total.bw_tensor if hasattr(ln_out_total, "bw_tensor") else ln_out_total,
+                        grad_output)
 
                     # Update grad bias if needed
                     if grad_bias is None:
@@ -1374,6 +1380,9 @@ class LayerNormLinear(TransformerEngineBaseModule):
         self.bwd_ln_sm_margin = int(os.getenv("NVTE_BWD_LAYERNORM_SM_MARGIN", "0"))
         self.inf_ln_sm_margin = int(os.getenv("NVTE_INF_LAYERNORM_SM_MARGIN", "0"))
 
+    def extra_repr(self):
+        return f"{self.normalization}"
+                                       
     def set_meta_tensor(self, fwd: bool, recipe: Recipe) -> None:
         """Init scales and amaxes for fwd | bwd."""
         super().set_meta_tensor(fwd, recipe)
