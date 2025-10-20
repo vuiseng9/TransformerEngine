@@ -7,7 +7,7 @@ import torch
 import transformer_engine_torch as tex
 from transformer_engine_torch import DType as TE_DType
 
-from transformer_engine.common.recipe import NVFP4BlockScaling, Recipe
+from transformer_engine.common.recipe import NVFP4FwdMXFP8BwdScaling, Recipe
 from ..constants import NVFP4_BLOCK_SCALING_SIZE
 from ..utils import devices_match, round_up_to_nearest_multiple
 from .quantized_tensor import QuantizedTensor, Quantizer
@@ -131,7 +131,7 @@ class NVFP4Quantizer(MXFP8Quantizer):
         )
 
     def _get_compatible_recipe(self) -> Union[type[Recipe], None]:
-        return NVFP4BlockScaling
+        return NVFP4FwdMXFP8BwdScaling
 
 class NVFP4Tensor(MXFP8Tensor):
     # no override on 
