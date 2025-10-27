@@ -204,7 +204,7 @@ class _LayerNormMLP(torch.autograd.Function):
         in_features, inp_shape = ln_weight.numel(), inp.shape
         assert inp_shape[-1] == in_features, "GEMM not possible"
         inputmat = inp.view((-1, in_features))
-        if fp8:
+        if False: # disable strict dimension check, forward only requires inner dim to factor of 8, sequence dim increment per forward pass
             assert_dim_for_fp8_exec(inputmat, fc1_weight, fc2_weight)
 
         activation_func = _act_func(

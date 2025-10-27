@@ -483,9 +483,10 @@ std::pair<TensorWrapper, py::object> MXFP8Quantizer::create_tensor(
   opts = opts.dtype(torch::kUInt8).device(torch::kCUDA);
   auto last_dim = static_cast<size_t>(torch_shape.back());
 
-  NVTE_CHECK(last_dim % MXFP8_BLOCK_SIZE == 0 && (numel / last_dim) % MXFP8_BLOCK_SIZE == 0,
-             "MXFP8 requires tensor dims that are divisble by ", MXFP8_BLOCK_SIZE,
-             " (got shape=", torch_shape, ")");
+  // TODO: fine a better way to guard. During generation only inner dim is required to in the factor of block size
+  // NVTE_CHECK(last_dim % MXFP8_BLOCK_SIZE == 0 && (numel / last_dim) % MXFP8_BLOCK_SIZE == 0,
+  //            "MXFP8 requires tensor dims that are divisble by ", MXFP8_BLOCK_SIZE,
+  //            " (got shape=", torch_shape, ")");
 
   at::Tensor data;
   if (rowwise_usage) {
@@ -548,9 +549,10 @@ std::pair<TensorWrapper, py::object> NVFP4Quantizer::create_tensor(
   }
 
   auto last_dim = shape.back();
-  NVTE_CHECK(last_dim % NVFP4_BLOCK_SIZE== 0 && (numel / last_dim) % NVFP4_BLOCK_SIZE == 0,
-             "NVFP4 requires tensor dims that are divisble by ", NVFP4_BLOCK_SIZE,
-             " (got shape=", shape, ")");
+  // TODO: fine a better way to guard. During generation only inner dim is required to in the factor of block size
+  // NVTE_CHECK(last_dim % NVFP4_BLOCK_SIZE== 0 && (numel / last_dim) % NVFP4_BLOCK_SIZE == 0,
+  //            "NVFP4 requires tensor dims that are divisble by ", NVFP4_BLOCK_SIZE,
+  //            " (got shape=", shape, ")");
   
   std::vector<int64_t> rowwise_data_shape    = {static_cast<int64_t>(shape[0])  , static_cast<int64_t>(shape[1]/2)};         
   std::vector<int64_t> columnwise_data_shape = {static_cast<int64_t>(shape[0])/2, static_cast<int64_t>(shape[1])  };

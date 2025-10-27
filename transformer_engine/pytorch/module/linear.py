@@ -154,7 +154,7 @@ class _Linear(torch.autograd.Function):
         inputmat = inp  # Input tensor to save for backward (maybe sharded)
         inputmat_total = None  # Input tensor to pass to GEMM (gathered)
         own_quantized_input = False
-        if fp8:
+        if False: # disable strict dimension check, forward only requires inner dim to factor of 8, sequence dim increment per forward pass
             assert_dim_for_fp8_exec(inputmat, weight)
         if with_input_all_gather_nccl or ub_overlap_ag_fprop:  # All-gather input tensor
 

@@ -1,0 +1,889 @@
+running bdist_wheel
+running build
+running build_py
+creating build/lib.linux-x86_64-cpython-312/transformer_engine
+copying transformer_engine/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/common
+copying transformer_engine/common/utils.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/common
+copying transformer_engine/common/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/common
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/debug
+copying transformer_engine/debug/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/transformer.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/utils.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/permutation.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/graph.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/jit.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/fp8.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/float8_tensor.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/numerics_debug.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/cross_entropy.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/distributed.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/setup.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/cpu_offload.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+copying transformer_engine/pytorch/constants.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+copying transformer_engine/jax/dense.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+copying transformer_engine/jax/attention.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+copying transformer_engine/jax/layernorm_dense.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+copying transformer_engine/jax/activation.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+copying transformer_engine/jax/layernorm.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+copying transformer_engine/jax/softmax.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+copying transformer_engine/jax/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+copying transformer_engine/jax/layernorm_mlp.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+copying transformer_engine/jax/setup.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+copying transformer_engine/jax/sharding.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/common/recipe
+copying transformer_engine/common/recipe/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/common/recipe
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/debug/pytorch
+copying transformer_engine/debug/pytorch/utils.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/pytorch
+copying transformer_engine/debug/pytorch/debug_quantization.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/pytorch
+copying transformer_engine/debug/pytorch/debug_state.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/pytorch
+copying transformer_engine/debug/pytorch/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/pytorch
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features
+copying transformer_engine/debug/features/log_fp8_tensor_stats.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features
+copying transformer_engine/debug/features/fake_quant.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features
+copying transformer_engine/debug/features/_test_dummy_feature.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features
+copying transformer_engine/debug/features/disable_fp8_gemm.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features
+copying transformer_engine/debug/features/disable_fp8_layer.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features
+copying transformer_engine/debug/features/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features
+copying transformer_engine/debug/features/api.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features
+copying transformer_engine/debug/features/per_tensor_scaling.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features
+copying transformer_engine/debug/features/log_tensor_stats.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/utils
+copying transformer_engine/debug/features/utils/stats_computation.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/utils
+copying transformer_engine/debug/features/utils/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/utils
+copying transformer_engine/debug/features/utils/stats_buffer.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/utils
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops
+copying transformer_engine/pytorch/ops/fuser.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops
+copying transformer_engine/pytorch/ops/linear.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops
+copying transformer_engine/pytorch/ops/op.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops
+copying transformer_engine/pytorch/ops/sequential.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops
+copying transformer_engine/pytorch/ops/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops
+copying transformer_engine/pytorch/ops/_common.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/rmsnorm.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/linear.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/layernorm.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/debug.linear.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/base.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/fp8_unpadding.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/grouped_linear.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/layernorm_mlp.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/layernorm_linear.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/fp8_padding.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+copying transformer_engine/pytorch/module/_common.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/cpp_extensions
+copying transformer_engine/pytorch/cpp_extensions/fused_attn.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/cpp_extensions
+copying transformer_engine/pytorch/cpp_extensions/gemm.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/cpp_extensions
+copying transformer_engine/pytorch/cpp_extensions/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/cpp_extensions
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/optimizers
+copying transformer_engine/pytorch/optimizers/fused_adam.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/optimizers
+copying transformer_engine/pytorch/optimizers/multi_tensor_apply.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/optimizers
+copying transformer_engine/pytorch/optimizers/fused_sgd.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/optimizers
+copying transformer_engine/pytorch/optimizers/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/optimizers
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention
+copying transformer_engine/pytorch/attention/inference.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention
+copying transformer_engine/pytorch/attention/multi_head_attention.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention
+copying transformer_engine/pytorch/attention/rope.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention
+copying transformer_engine/pytorch/attention/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor
+copying transformer_engine/pytorch/tensor/utils.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor
+copying transformer_engine/pytorch/tensor/float8_blockwise_tensor.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor
+copying transformer_engine/pytorch/tensor/quantized_tensor.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor
+copying transformer_engine/pytorch/tensor/float8_tensor.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor
+copying transformer_engine/pytorch/tensor/nvfp4_tensor.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor
+copying transformer_engine/pytorch/tensor/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor
+copying transformer_engine/pytorch/tensor/mxfp8_tensor.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/triton
+copying transformer_engine/pytorch/triton/permutation.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/triton
+copying transformer_engine/pytorch/triton/cross_entropy.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/triton
+copying transformer_engine/pytorch/triton/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/triton
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/rmsnorm.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/make_extra_output.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/l2normalization.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/reduce_scatter.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/bias.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/basic_linear.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/quantize.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/reshape.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/activation.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/layer_norm.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/all_gather.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/add_in_place.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/all_reduce.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+copying transformer_engine/pytorch/ops/basic/identity.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused
+copying transformer_engine/pytorch/ops/fused/backward_linear_add.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused
+copying transformer_engine/pytorch/ops/fused/userbuffers_forward_linear.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused
+copying transformer_engine/pytorch/ops/fused/forward_linear_bias_add.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused
+copying transformer_engine/pytorch/ops/fused/userbuffers_backward_linear.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused
+copying transformer_engine/pytorch/ops/fused/forward_linear_bias_activation.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused
+copying transformer_engine/pytorch/ops/fused/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention
+copying transformer_engine/pytorch/attention/dot_product_attention/utils.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention
+copying transformer_engine/pytorch/attention/dot_product_attention/backends.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention
+copying transformer_engine/pytorch/attention/dot_product_attention/softmax.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention
+copying transformer_engine/pytorch/attention/dot_product_attention/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention
+copying transformer_engine/pytorch/attention/dot_product_attention/context_parallel.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention
+copying transformer_engine/pytorch/attention/dot_product_attention/dot_product_attention.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/_internal
+copying transformer_engine/pytorch/tensor/_internal/mxfp8_tensor_base.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/_internal
+copying transformer_engine/pytorch/tensor/_internal/float8_tensor_base.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/_internal
+copying transformer_engine/pytorch/tensor/_internal/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/_internal
+copying transformer_engine/pytorch/tensor/_internal/float8_blockwise_tensor_base.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/_internal
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions
+copying transformer_engine/jax/cpp_extensions/attention.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions
+copying transformer_engine/jax/cpp_extensions/quantization.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions
+copying transformer_engine/jax/cpp_extensions/activation.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions
+copying transformer_engine/jax/cpp_extensions/misc.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions
+copying transformer_engine/jax/cpp_extensions/gemm.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions
+copying transformer_engine/jax/cpp_extensions/softmax.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions
+copying transformer_engine/jax/cpp_extensions/base.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions
+copying transformer_engine/jax/cpp_extensions/normalization.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions
+copying transformer_engine/jax/cpp_extensions/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/jax/flax
+copying transformer_engine/jax/flax/transformer.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/flax
+copying transformer_engine/jax/flax/module.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/flax
+copying transformer_engine/jax/flax/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/flax
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize
+copying transformer_engine/jax/quantize/device_utils.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize
+copying transformer_engine/jax/quantize/scaling_modes.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize
+copying transformer_engine/jax/quantize/dequantizer.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize
+copying transformer_engine/jax/quantize/helper.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize
+copying transformer_engine/jax/quantize/tensor.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize
+copying transformer_engine/jax/quantize/quantizer.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize
+copying transformer_engine/jax/quantize/__init__.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize
+copying transformer_engine/jax/quantize/metadata.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize
+running egg_info
+creating transformer_engine.egg-info
+writing transformer_engine.egg-info/PKG-INFO
+writing dependency_links to transformer_engine.egg-info/dependency_links.txt
+writing requirements to transformer_engine.egg-info/requires.txt
+writing top-level names to transformer_engine.egg-info/top_level.txt
+writing manifest file 'transformer_engine.egg-info/SOURCES.txt'
+reading manifest file 'transformer_engine.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'transformer_engine.egg-info/SOURCES.txt'
+/opt/venv/lib/python3.12/site-packages/setuptools/command/build_py.py:212: _Warning: Package 'transformer_engine.pytorch.csrc' is absent from the `packages` configuration.
+!!
+
+        ********************************************************************************
+        ############################
+        # Package would be ignored #
+        ############################
+        Python recognizes 'transformer_engine.pytorch.csrc' as an importable package[^1],
+        but it is absent from setuptools' `packages` configuration.
+
+        This leads to an ambiguous overall configuration. If you want to distribute this
+        package, please make sure that 'transformer_engine.pytorch.csrc' is explicitly added
+        to the `packages` configuration field.
+
+        Alternatively, you can also rely on setuptools' discovery methods
+        (for example by using `find_namespace_packages(...)`/`find_namespace:`
+        instead of `find_packages(...)`/`find:`).
+
+        You can read more about "package discovery" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+
+        If you don't want 'transformer_engine.pytorch.csrc' to be distributed and are
+        already explicitly excluding 'transformer_engine.pytorch.csrc' via
+        `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+        you can try to use `exclude_package_data`, or `include-package-data=False` in
+        combination with a more fine grained `package-data` configuration.
+
+        You can read more about "package data files" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+
+
+        [^1]: For Python, any directory (with suitable naming) can be imported,
+              even if it does not contain any `.py` files.
+              On the other hand, currently there is no concept of package data
+              directory, all directories are treated like packages.
+        ********************************************************************************
+
+!!
+  check.warn(importable)
+/opt/venv/lib/python3.12/site-packages/setuptools/command/build_py.py:212: _Warning: Package 'transformer_engine.pytorch.csrc.extensions' is absent from the `packages` configuration.
+!!
+
+        ********************************************************************************
+        ############################
+        # Package would be ignored #
+        ############################
+        Python recognizes 'transformer_engine.pytorch.csrc.extensions' as an importable package[^1],
+        but it is absent from setuptools' `packages` configuration.
+
+        This leads to an ambiguous overall configuration. If you want to distribute this
+        package, please make sure that 'transformer_engine.pytorch.csrc.extensions' is explicitly added
+        to the `packages` configuration field.
+
+        Alternatively, you can also rely on setuptools' discovery methods
+        (for example by using `find_namespace_packages(...)`/`find_namespace:`
+        instead of `find_packages(...)`/`find:`).
+
+        You can read more about "package discovery" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+
+        If you don't want 'transformer_engine.pytorch.csrc.extensions' to be distributed and are
+        already explicitly excluding 'transformer_engine.pytorch.csrc.extensions' via
+        `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+        you can try to use `exclude_package_data`, or `include-package-data=False` in
+        combination with a more fine grained `package-data` configuration.
+
+        You can read more about "package data files" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+
+
+        [^1]: For Python, any directory (with suitable naming) can be imported,
+              even if it does not contain any `.py` files.
+              On the other hand, currently there is no concept of package data
+              directory, all directories are treated like packages.
+        ********************************************************************************
+
+!!
+  check.warn(importable)
+/opt/venv/lib/python3.12/site-packages/setuptools/command/build_py.py:212: _Warning: Package 'transformer_engine.pytorch.csrc.extensions.multi_tensor' is absent from the `packages` configuration.
+!!
+
+        ********************************************************************************
+        ############################
+        # Package would be ignored #
+        ############################
+        Python recognizes 'transformer_engine.pytorch.csrc.extensions.multi_tensor' as an importable package[^1],
+        but it is absent from setuptools' `packages` configuration.
+
+        This leads to an ambiguous overall configuration. If you want to distribute this
+        package, please make sure that 'transformer_engine.pytorch.csrc.extensions.multi_tensor' is explicitly added
+        to the `packages` configuration field.
+
+        Alternatively, you can also rely on setuptools' discovery methods
+        (for example by using `find_namespace_packages(...)`/`find_namespace:`
+        instead of `find_packages(...)`/`find:`).
+
+        You can read more about "package discovery" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+
+        If you don't want 'transformer_engine.pytorch.csrc.extensions.multi_tensor' to be distributed and are
+        already explicitly excluding 'transformer_engine.pytorch.csrc.extensions.multi_tensor' via
+        `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+        you can try to use `exclude_package_data`, or `include-package-data=False` in
+        combination with a more fine grained `package-data` configuration.
+
+        You can read more about "package data files" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+
+
+        [^1]: For Python, any directory (with suitable naming) can be imported,
+              even if it does not contain any `.py` files.
+              On the other hand, currently there is no concept of package data
+              directory, all directories are treated like packages.
+        ********************************************************************************
+
+!!
+  check.warn(importable)
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc
+copying transformer_engine/pytorch/csrc/common.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc
+copying transformer_engine/pytorch/csrc/quantizer.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc
+copying transformer_engine/pytorch/csrc/type_converters.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc
+copying transformer_engine/pytorch/csrc/util.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/activation.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/apply_rope.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/attention.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/bias.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/cast.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/gemm.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/misc.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/normalization.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/nvshmem_comm.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/padding.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/permutation.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/pybind.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/recipe.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/softmax.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+copying transformer_engine/pytorch/csrc/extensions/transpose.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+creating build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.cpp -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying transformer_engine/pytorch/module/debug.linear.py -> build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module
+running build_ext
+-- The CUDA compiler identification is NVIDIA 12.9.41 with host compiler GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CUDA compiler ABI info
+-- Detecting CUDA compiler ABI info - done
+-- Check for working CUDA compiler: /usr/local/cuda/bin/nvcc - skipped
+-- Detecting CUDA compile features
+-- Detecting CUDA compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found CUDAToolkit: /usr/local/cuda/targets/x86_64-linux/include (found version "12.9.41")
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- cudnn found at /usr/lib/x86_64-linux-gnu/libcudnn.so.
+-- Found LIBRARY: /usr/include/x86_64-linux-gnu
+-- cuDNN: /usr/lib/x86_64-linux-gnu/libcudnn.so
+-- cuDNN: /usr/include/x86_64-linux-gnu
+-- cudnn_graph found at /usr/lib/x86_64-linux-gnu/libcudnn_graph.so.
+-- cudnn_engines_runtime_compiled found at /usr/lib/x86_64-linux-gnu/libcudnn_engines_runtime_compiled.so.
+-- cudnn_ops found at /usr/lib/x86_64-linux-gnu/libcudnn_ops.so.
+-- cudnn_cnn found at /usr/lib/x86_64-linux-gnu/libcudnn_cnn.so.
+-- cudnn_adv found at /usr/lib/x86_64-linux-gnu/libcudnn_adv.so.
+-- cudnn_engines_precompiled found at /usr/lib/x86_64-linux-gnu/libcudnn_engines_precompiled.so.
+-- cudnn_heuristic found at /usr/lib/x86_64-linux-gnu/libcudnn_heuristic.so.
+-- Found Python: /opt/venv/bin/python (found version "3.12.3") found components: Interpreter Development.Module
+-- Parallel build jobs: max
+-- Threads per parallel build job: 1
+-- Configuring done (3.0s)
+-- Generating done (0.0s)
+[33mCMake Warning:
+  Manually-specified variables were not used by the project:
+
+    pybind11_DIR
+
+[0m
+-- Build files have been written to: /root/work/dev/f4/te/build/cmake
+Change Dir: '/root/work/dev/f4/te/build/cmake'
+
+Run Build Command(s): /opt/venv/bin/ninja -v -j 8
+[1/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/transformer_engine.cpp.o -MF CMakeFiles/transformer_engine.dir/transformer_engine.cpp.o.d -o CMakeFiles/transformer_engine.dir/transformer_engine.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/transformer_engine.cpp
+[2/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/multi_tensor/compute_scale.cu.o -MF CMakeFiles/transformer_engine.dir/multi_tensor/compute_scale.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/multi_tensor/compute_scale.cu -o CMakeFiles/transformer_engine.dir/multi_tensor/compute_scale.cu.o
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh: In destructor ‘OptionalCUDAGuard::~OptionalCUDAGuard()’:
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh:55:130: warning: ‘throw’ will always call ‘terminate’ [-Wterminate]
+   55 |       NVTE_CHECK_CUDA(cudaSetDevice(prev_device_));
+      |                                                                                                                                  ^                                                                                                                                                                                                                                                                                               
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh:55:130: note: in C++11 destructors default to ‘noexcept’
+[3/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/common.cu.o -MF CMakeFiles/transformer_engine.dir/common.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/common.cu -o CMakeFiles/transformer_engine.dir/common.cu.o
+[4/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/multi_tensor/sgd.cu.o -MF CMakeFiles/transformer_engine.dir/multi_tensor/sgd.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/multi_tensor/sgd.cu -o CMakeFiles/transformer_engine.dir/multi_tensor/sgd.cu.o
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh: In destructor ‘OptionalCUDAGuard::~OptionalCUDAGuard()’:
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh:55:130: warning: ‘throw’ will always call ‘terminate’ [-Wterminate]
+   55 |       NVTE_CHECK_CUDA(cudaSetDevice(prev_device_));
+      |                                                                                                                                  ^                                                                                                                                                                                                                                                                                               
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh:55:130: note: in C++11 destructors default to ‘noexcept’
+[5/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/multi_tensor/l2norm.cu.o -MF CMakeFiles/transformer_engine.dir/multi_tensor/l2norm.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/multi_tensor/l2norm.cu -o CMakeFiles/transformer_engine.dir/multi_tensor/l2norm.cu.o
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh: In destructor ‘OptionalCUDAGuard::~OptionalCUDAGuard()’:
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh:55:130: warning: ‘throw’ will always call ‘terminate’ [-Wterminate]
+   55 |       NVTE_CHECK_CUDA(cudaSetDevice(prev_device_));
+      |                                                                                                                                  ^                                                                                                                                                                                                                                                                                               
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh:55:130: note: in C++11 destructors default to ‘noexcept’
+[6/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/multi_tensor/scale.cu.o -MF CMakeFiles/transformer_engine.dir/multi_tensor/scale.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/multi_tensor/scale.cu -o CMakeFiles/transformer_engine.dir/multi_tensor/scale.cu.o
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh: In destructor ‘OptionalCUDAGuard::~OptionalCUDAGuard()’:
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh:55:130: warning: ‘throw’ will always call ‘terminate’ [-Wterminate]
+   55 |       NVTE_CHECK_CUDA(cudaSetDevice(prev_device_));
+      |                                                                                                                                  ^                                                                                                                                                                                                                                                                                               
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh:55:130: note: in C++11 destructors default to ‘noexcept’
+[7/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/multi_tensor/adam.cu.o -MF CMakeFiles/transformer_engine.dir/multi_tensor/adam.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/multi_tensor/adam.cu -o CMakeFiles/transformer_engine.dir/multi_tensor/adam.cu.o
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh: In destructor ‘OptionalCUDAGuard::~OptionalCUDAGuard()’:
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh:55:130: warning: ‘throw’ will always call ‘terminate’ [-Wterminate]
+   55 |       NVTE_CHECK_CUDA(cudaSetDevice(prev_device_));
+      |                                                                                                                                  ^                                                                                                                                                                                                                                                                                               
+/root/work/dev/f4/te/transformer_engine/common/multi_tensor/multi_tensor_apply.cuh:55:130: note: in C++11 destructors default to ‘noexcept’
+[8/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/transpose/transpose.cu.o -MF CMakeFiles/transformer_engine.dir/transpose/transpose.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/transpose/transpose.cu -o CMakeFiles/transformer_engine.dir/transpose/transpose.cu.o
+[9/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/transpose/transpose_fusion.cu.o -MF CMakeFiles/transformer_engine.dir/transpose/transpose_fusion.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/transpose/transpose_fusion.cu -o CMakeFiles/transformer_engine.dir/transpose/transpose_fusion.cu.o
+[10/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/transpose/cast_transpose.cu.o -MF CMakeFiles/transformer_engine.dir/transpose/cast_transpose.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/transpose/cast_transpose.cu -o CMakeFiles/transformer_engine.dir/transpose/cast_transpose.cu.o
+[11/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/transpose/quantize_transpose_square_blockwise.cu.o -MF CMakeFiles/transformer_engine.dir/transpose/quantize_transpose_square_blockwise.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/transpose/quantize_transpose_square_blockwise.cu -o CMakeFiles/transformer_engine.dir/transpose/quantize_transpose_square_blockwise.cu.o
+[12/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/cudnn_utils.cpp.o -MF CMakeFiles/transformer_engine.dir/cudnn_utils.cpp.o.d -o CMakeFiles/transformer_engine.dir/cudnn_utils.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/cudnn_utils.cpp
+[13/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/fused_attn/flash_attn.cu.o -MF CMakeFiles/transformer_engine.dir/fused_attn/flash_attn.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_attn/flash_attn.cu -o CMakeFiles/transformer_engine.dir/fused_attn/flash_attn.cu.o
+[14/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/fused_attn/context_parallel.cu.o -MF CMakeFiles/transformer_engine.dir/fused_attn/context_parallel.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_attn/context_parallel.cu -o CMakeFiles/transformer_engine.dir/fused_attn/context_parallel.cu.o
+[15/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/fused_attn/kv_cache.cu.o -MF CMakeFiles/transformer_engine.dir/fused_attn/kv_cache.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_attn/kv_cache.cu -o CMakeFiles/transformer_engine.dir/fused_attn/kv_cache.cu.o
+[16/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/transpose/quantize_transpose_vector_blockwise.cu.o -MF CMakeFiles/transformer_engine.dir/transpose/quantize_transpose_vector_blockwise.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/transpose/quantize_transpose_vector_blockwise.cu -o CMakeFiles/transformer_engine.dir/transpose/quantize_transpose_vector_blockwise.cu.o
+[17/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/transpose/multi_cast_transpose.cu.o -MF CMakeFiles/transformer_engine.dir/transpose/multi_cast_transpose.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/transpose/multi_cast_transpose.cu -o CMakeFiles/transformer_engine.dir/transpose/multi_cast_transpose.cu.o
+[18/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/fused_attn/fused_attn.cpp.o -MF CMakeFiles/transformer_engine.dir/fused_attn/fused_attn.cpp.o.d -o CMakeFiles/transformer_engine.dir/fused_attn/fused_attn.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/fused_attn/fused_attn.cpp
+[19/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_f16_max512_seqlen.cu.o -MF CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_f16_max512_seqlen.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_attn/fused_attn_f16_max512_seqlen.cu -o CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_f16_max512_seqlen.cu.o
+[20/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/gemm/cublaslt_gemm.cu.o -MF CMakeFiles/transformer_engine.dir/gemm/cublaslt_gemm.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/gemm/cublaslt_gemm.cu -o CMakeFiles/transformer_engine.dir/gemm/cublaslt_gemm.cu.o
+[21/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_f16_arbitrary_seqlen.cu.o -MF CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_f16_arbitrary_seqlen.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_attn/fused_attn_f16_arbitrary_seqlen.cu -o CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_f16_arbitrary_seqlen.cu.o
+[22/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_fp8.cu.o -MF CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_fp8.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_attn/fused_attn_fp8.cu -o CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_fp8.cu.o
+[23/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/fused_attn/utils.cu.o -MF CMakeFiles/transformer_engine.dir/fused_attn/utils.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_attn/utils.cu -o CMakeFiles/transformer_engine.dir/fused_attn/utils.cu.o
+[24/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_api.cpp.o -MF CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_api.cpp.o.d -o CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_api.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/normalization/layernorm/ln_api.cpp
+[25/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/normalization/common.cpp.o -MF CMakeFiles/transformer_engine.dir/normalization/common.cpp.o.d -o CMakeFiles/transformer_engine.dir/normalization/common.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/normalization/common.cpp
+[26/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_api.cpp.o -MF CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_api.cpp.o.d -o CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_api.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/normalization/rmsnorm/rmsnorm_api.cpp
+[27/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/transpose/cast_transpose_fusion.cu.o -MF CMakeFiles/transformer_engine.dir/transpose/cast_transpose_fusion.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/transpose/cast_transpose_fusion.cu -o CMakeFiles/transformer_engine.dir/transpose/cast_transpose_fusion.cu.o
+[28/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/permutation/permutation.cu.o -MF CMakeFiles/transformer_engine.dir/permutation/permutation.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/permutation/permutation.cu -o CMakeFiles/transformer_engine.dir/permutation/permutation.cu.o
+[29/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_bwd_semi_cuda_kernel.cu.o -MF CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_bwd_semi_cuda_kernel.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/normalization/layernorm/ln_bwd_semi_cuda_kernel.cu -o CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_bwd_semi_cuda_kernel.cu.o
+[30/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_bwd_semi_cuda_kernel.cu.o -MF CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_bwd_semi_cuda_kernel.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/normalization/rmsnorm/rmsnorm_bwd_semi_cuda_kernel.cu -o CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_bwd_semi_cuda_kernel.cu.o
+[31/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/util/cuda_driver.cpp.o -MF CMakeFiles/transformer_engine.dir/util/cuda_driver.cpp.o.d -o CMakeFiles/transformer_engine.dir/util/cuda_driver.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/util/cuda_driver.cpp
+[32/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/util/cuda_nvml.cpp.o -MF CMakeFiles/transformer_engine.dir/util/cuda_nvml.cpp.o.d -o CMakeFiles/transformer_engine.dir/util/cuda_nvml.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/util/cuda_nvml.cpp
+[33/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/util/cuda_runtime.cpp.o -MF CMakeFiles/transformer_engine.dir/util/cuda_runtime.cpp.o.d -o CMakeFiles/transformer_engine.dir/util/cuda_runtime.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/util/cuda_runtime.cpp
+[34/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/util/multi_stream.cpp.o -MF CMakeFiles/transformer_engine.dir/util/multi_stream.cpp.o.d -o CMakeFiles/transformer_engine.dir/util/multi_stream.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/util/multi_stream.cpp
+[35/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/util/rtc.cpp.o -MF CMakeFiles/transformer_engine.dir/util/rtc.cpp.o.d -o CMakeFiles/transformer_engine.dir/util/rtc.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/util/rtc.cpp
+[36/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_fwd_cuda_kernel.cu.o -MF CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_fwd_cuda_kernel.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/normalization/rmsnorm/rmsnorm_fwd_cuda_kernel.cu -o CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_fwd_cuda_kernel.cu.o
+[37/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/util/padding.cu.o -MF CMakeFiles/transformer_engine.dir/util/padding.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/util/padding.cu -o CMakeFiles/transformer_engine.dir/util/padding.cu.o
+[38/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/swizzle/swizzle.cu.o -MF CMakeFiles/transformer_engine.dir/swizzle/swizzle.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/swizzle/swizzle.cu -o CMakeFiles/transformer_engine.dir/swizzle/swizzle.cu.o
+[39/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/fused_softmax/scaled_aligned_causal_masked_softmax.cu.o -MF CMakeFiles/transformer_engine.dir/fused_softmax/scaled_aligned_causal_masked_softmax.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_softmax/scaled_aligned_causal_masked_softmax.cu -o CMakeFiles/transformer_engine.dir/fused_softmax/scaled_aligned_causal_masked_softmax.cu.o
+[40/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/fused_rope/fused_rope.cu.o -MF CMakeFiles/transformer_engine.dir/fused_rope/fused_rope.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_rope/fused_rope.cu -o CMakeFiles/transformer_engine.dir/fused_rope/fused_rope.cu.o
+[41/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/fused_softmax/scaled_upper_triang_masked_softmax.cu.o -MF CMakeFiles/transformer_engine.dir/fused_softmax/scaled_upper_triang_masked_softmax.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_softmax/scaled_upper_triang_masked_softmax.cu -o CMakeFiles/transformer_engine.dir/fused_softmax/scaled_upper_triang_masked_softmax.cu.o
+[42/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC --use_fast_math -MD -MT CMakeFiles/transformer_engine.dir/fused_softmax/scaled_masked_softmax.cu.o -MF CMakeFiles/transformer_engine.dir/fused_softmax/scaled_masked_softmax.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/fused_softmax/scaled_masked_softmax.cu -o CMakeFiles/transformer_engine.dir/fused_softmax/scaled_masked_softmax.cu.o
+[43/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/recipe/delayed_scaling.cu.o -MF CMakeFiles/transformer_engine.dir/recipe/delayed_scaling.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/recipe/delayed_scaling.cu -o CMakeFiles/transformer_engine.dir/recipe/delayed_scaling.cu.o
+[44/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/recipe/current_scaling.cu.o -MF CMakeFiles/transformer_engine.dir/recipe/current_scaling.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/recipe/current_scaling.cu -o CMakeFiles/transformer_engine.dir/recipe/current_scaling.cu.o
+[45/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/ipcsocket.cc.o -MF CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/ipcsocket.cc.o.d -o CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/ipcsocket.cc.o -c /root/work/dev/f4/te/transformer_engine/common/comm_gemm_overlap/userbuffers/ipcsocket.cc
+[46/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_fwd_cuda_kernel.cu.o -MF CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_fwd_cuda_kernel.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/normalization/layernorm/ln_fwd_cuda_kernel.cu -o CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_fwd_cuda_kernel.cu.o
+[47/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/recipe/fp8_block_scaling.cu.o -MF CMakeFiles/transformer_engine.dir/recipe/fp8_block_scaling.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/recipe/fp8_block_scaling.cu -o CMakeFiles/transformer_engine.dir/recipe/fp8_block_scaling.cu.o
+[48/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/userbuffers-host.cpp.o -MF CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/userbuffers-host.cpp.o.d -o CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/userbuffers-host.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/comm_gemm_overlap/userbuffers/userbuffers-host.cpp
+[49/55] /usr/bin/c++ -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG -std=gnu++17 -fPIC -MD -MT CMakeFiles/transformer_engine.dir/comm_gemm_overlap/comm_gemm_overlap.cpp.o -MF CMakeFiles/transformer_engine.dir/comm_gemm_overlap/comm_gemm_overlap.cpp.o.d -o CMakeFiles/transformer_engine.dir/comm_gemm_overlap/comm_gemm_overlap.cpp.o -c /root/work/dev/f4/te/transformer_engine/common/comm_gemm_overlap/comm_gemm_overlap.cpp
+[50/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/userbuffers.cu.o -MF CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/userbuffers.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/comm_gemm_overlap/userbuffers/userbuffers.cu -o CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/userbuffers.cu.o
+[51/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/activation/swiglu.cu.o -MF CMakeFiles/transformer_engine.dir/activation/swiglu.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/activation/swiglu.cu -o CMakeFiles/transformer_engine.dir/activation/swiglu.cu.o
+[52/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/activation/relu.cu.o -MF CMakeFiles/transformer_engine.dir/activation/relu.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/activation/relu.cu -o CMakeFiles/transformer_engine.dir/activation/relu.cu.o
+[53/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/activation/gelu.cu.o -MF CMakeFiles/transformer_engine.dir/activation/gelu.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/activation/gelu.cu -o CMakeFiles/transformer_engine.dir/activation/gelu.cu.o
+[54/55] /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DNV_CUDNN_FRONTEND_USE_DYNAMIC_LOADING -Dtransformer_engine_EXPORTS -I/root/work/dev/f4/te/transformer_engine/common/.. -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/common/../../3rdparty/cudnn-frontend/include -I/root/work/dev/f4/te/build/cmake/string_headers -isystem /usr/local/cuda/targets/x86_64-linux/include -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version --expt-relaxed-constexpr -O3 --threads 1 -O3 -DNDEBUG -std=c++17 "--generate-code=arch=compute_100,code=[compute_100,sm_100]" -Xcompiler=-fPIC -MD -MT CMakeFiles/transformer_engine.dir/util/cast.cu.o -MF CMakeFiles/transformer_engine.dir/util/cast.cu.o.d -x cu -c /root/work/dev/f4/te/transformer_engine/common/util/cast.cu -o CMakeFiles/transformer_engine.dir/util/cast.cu.o
+[55/55] : && /usr/bin/c++ -fPIC -Wl,--version-script=/root/work/dev/f4/te/transformer_engine/common/libtransformer_engine.version -O3 -DNDEBUG  -Wl,--dependency-file=CMakeFiles/transformer_engine.dir/link.d -shared -Wl,-soname,libtransformer_engine.so -o libtransformer_engine.so CMakeFiles/transformer_engine.dir/cudnn_utils.cpp.o CMakeFiles/transformer_engine.dir/transformer_engine.cpp.o CMakeFiles/transformer_engine.dir/common.cu.o CMakeFiles/transformer_engine.dir/multi_tensor/adam.cu.o CMakeFiles/transformer_engine.dir/multi_tensor/compute_scale.cu.o CMakeFiles/transformer_engine.dir/multi_tensor/l2norm.cu.o CMakeFiles/transformer_engine.dir/multi_tensor/scale.cu.o CMakeFiles/transformer_engine.dir/multi_tensor/sgd.cu.o CMakeFiles/transformer_engine.dir/transpose/cast_transpose.cu.o CMakeFiles/transformer_engine.dir/transpose/transpose.cu.o CMakeFiles/transformer_engine.dir/transpose/cast_transpose_fusion.cu.o CMakeFiles/transformer_engine.dir/transpose/transpose_fusion.cu.o CMakeFiles/transformer_engine.dir/transpose/multi_cast_transpose.cu.o CMakeFiles/transformer_engine.dir/transpose/quantize_transpose_square_blockwise.cu.o CMakeFiles/transformer_engine.dir/transpose/quantize_transpose_vector_blockwise.cu.o CMakeFiles/transformer_engine.dir/activation/gelu.cu.o CMakeFiles/transformer_engine.dir/fused_attn/flash_attn.cu.o CMakeFiles/transformer_engine.dir/fused_attn/context_parallel.cu.o CMakeFiles/transformer_engine.dir/fused_attn/kv_cache.cu.o CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_f16_max512_seqlen.cu.o CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_f16_arbitrary_seqlen.cu.o CMakeFiles/transformer_engine.dir/activation/relu.cu.o CMakeFiles/transformer_engine.dir/activation/swiglu.cu.o CMakeFiles/transformer_engine.dir/fused_attn/fused_attn_fp8.cu.o CMakeFiles/transformer_engine.dir/fused_attn/fused_attn.cpp.o CMakeFiles/transformer_engine.dir/fused_attn/utils.cu.o CMakeFiles/transformer_engine.dir/gemm/cublaslt_gemm.cu.o CMakeFiles/transformer_engine.dir/normalization/common.cpp.o CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_api.cpp.o CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_bwd_semi_cuda_kernel.cu.o CMakeFiles/transformer_engine.dir/normalization/layernorm/ln_fwd_cuda_kernel.cu.o CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_api.cpp.o CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_bwd_semi_cuda_kernel.cu.o CMakeFiles/transformer_engine.dir/normalization/rmsnorm/rmsnorm_fwd_cuda_kernel.cu.o CMakeFiles/transformer_engine.dir/permutation/permutation.cu.o CMakeFiles/transformer_engine.dir/util/cast.cu.o CMakeFiles/transformer_engine.dir/util/padding.cu.o CMakeFiles/transformer_engine.dir/util/cuda_driver.cpp.o CMakeFiles/transformer_engine.dir/util/cuda_nvml.cpp.o CMakeFiles/transformer_engine.dir/util/cuda_runtime.cpp.o CMakeFiles/transformer_engine.dir/util/multi_stream.cpp.o CMakeFiles/transformer_engine.dir/util/rtc.cpp.o CMakeFiles/transformer_engine.dir/swizzle/swizzle.cu.o CMakeFiles/transformer_engine.dir/fused_softmax/scaled_masked_softmax.cu.o CMakeFiles/transformer_engine.dir/fused_softmax/scaled_upper_triang_masked_softmax.cu.o CMakeFiles/transformer_engine.dir/fused_softmax/scaled_aligned_causal_masked_softmax.cu.o CMakeFiles/transformer_engine.dir/fused_rope/fused_rope.cu.o CMakeFiles/transformer_engine.dir/recipe/current_scaling.cu.o CMakeFiles/transformer_engine.dir/recipe/delayed_scaling.cu.o CMakeFiles/transformer_engine.dir/recipe/fp8_block_scaling.cu.o CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/ipcsocket.cc.o CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/userbuffers-host.cpp.o CMakeFiles/transformer_engine.dir/comm_gemm_overlap/userbuffers/userbuffers.cu.o CMakeFiles/transformer_engine.dir/comm_gemm_overlap/comm_gemm_overlap.cpp.o -L/usr/local/cuda/targets/x86_64-linux/lib -Wl,-rpath,/usr/local/cuda-12.9/targets/x86_64-linux/lib:  /usr/local/cuda-12.9/targets/x86_64-linux/lib/libcublas.so  /usr/local/cuda-12.9/targets/x86_64-linux/lib/libcudart.so  /usr/local/cuda-12.9/targets/x86_64-linux/lib/libcublasLt.so  /usr/local/cuda-12.9/targets/x86_64-linux/lib/libculibos.a  -ldl  /usr/lib/x86_64-linux-gnu/librt.a  /usr/lib/x86_64-linux-gnu/libcudnn.so  /usr/lib/x86_64-linux-gnu/libcudnn_graph.so  /usr/lib/x86_64-linux-gnu/libcudnn_engines_runtime_compiled.so  /usr/lib/x86_64-linux-gnu/libcudnn_ops.so  /usr/lib/x86_64-linux-gnu/libcudnn_cnn.so  /usr/lib/x86_64-linux-gnu/libcudnn_adv.so  /usr/lib/x86_64-linux-gnu/libcudnn_engines_precompiled.so  /usr/lib/x86_64-linux-gnu/libcudnn_heuristic.so  -lcudadevrt  -lcudart_static  -lrt  -lpthread  -ldl && :
+
+-- Install configuration: "Release"
+-- Installing: /root/work/dev/f4/te/build/lib.linux-x86_64-cpython-312/./libtransformer_engine.so
+-- Set non-toolchain portion of runtime path of "/root/work/dev/f4/te/build/lib.linux-x86_64-cpython-312/./libtransformer_engine.so" to ""
+Building CMake extension transformer_engine
+Running command /usr/local/lib/python3.12/dist-packages/cmake/data/bin/cmake -S /root/work/dev/f4/te/transformer_engine/common -B /root/work/dev/f4/te/build/cmake -DPython_EXECUTABLE=/opt/venv/bin/python -DPython_INCLUDE_DIR=/usr/include/python3.12 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/root/work/dev/f4/te/build/lib.linux-x86_64-cpython-312 -DCMAKE_CUDA_ARCHITECTURES=100 -DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc -Dpybind11_DIR=/opt/uv_cache/archive-v0/Ah2KS5XujJuqvD9R_s56F/pybind11/share/cmake/pybind11 -GNinja
+Running command /usr/local/lib/python3.12/dist-packages/cmake/data/bin/cmake --build /root/work/dev/f4/te/build/cmake --verbose --parallel 8
+Running command /usr/local/lib/python3.12/dist-packages/cmake/data/bin/cmake --install /root/work/dev/f4/te/build/cmake --verbose
+Time for build_ext: 724.27 seconds
+building 'transformer_engine_torch' extension
+creating /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc
+creating /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions
+creating /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor
+Emitting ninja build file /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/build.ninja...
+Compiling objects...
+Using envvar MAX_JOBS (8) as the number of workers...
+[1/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[2/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/apply_rope.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/apply_rope.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/apply_rope.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[3/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/activation.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/activation.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/activation.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[4/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[5/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/bias.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/bias.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/bias.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[6/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/attention.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/attention.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+/root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp: In function ‘void {anonymous}::mha_fill(const transformer_engine::TensorWrapper&, const at::Tensor&)’:
+/root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp:21:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<long unsigned int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   21 |   for (int i = 1; i <= shape.size(); i++) {
+      |                   ~~^~~~~~~~~~~~~~~
+/root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp: In function ‘at::Tensor transformer_engine::pytorch::thd_read_half_tensor(const at::Tensor&, const at::Tensor&, int)’:
+/root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp:564:7: warning: unused variable ‘batch’ [-Wunused-variable]
+  564 |   int batch = cu_seqlens.size(0) - 1;
+      |       ^~~~~
+/root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp: In function ‘at::Tensor transformer_engine::pytorch::thd_get_partitioned_indices(const at::Tensor&, int, int, int)’:
+/root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp:728:7: warning: unused variable ‘batch’ [-Wunused-variable]
+  728 |   int batch = cu_seqlens.size(0) - 1;
+      |       ^~~~~
+/root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp: In function ‘at::Tensor transformer_engine::pytorch::convert_bshd_to_thd(at::Tensor, at::Tensor, int)’:
+/root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/attention.cpp:767:7: warning: unused variable ‘max_seq_len’ [-Wunused-variable]
+  767 |   int max_seq_len = tensor.size(1);
+      |       ^~~~~~~~~~~
+[7/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/common.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/common.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/common.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[8/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/cast.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/cast.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/cast.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[9/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[10/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/gemm.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/gemm.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/gemm.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[11/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[12/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[13/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/misc.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/misc.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/misc.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[14/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[15/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[16/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/normalization.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/normalization.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/normalization.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[17/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/nvshmem_comm.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/nvshmem_comm.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/nvshmem_comm.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[18/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/padding.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/padding.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/padding.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[19/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/permutation.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/permutation.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/permutation.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[20/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/transpose.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/transpose.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/transpose.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[21/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/softmax.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/softmax.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/softmax.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[22/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/quantizer.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/quantizer.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/quantizer.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[23/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/recipe.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/recipe.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/recipe.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[24/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/type_converters.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/type_converters.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/type_converters.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[25/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/util.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/util.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/util.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+[26/26] c++ -MMD -MF /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/pybind.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/usr/local/cuda/include -I/root/work/dev/f4/te/transformer_engine -I/root/work/dev/f4/te/transformer_engine/common -I/root/work/dev/f4/te/transformer_engine/common/include -I/root/work/dev/f4/te/transformer_engine/pytorch/csrc -I/usr/local/lib/python3.12/dist-packages/torch/include -I/usr/local/lib/python3.12/dist-packages/torch/include/torch/csrc/api/include -I/opt/venv/include -I/usr/include/python3.12 -c -c /root/work/dev/f4/te/transformer_engine/pytorch/csrc/extensions/pybind.cpp -o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/pybind.o -O3 -fvisibility=hidden -g0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=transformer_engine_torch -std=c++17
+x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -shared -Wl,-O1 -Wl,-Bsymbolic-functions /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/common.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/activation.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/apply_rope.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/attention.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/bias.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/cast.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/gemm.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/misc.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/normalization.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/nvshmem_comm.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/padding.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/permutation.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/pybind.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/recipe.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/softmax.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/transpose.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/quantizer.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/type_converters.o /root/work/dev/f4/te/build/temp.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/util.o -L/usr/local/lib/python3.12/dist-packages/torch/lib -L/usr/lib/x86_64-linux-gnu -lc10 -ltorch -ltorch_cpu -ltorch_python -o build/lib.linux-x86_64-cpython-312/transformer_engine_torch.cpython-312-x86_64-linux-gnu.so
+copying build/lib.linux-x86_64-cpython-312/transformer_engine_torch.cpython-312-x86_64-linux-gnu.so -> /root/work/dev/f4/te/build/lib.linux-x86_64-cpython-312/transformer_engine
+copying build/lib.linux-x86_64-cpython-312/libtransformer_engine.so -> /root/work/dev/f4/te/build/lib.linux-x86_64-cpython-312/transformer_engine
+/opt/venv/lib/python3.12/site-packages/setuptools/_distutils/cmd.py:90: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` directly.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/transformer_engine
+creating build/bdist.linux-x86_64/wheel/transformer_engine/common
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/common/utils.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/common
+creating build/bdist.linux-x86_64/wheel/transformer_engine/common/recipe
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/common/recipe/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/common/recipe
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/common/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/common
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/transformer_engine_torch.cpython-312-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/wheel/./transformer_engine
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/libtransformer_engine.so -> build/bdist.linux-x86_64/wheel/./transformer_engine
+creating build/bdist.linux-x86_64/wheel/transformer_engine/debug
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug
+creating build/bdist.linux-x86_64/wheel/transformer_engine/debug/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/pytorch/utils.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/pytorch/debug_quantization.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/pytorch/debug_state.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/pytorch/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/pytorch
+creating build/bdist.linux-x86_64/wheel/transformer_engine/debug/features
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/log_fp8_tensor_stats.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/fake_quant.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/_test_dummy_feature.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/disable_fp8_gemm.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/disable_fp8_layer.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features
+creating build/bdist.linux-x86_64/wheel/transformer_engine/debug/features/utils
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/utils/stats_computation.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features/utils
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/utils/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features/utils
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/utils/stats_buffer.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features/utils
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/api.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/per_tensor_scaling.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/debug/features/log_tensor_stats.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/debug/features
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/ops
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/rmsnorm.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/make_extra_output.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/l2normalization.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/reduce_scatter.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/bias.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/basic_linear.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/quantize.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/reshape.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/activation.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/layer_norm.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/all_gather.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/add_in_place.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/all_reduce.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/basic/identity.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/basic
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fuser.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/linear.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/op.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/ops/fused
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused/backward_linear_add.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/fused
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused/userbuffers_forward_linear.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/fused
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused/forward_linear_bias_add.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/fused
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused/userbuffers_backward_linear.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/fused
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused/forward_linear_bias_activation.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/fused
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/fused/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops/fused
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/sequential.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/ops/_common.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/ops
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/transformer.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/rmsnorm.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/linear.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/layernorm.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/debug.linear.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/base.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/fp8_unpadding.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/grouped_linear.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/layernorm_mlp.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/layernorm_linear.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/fp8_padding.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/module/_common.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/module
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/utils.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/permutation.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/graph.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/jit.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/fp8.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/float8_tensor.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/cpp_extensions/fused_attn.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/cpp_extensions/gemm.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/cpp_extensions/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/cpp_extensions
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/optimizers
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/optimizers/fused_adam.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/optimizers
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/optimizers/multi_tensor_apply.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/optimizers
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/optimizers/fused_sgd.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/optimizers
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/optimizers/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/optimizers
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/csrc
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/type_converters.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/quantizer.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/common.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/nvshmem_comm.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/normalization.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/pybind.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions/multi_tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/gemm.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/activation.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/transpose.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/misc.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/recipe.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/attention.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/padding.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/cast.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/softmax.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/apply_rope.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/permutation.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/extensions/bias.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc/extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/csrc/util.cpp -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/csrc
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/numerics_debug.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/cross_entropy.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/attention
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/attention/dot_product_attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention/utils.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/attention/dot_product_attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention/backends.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/attention/dot_product_attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention/softmax.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/attention/dot_product_attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/attention/dot_product_attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention/context_parallel.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/attention/dot_product_attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/dot_product_attention/dot_product_attention.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/attention/dot_product_attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/inference.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/multi_head_attention.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/rope.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/attention/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/attention
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/distributed.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/utils.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/float8_blockwise_tensor.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/quantized_tensor.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/float8_tensor.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/nvfp4_tensor.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/tensor/_internal
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/_internal/mxfp8_tensor_base.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor/_internal
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/_internal/float8_tensor_base.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor/_internal
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/_internal/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor/_internal
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/_internal/float8_blockwise_tensor_base.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor/_internal
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/tensor/mxfp8_tensor.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/tensor
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/setup.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/cpu_offload.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+creating build/bdist.linux-x86_64/wheel/transformer_engine/pytorch/triton
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/triton/permutation.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/triton
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/triton/cross_entropy.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/triton
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/triton/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch/triton
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/pytorch/constants.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/pytorch
+creating build/bdist.linux-x86_64/wheel/transformer_engine/jax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/dense.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/attention.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/layernorm_dense.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/activation.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/layernorm.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax
+creating build/bdist.linux-x86_64/wheel/transformer_engine/jax/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions/attention.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions/quantization.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions/activation.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions/misc.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions/gemm.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions/softmax.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions/base.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions/normalization.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/cpp_extensions
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/cpp_extensions/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/cpp_extensions
+creating build/bdist.linux-x86_64/wheel/transformer_engine/jax/flax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/flax/transformer.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/flax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/flax/module.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/flax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/flax/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/flax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/softmax.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax
+creating build/bdist.linux-x86_64/wheel/transformer_engine/jax/quantize
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize/device_utils.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/quantize
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize/scaling_modes.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/quantize
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize/dequantizer.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/quantize
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize/helper.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/quantize
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize/tensor.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/quantize
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize/quantizer.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/quantize
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/quantize
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/quantize/metadata.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax/quantize
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/__init__.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/layernorm_mlp.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/setup.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax
+copying build/lib.linux-x86_64-cpython-312/transformer_engine/jax/sharding.py -> build/bdist.linux-x86_64/wheel/./transformer_engine/jax
+running install_egg_info
+Copying transformer_engine.egg-info to build/bdist.linux-x86_64/wheel/./transformer_engine-2.5.0+c2056e01-py3.12.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/transformer_engine-2.5.0+c2056e01.dist-info/WHEEL
+creating 'dist/transformer_engine-2.5.0+c2056e01-cp312-cp312-linux_x86_64.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'transformer_engine/__init__.py'
+adding 'transformer_engine/libtransformer_engine.so'
+adding 'transformer_engine/transformer_engine_torch.cpython-312-x86_64-linux-gnu.so'
+adding 'transformer_engine/common/__init__.py'
+adding 'transformer_engine/common/utils.py'
+adding 'transformer_engine/common/recipe/__init__.py'
+adding 'transformer_engine/debug/__init__.py'
+adding 'transformer_engine/debug/features/__init__.py'
+adding 'transformer_engine/debug/features/_test_dummy_feature.py'
+adding 'transformer_engine/debug/features/api.py'
+adding 'transformer_engine/debug/features/disable_fp8_gemm.py'
+adding 'transformer_engine/debug/features/disable_fp8_layer.py'
+adding 'transformer_engine/debug/features/fake_quant.py'
+adding 'transformer_engine/debug/features/log_fp8_tensor_stats.py'
+adding 'transformer_engine/debug/features/log_tensor_stats.py'
+adding 'transformer_engine/debug/features/per_tensor_scaling.py'
+adding 'transformer_engine/debug/features/utils/__init__.py'
+adding 'transformer_engine/debug/features/utils/stats_buffer.py'
+adding 'transformer_engine/debug/features/utils/stats_computation.py'
+adding 'transformer_engine/debug/pytorch/__init__.py'
+adding 'transformer_engine/debug/pytorch/debug_quantization.py'
+adding 'transformer_engine/debug/pytorch/debug_state.py'
+adding 'transformer_engine/debug/pytorch/utils.py'
+adding 'transformer_engine/jax/__init__.py'
+adding 'transformer_engine/jax/activation.py'
+adding 'transformer_engine/jax/attention.py'
+adding 'transformer_engine/jax/dense.py'
+adding 'transformer_engine/jax/layernorm.py'
+adding 'transformer_engine/jax/layernorm_dense.py'
+adding 'transformer_engine/jax/layernorm_mlp.py'
+adding 'transformer_engine/jax/setup.py'
+adding 'transformer_engine/jax/sharding.py'
+adding 'transformer_engine/jax/softmax.py'
+adding 'transformer_engine/jax/cpp_extensions/__init__.py'
+adding 'transformer_engine/jax/cpp_extensions/activation.py'
+adding 'transformer_engine/jax/cpp_extensions/attention.py'
+adding 'transformer_engine/jax/cpp_extensions/base.py'
+adding 'transformer_engine/jax/cpp_extensions/gemm.py'
+adding 'transformer_engine/jax/cpp_extensions/misc.py'
+adding 'transformer_engine/jax/cpp_extensions/normalization.py'
+adding 'transformer_engine/jax/cpp_extensions/quantization.py'
+adding 'transformer_engine/jax/cpp_extensions/softmax.py'
+adding 'transformer_engine/jax/flax/__init__.py'
+adding 'transformer_engine/jax/flax/module.py'
+adding 'transformer_engine/jax/flax/transformer.py'
+adding 'transformer_engine/jax/quantize/__init__.py'
+adding 'transformer_engine/jax/quantize/dequantizer.py'
+adding 'transformer_engine/jax/quantize/device_utils.py'
+adding 'transformer_engine/jax/quantize/helper.py'
+adding 'transformer_engine/jax/quantize/metadata.py'
+adding 'transformer_engine/jax/quantize/quantizer.py'
+adding 'transformer_engine/jax/quantize/scaling_modes.py'
+adding 'transformer_engine/jax/quantize/tensor.py'
+adding 'transformer_engine/pytorch/__init__.py'
+adding 'transformer_engine/pytorch/constants.py'
+adding 'transformer_engine/pytorch/cpu_offload.py'
+adding 'transformer_engine/pytorch/cross_entropy.py'
+adding 'transformer_engine/pytorch/distributed.py'
+adding 'transformer_engine/pytorch/float8_tensor.py'
+adding 'transformer_engine/pytorch/fp8.py'
+adding 'transformer_engine/pytorch/graph.py'
+adding 'transformer_engine/pytorch/jit.py'
+adding 'transformer_engine/pytorch/numerics_debug.py'
+adding 'transformer_engine/pytorch/permutation.py'
+adding 'transformer_engine/pytorch/setup.py'
+adding 'transformer_engine/pytorch/transformer.py'
+adding 'transformer_engine/pytorch/utils.py'
+adding 'transformer_engine/pytorch/attention/__init__.py'
+adding 'transformer_engine/pytorch/attention/inference.py'
+adding 'transformer_engine/pytorch/attention/multi_head_attention.py'
+adding 'transformer_engine/pytorch/attention/rope.py'
+adding 'transformer_engine/pytorch/attention/dot_product_attention/__init__.py'
+adding 'transformer_engine/pytorch/attention/dot_product_attention/backends.py'
+adding 'transformer_engine/pytorch/attention/dot_product_attention/context_parallel.py'
+adding 'transformer_engine/pytorch/attention/dot_product_attention/dot_product_attention.py'
+adding 'transformer_engine/pytorch/attention/dot_product_attention/softmax.py'
+adding 'transformer_engine/pytorch/attention/dot_product_attention/utils.py'
+adding 'transformer_engine/pytorch/cpp_extensions/__init__.py'
+adding 'transformer_engine/pytorch/cpp_extensions/fused_attn.py'
+adding 'transformer_engine/pytorch/cpp_extensions/gemm.py'
+adding 'transformer_engine/pytorch/csrc/common.cpp'
+adding 'transformer_engine/pytorch/csrc/quantizer.cpp'
+adding 'transformer_engine/pytorch/csrc/type_converters.cpp'
+adding 'transformer_engine/pytorch/csrc/util.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/activation.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/apply_rope.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/attention.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/bias.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/cast.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/comm_gemm_overlap.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/fp8_block_scaling_partial_cast.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/gemm.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/misc.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/normalization.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/nvshmem_comm.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/padding.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/permutation.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/pybind.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/recipe.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/softmax.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/transpose.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/multi_tensor/adam.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/multi_tensor/compute_scale.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/multi_tensor/l2norm.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/multi_tensor/scale.cpp'
+adding 'transformer_engine/pytorch/csrc/extensions/multi_tensor/sgd.cpp'
+adding 'transformer_engine/pytorch/module/__init__.py'
+adding 'transformer_engine/pytorch/module/_common.py'
+adding 'transformer_engine/pytorch/module/base.py'
+adding 'transformer_engine/pytorch/module/debug.linear.py'
+adding 'transformer_engine/pytorch/module/fp8_padding.py'
+adding 'transformer_engine/pytorch/module/fp8_unpadding.py'
+adding 'transformer_engine/pytorch/module/grouped_linear.py'
+adding 'transformer_engine/pytorch/module/layernorm.py'
+adding 'transformer_engine/pytorch/module/layernorm_linear.py'
+adding 'transformer_engine/pytorch/module/layernorm_mlp.py'
+adding 'transformer_engine/pytorch/module/linear.py'
+adding 'transformer_engine/pytorch/module/rmsnorm.py'
+adding 'transformer_engine/pytorch/ops/__init__.py'
+adding 'transformer_engine/pytorch/ops/_common.py'
+adding 'transformer_engine/pytorch/ops/fuser.py'
+adding 'transformer_engine/pytorch/ops/linear.py'
+adding 'transformer_engine/pytorch/ops/op.py'
+adding 'transformer_engine/pytorch/ops/sequential.py'
+adding 'transformer_engine/pytorch/ops/basic/__init__.py'
+adding 'transformer_engine/pytorch/ops/basic/activation.py'
+adding 'transformer_engine/pytorch/ops/basic/add_in_place.py'
+adding 'transformer_engine/pytorch/ops/basic/all_gather.py'
+adding 'transformer_engine/pytorch/ops/basic/all_reduce.py'
+adding 'transformer_engine/pytorch/ops/basic/basic_linear.py'
+adding 'transformer_engine/pytorch/ops/basic/bias.py'
+adding 'transformer_engine/pytorch/ops/basic/identity.py'
+adding 'transformer_engine/pytorch/ops/basic/l2normalization.py'
+adding 'transformer_engine/pytorch/ops/basic/layer_norm.py'
+adding 'transformer_engine/pytorch/ops/basic/make_extra_output.py'
+adding 'transformer_engine/pytorch/ops/basic/quantize.py'
+adding 'transformer_engine/pytorch/ops/basic/reduce_scatter.py'
+adding 'transformer_engine/pytorch/ops/basic/reshape.py'
+adding 'transformer_engine/pytorch/ops/basic/rmsnorm.py'
+adding 'transformer_engine/pytorch/ops/fused/__init__.py'
+adding 'transformer_engine/pytorch/ops/fused/backward_linear_add.py'
+adding 'transformer_engine/pytorch/ops/fused/forward_linear_bias_activation.py'
+adding 'transformer_engine/pytorch/ops/fused/forward_linear_bias_add.py'
+adding 'transformer_engine/pytorch/ops/fused/userbuffers_backward_linear.py'
+adding 'transformer_engine/pytorch/ops/fused/userbuffers_forward_linear.py'
+adding 'transformer_engine/pytorch/optimizers/__init__.py'
+adding 'transformer_engine/pytorch/optimizers/fused_adam.py'
+adding 'transformer_engine/pytorch/optimizers/fused_sgd.py'
+adding 'transformer_engine/pytorch/optimizers/multi_tensor_apply.py'
+adding 'transformer_engine/pytorch/tensor/__init__.py'
+adding 'transformer_engine/pytorch/tensor/float8_blockwise_tensor.py'
+adding 'transformer_engine/pytorch/tensor/float8_tensor.py'
+adding 'transformer_engine/pytorch/tensor/mxfp8_tensor.py'
+adding 'transformer_engine/pytorch/tensor/nvfp4_tensor.py'
+adding 'transformer_engine/pytorch/tensor/quantized_tensor.py'
+adding 'transformer_engine/pytorch/tensor/utils.py'
+adding 'transformer_engine/pytorch/tensor/_internal/__init__.py'
+adding 'transformer_engine/pytorch/tensor/_internal/float8_blockwise_tensor_base.py'
+adding 'transformer_engine/pytorch/tensor/_internal/float8_tensor_base.py'
+adding 'transformer_engine/pytorch/tensor/_internal/mxfp8_tensor_base.py'
+adding 'transformer_engine/pytorch/triton/__init__.py'
+adding 'transformer_engine/pytorch/triton/cross_entropy.py'
+adding 'transformer_engine/pytorch/triton/permutation.py'
+adding 'transformer_engine-2.5.0+c2056e01.dist-info/licenses/LICENSE'
+adding 'transformer_engine-2.5.0+c2056e01.dist-info/METADATA'
+adding 'transformer_engine-2.5.0+c2056e01.dist-info/WHEEL'
+adding 'transformer_engine-2.5.0+c2056e01.dist-info/top_level.txt'
+adding 'transformer_engine-2.5.0+c2056e01.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+Total time for bdist_wheel: 822.47 seconds

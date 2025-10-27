@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                // "${workspaceFolder}/te/**",
+                "/root/work/dev/f4/te/**",
+                "/usr/local/cuda/include",
+                "/usr/local/lib/python3.12/dist-packages/torch/include/**",
+                "/usr/include/python3.12/**"
+            ],
+            "defines": ["__CUDA_ARCH__=1000"],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
