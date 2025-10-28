@@ -18,7 +18,7 @@ hyperparams.model_name = "meta-llama/Llama-2-7b-hf"
 # hyperparams.model_name = "meta-llama/Meta-Llama-3-8B"
 
 hyperparams.mixed_precision = "fp8"
-hyperparams.use_mxfp8 = False
+hyperparams.use_mxfp8 = True
 
 # Init the model and accelerator wrapper
 model = init_te_llama_model(hyperparams)

@@ -25,6 +25,7 @@ from accelerate.utils.dataclasses import FP8RecipeKwargs
 class HyperParameters:
     def __init__(self):
         self.mixed_precision = "bf16"
+        self.use_mxfp8 = False
 
         # Set to Meta Llama 2 by default.
         self.model_name = "meta-llama/Llama-2-7b-hf"
@@ -159,9 +160,16 @@ def init_te_llama_model(hyperparams):
 
 def wrap_with_accelerator(model, hyperparams):
     # Create FP8 kwarg handler if required
-    fp8_kwarg_handler = (
-        [FP8RecipeKwargs(backend="te")] if hyperparams.mixed_precision == "fp8" else None
-    )
+    fp8_kwarg_handler = None
+    if hyperparams.mixed_precision == "fp8":
+        if hyperparams.use_mxfp8:
+            fp8_kwarg_handler = [FP8RecipeKwargs(
+                                    backend="te",
+                                    use_mxfp8_block_scaling=True,   # <- MXFP8
+                                    fp8_format="E4M3"               # MXFP8 uses E4M3 everywhere
+                                )]
+        else:
+            fp8_kwarg_handler = [FP8RecipeKwargs(backend="te")]
 
     # Init HF accelerator that's used for training
     accelerator = Accelerator(
