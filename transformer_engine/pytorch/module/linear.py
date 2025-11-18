@@ -200,7 +200,10 @@ class _Linear(torch.autograd.Function):
                 else:
                     if input_quantizer is None:
                         raise ValueError("Missing quantizer for input tensor")
-                    input_quantizer.set_usage(rowwise=True, columnwise=backward_needs_input)
+                    input_quantizer.set_usage(
+                        rowwise=True, columnwise=False if hasattr(input_quantizer, "mxfp8_bw_quantize") else backward_needs_input)
+                    if input_quantizer.__class__.__name__ == "NVFP4Quantizer":
+                        inputmat = inputmat.reshape(-1, inputmat.shape[-1])
                     inputmat = input_quantizer(inputmat)
                     own_quantized_input = True
             else:
@@ -224,7 +227,8 @@ class _Linear(torch.autograd.Function):
                         is_fp8_activation_recompute_enabled()
                         and not in_fp8_activation_recompute_phase()
                     )
-                weight_quantizer.set_usage(rowwise=True, columnwise=columnwise_usage)
+                weight_quantizer.set_usage(
+                    rowwise=True, columnwise=False if hasattr(weight_quantizer, "mxfp8_bw_quantize") else columnwise_usage)
 
             # Get quantized weight
             update_workspace = is_first_microbatch is None or is_first_microbatch
@@ -295,6 +299,8 @@ class _Linear(torch.autograd.Function):
             ub_type=ub_type,
             extra_output=reduce_scatter_out,
         )
+        if input_quantizer.__class__.__name__ == "NVFP4Quantizer":
+            gemm_out = gemm_out.reshape(inp.shape[:2] + (-1,))
         nvtx_range_pop(f"{nvtx_label}.gemm")
         # ------------------------------------------------------
         # Finished forward GEMM...
@@ -345,13 +351,14 @@ class _Linear(torch.autograd.Function):
                         isinstance(inputmat, (MXFP8TensorBase, Float8BlockwiseQTensorBase))
                         or not ctx.backward_input_needs_gather
                     ):
-                        inputmat.update_usage(rowwise_usage=False, columnwise_usage=True)
+                        inputmat.update_usage(
+                            rowwise_usage=False, columnwise_usage=False if hasattr(weight_quantizer, "mxfp8_bw_quantize") else True)
                 saved_inputmat = inputmat
 
             # Weight with column-wise usage is needed for dgrad GEMM.
             if inp.requires_grad:
                 if isinstance(weightmat, QuantizedTensorBase):
-                    weightmat.update_usage(columnwise_usage=True)
+                    weightmat.update_usage(columnwise_usage=False if hasattr(weight_quantizer, "mxfp8_bw_quantize") else True)
 
             if cpu_offloading and saved_inputmat is not None:
                 mark_activation_offload(saved_inputmat)
@@ -593,7 +600,7 @@ class _Linear(torch.autograd.Function):
                 if isinstance(grad_output, QuantizedTensorBase):
                     grad_output.update_usage(rowwise_usage=True)
                 if ctx.weight_quantizer is not None and isinstance(weight_fp8, QuantizedTensorBase):
-                    weight_fp8.update_usage(columnwise_usage=True)
+                    weight_fp8.update_usage(columnwise_usage=False if hasattr(ctx.weight_quantizer, "mxfp8_bw_quantize") else True)
 
                 # Choose whether to use GEMM kernel with split accumulator
                 use_split_accumulator = _2X_ACC_DGRAD
@@ -620,7 +627,7 @@ class _Linear(torch.autograd.Function):
                 # Note: dx = dy * w
                 nvtx_range_push(f"{nvtx_label}.dgrad_gemm")
                 gemm_out, *_, reduce_scatter_out = general_gemm(
-                    weight_fp8,
+                    weight_fp8.bw_tensor if hasattr(weight_fp8, "bw_tensor") else weight_fp8,
                     grad_output,
                     get_workspace(),
                     layout="NN",
@@ -676,7 +683,7 @@ class _Linear(torch.autograd.Function):
                     inputmat_total_work = None
                 if ctx.fp8 or ctx.debug:
                     if isinstance(inputmat_total, QuantizedTensorBase):
-                        inputmat_total.update_usage(columnwise_usage=True)
+                        inputmat_total.update_usage(columnwise_usage=False if hasattr(ctx.weight_quantizer, "mxfp8_bw_quantize") else True)
                     else:
                         ctx.input_quantizer.set_usage(rowwise=False, columnwise=True)
                         inputmat_total = ctx.input_quantizer(inputmat_total)
@@ -788,7 +795,10 @@ class _Linear(torch.autograd.Function):
                 else:
 
                     # Call wgrad GEMM now
-                    wgrad, grad_bias_ = wgrad_gemm(inputmat_total, grad_output)
+                    wgrad, grad_bias_ = wgrad_gemm(
+                        inputmat_total.bw_tensor if hasattr(inputmat_total, "bw_tensor") else inputmat_total,
+                        grad_output
+                        )
 
                     # Update grad bias if needed
                     if grad_bias is None:

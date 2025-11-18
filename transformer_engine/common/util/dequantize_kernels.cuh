@@ -45,29 +45,39 @@ constexpr size_t SHMEM_DIM_X = BUFFER_DIM_X;  // 128
 
 constexpr size_t THREADS_PER_CHUNK_X_ROWWISE = CHUNK_DIM_X / ELEMS_PER_THREAD;  //  8 = 128 / 16
 constexpr size_t THREADS_PER_CHUNK_X_COLWISE = CHUNK_DIM_X;                     //  128
-constexpr size_t ITERATIONS = CHUNK_DIM_Y / BUFFER_DIM_Y;                       //    8 = 128 / 16
+constexpr size_t ITERATIONS = CHUNK_DIM_Y / BUFFER_DIM_Y;                       //  8 = 128 / 16
 static_assert(ITERATIONS >= 1);
 
-template <typename IType, typename OType, size_t SCALE_DIM_Y, size_t SCALE_DIM_X>
+template <typename IType, typename OType, size_t SCALE_DIM_Y, size_t SCALE_DIM_X, typename ScaleType>
 __global__ void __launch_bounds__(THREADS_PER_CHUNK)
-    dequantize_mxfp8_kernel(const __grid_constant__ CUtensorMap tensor_map_input,
-                            const __grid_constant__ CUtensorMap tensor_map_output,
-                            const e8m0_t *const scales_ptr, const size_t rows, const size_t cols,
-                            const size_t scales_stride) {
+    dequantize_mxnv_kernel(const __grid_constant__ CUtensorMap tensor_map_input,
+                           const __grid_constant__ CUtensorMap tensor_map_output,
+                           const ScaleType *const scales_ptr, const size_t rows, const size_t cols,
+                           const size_t scales_stride) {
 #if (defined __CUDA_ARCH__) && (__CUDA_ARCH__ >= 1000)
+  const size_t packing = [&] {
+    if constexpr (std::is_same_v<IType, fp8e4m3> || std::is_same_v<IType, fp8e5m2>) {
+      return 1;
+    } else if constexpr (std::is_same_v<IType, fp4e2m1>) {
+      return 2;
+    } else {
+      static_assert(!std::is_same_v<IType, IType>, "Unsupported OType");
+      return 0;
+    }
+  }();
   constexpr bool USE_ROWWISE_SCALING = SCALE_DIM_X > 1;
 
   constexpr size_t SCALES_ROWWISE_PER_CHUNK_Y = CHUNK_DIM_Y;                //  128
-  constexpr size_t SCALES_ROWWISE_PER_CHUNK_X = CHUNK_DIM_X / SCALE_DIM_X;  //    4 = 128 / 32
+  constexpr size_t SCALES_ROWWISE_PER_CHUNK_X = CHUNK_DIM_X / SCALE_DIM_X;  //  mx:4, nv:8
 
-  constexpr size_t SCALES_COLWISE_PER_CHUNK_Y = CHUNK_DIM_Y / SCALE_DIM_Y;  //    4 = 128 / 32
+  constexpr size_t SCALES_COLWISE_PER_CHUNK_Y = CHUNK_DIM_Y / SCALE_DIM_Y;  //  mx:4, nv:8
   constexpr size_t SCALES_COLWISE_PER_CHUNK_X = CHUNK_DIM_X;                //  128
 
   constexpr size_t THREADS_PER_SCALE_X_ROWWISE =
-      DIVUP(SCALE_DIM_X, ELEMS_PER_THREAD);  // 2 = 32 / 16
+      DIVUP(SCALE_DIM_X, ELEMS_PER_THREAD);  //  mx:2, nv:1
 
   const int chunk_offset_Y = blockIdx.y * CHUNK_DIM_Y;
-  const int chunk_offset_X = blockIdx.x * CHUNK_DIM_X;
+  const int chunk_offset_X = blockIdx.x * CHUNK_DIM_X / packing;
 
   const int scales_rowwise_chunk_offset_Y = blockIdx.y * SCALES_ROWWISE_PER_CHUNK_Y;
   const int scales_rowwise_chunk_offset_X = blockIdx.x * SCALES_ROWWISE_PER_CHUNK_X;
@@ -84,7 +94,7 @@ __global__ void __launch_bounds__(THREADS_PER_CHUNK)
   // const int thread_offset_X_colwise = tid_colwise_X;
 
   // The destination shared memory buffer of a bulk tensor operation should be 128 e8m0_t aligned
-  __shared__ alignas(128) IType in_sh[BUFFERS_NUM][SHMEM_DIM_Y][SHMEM_DIM_X];
+  __shared__ alignas(128) IType in_sh[BUFFERS_NUM][SHMEM_DIM_Y][SHMEM_DIM_X/packing];
   __shared__ alignas(128) OType out_sh[BUFFERS_NUM][SHMEM_DIM_Y][SHMEM_DIM_X];
 
   constexpr int shmem_buff_size = sizeof(in_sh) / BUFFERS_NUM;
@@ -165,8 +175,18 @@ __global__ void __launch_bounds__(THREADS_PER_CHUNK)
             : (scales_colwise_chunk_offset_X + tid_colwise_X);
 
     const int scale_idx = scale_offset_Y * scales_stride + scale_offset_X;
-    const e8m0_t biased_exponent = scales_ptr[scale_idx];
-    const float block_scale = exp2f(static_cast<float>(biased_exponent) - FP32_EXPONENT_BIAS);
+
+    const float block_scale = [&] {
+      if constexpr (std::is_same_v<ScaleType, e8m0_t>) {
+        const e8m0_t biased_exponent = scales_ptr[scale_idx];
+        return exp2f(static_cast<float>(biased_exponent) - FP32_EXPONENT_BIAS);
+      } else if constexpr (std::is_same_v<ScaleType, fp8e4m3>) {
+        return static_cast<float>(scales_ptr[scale_idx]);
+      } else {
+        static_assert(!std::is_same_v<ScaleType, ScaleType>, "Unsupported ScaleType");
+        return 0.0f; 
+      }
+    }();
 
     if constexpr (USE_ROWWISE_SCALING) {
       Vec<IType, ELEMS_PER_THREAD> in;
@@ -174,18 +194,46 @@ __global__ void __launch_bounds__(THREADS_PER_CHUNK)
 
       const int shmem_offset_y = thread_offset_Y;
       const int shmem_offset_x = thread_offset_X_rowwise;
-      in.load_from(&in_sh[buff][shmem_offset_y][shmem_offset_x]);
+      const int shmem_offset_x_in = (tid_rowwise_X/packing) * ELEMS_PER_THREAD;
+      in.load_from(&in_sh[buff][shmem_offset_y][shmem_offset_x_in]);
 
+      // only used for packed fp4
+      // every 2 threads loading the same 16 elements
+      // thread 0 unpacked and dequantized to first 16, 
+      // thread 1 unpacked and dequantized to second 16
+      const int base_idx = (tid_rowwise_X % packing) * (ELEMS_PER_THREAD/packing); //only used for packed fp4
 #pragma unroll
-      for (int j = 0; j < ELEMS_PER_THREAD; ++j) {
-        out.data.elt[j] = static_cast<OType>(block_scale * static_cast<float>(in.data.elt[j]));
+      for (int j = 0; j < ELEMS_PER_THREAD/packing; ++j) {
+        if constexpr (std::is_same_v<IType, fp8e4m3> || std::is_same_v<IType, fp8e5m2>) {
+          out.data.elt[j] = static_cast<OType>(block_scale * static_cast<float>(in.data.elt[j]));
+        } else if constexpr (std::is_same_v<IType, fp4e2m1>) {
+          // fp4(y), fp4(x) -> fp16.x, fp16.y (no need special handling, just reversing the convention of how we pack)
+          __half2_raw hfraw2 = __nv_cvt_fp4x2_to_halfraw2(in.data.elt[base_idx+j].__x, __NV_E2M1);
+          __half2 h2;
+          memcpy(&h2, &hfraw2, sizeof(h2));
+          out.data.elt[j*2]   = static_cast<OType>(block_scale * static_cast<float>(h2.x));
+          out.data.elt[j*2+1] = static_cast<OType>(block_scale * static_cast<float>(h2.y));
+        } else {
+          static_assert(!std::is_same_v<IType, IType>, "Unsupported IType");
+        }
       }
       out.store_to(&out_sh[buff][shmem_offset_y][shmem_offset_x]);
     } else {
 #pragma unroll
-      for (int i = 0; i < BUFFER_DIM_Y; ++i) {
-        const float elt = static_cast<float>(in_sh[buff][i][tid_colwise_X]);
-        out_sh[buff][i][tid_colwise_X] = static_cast<OType>(block_scale * elt);
+      for (int i = 0; i < BUFFER_DIM_Y/packing; ++i) {
+        if constexpr (std::is_same_v<IType, fp8e4m3> || std::is_same_v<IType, fp8e5m2>) {
+          const float elt = static_cast<float>(in_sh[buff][i][tid_colwise_X]);
+          out_sh[buff][i][tid_colwise_X] = static_cast<OType>(block_scale * elt);
+        } else if constexpr (std::is_same_v<IType, fp4e2m1>) {
+          // fp4(y), fp4(x) -> fp16.x, fp16.y (no need special handling, just reversing the convention of how we pack)
+          __half2_raw hfraw2 = __nv_cvt_fp4x2_to_halfraw2(in_sh[buff][i][tid_colwise_X].__x, __NV_E2M1);
+          __half2 h2;
+          memcpy(&h2, &hfraw2, sizeof(h2));
+          out_sh[buff][i*2][tid_colwise_X]   = static_cast<OType>(block_scale * static_cast<float>(h2.x));
+          out_sh[buff][i*2+1][tid_colwise_X] = static_cast<OType>(block_scale * static_cast<float>(h2.y));
+        } else {
+          static_assert(!std::is_same_v<IType, IType>, "Unsupported IType");
+        }
       }
     }
 
@@ -247,33 +295,49 @@ static void fp8_dequantize(const Tensor &input, Tensor *output, cudaStream_t str
   );                      // NOLINT(*)
 }
 
-static void mxfp8_dequantize(const Tensor &input, Tensor *output, cudaStream_t stream) {
+template <const size_t ScaleDim, typename ScaleType>
+static void mxnv_dequantize(const Tensor &input, Tensor *output, cudaStream_t stream) {
   bool use_rowwise_scaling = input.has_data();
   bool use_colwise_scaling = input.has_columnwise_data();
   checkCuDriverContext(stream);
 
-  const auto &input_shape = input.data.shape;
+  auto input_shape = input.data.shape;
   NVTE_CHECK(input_shape.size() >= 2, "Input must have at least 2 dimensions.");
+  if (input.scaling_mode == NVTE_NVFP4_1D_SCALING) {
+    input_shape[1] *= 2; // tensor.shape() use rowwise data shape.
+  }
 
   if (use_rowwise_scaling) {
     NVTE_CHECK(input.has_data(), "Cannot dequantize tensor without rowwise data.");
-    NVTE_CHECK(is_fp8_dtype(input.data.dtype), "Input must have FP8 type.");
+    NVTE_CHECK(is_narrow_dtype(input.data.dtype), "Input must have FP8 type.");
   }
 
   if (use_colwise_scaling) {
     NVTE_CHECK(input.has_columnwise_data(), "Cannot dequantize tensor without columnwise data.");
-    NVTE_CHECK(is_fp8_dtype(input.columnwise_data.dtype), "Input must have FP8 type.");
+    NVTE_CHECK(is_narrow_dtype(input.columnwise_data.dtype), "Input must have FP8 type.");
   }
 
-  NVTE_CHECK(!is_fp8_dtype(output->data.dtype), "Output must be in higher precision.");
-  NVTE_CHECK(output->data.shape == input.data.shape, "Input and output shapes need to match.");
+  NVTE_CHECK(!is_narrow_dtype(output->data.dtype), "Output must be in higher precision.");
+  NVTE_CHECK(output->data.shape == input_shape, "Input and output shapes need to match.");
 
   // TODO: Make more general
-  const size_t scale_dim_X_rowwise = use_rowwise_scaling ? 32 : 1;
-  const size_t scale_dim_Y_colwise = use_colwise_scaling ? 32 : 1;
+  const size_t scale_dim_X_rowwise = use_rowwise_scaling ? ScaleDim : 1;
+  const size_t scale_dim_Y_colwise = use_colwise_scaling ? ScaleDim : 1;
 
-  const size_t rows = input.flat_first_dim();
-  const size_t cols = input.flat_last_dim();
+  // t.flat_first_dim()/.flat_first_dim() depends on t.shape() which has a rather odd design
+  // t.shape returns rowwise data shape when it exists and
+  // shape of colwise data shape iff only rowwise data does not exist
+  // when both exist, rowwise data shape gets returned.
+  // rows, cols are logical dim.
+  size_t rows, cols;
+  if (input.has_data()) {
+    rows = input.flat_first_dim();
+    cols = input.scaling_mode == NVTE_NVFP4_1D_SCALING ? input.flat_last_dim() * 2 : input.flat_last_dim();
+  } else if (input.has_columnwise_data()) {
+    rows = input.scaling_mode == NVTE_NVFP4_1D_SCALING ? input.flat_first_dim() * 2 : input.flat_first_dim();
+    cols = input.flat_last_dim();
+  }
+
   const size_t chunks_Y = DIVUP(rows, CHUNK_DIM_Y);
   const size_t chunks_X = DIVUP(cols, CHUNK_DIM_X);
 
@@ -295,9 +359,9 @@ static void mxfp8_dequantize(const Tensor &input, Tensor *output, cudaStream_t s
       DIVUP(unpadded_scales_X_colwise, scale_tensor_alignment_X_colwise) *
       scale_tensor_alignment_X_colwise;
 
-  const e8m0_t *const scales_ptr =
-      use_rowwise_scaling ? reinterpret_cast<e8m0_t *>(input.scale_inv.dptr)
-                          : reinterpret_cast<e8m0_t *>(input.columnwise_scale_inv.dptr);
+  const ScaleType *const scales_ptr =
+      use_rowwise_scaling ? reinterpret_cast<ScaleType *>(input.scale_inv.dptr)
+                          : reinterpret_cast<ScaleType *>(input.columnwise_scale_inv.dptr);
 
   const size_t scales_stride = use_rowwise_scaling ? scales_X_rowwise : scales_X_colwise;
 
@@ -306,11 +370,11 @@ static void mxfp8_dequantize(const Tensor &input, Tensor *output, cudaStream_t s
   const dim3 block(THREADS_PER_CHUNK);
   const dim3 grid(chunks_X, chunks_Y);
 
-  TRANSFORMER_ENGINE_MX_SCALE_DIM_SWITCH(
+  TRANSFORMER_ENGINE_MXNV_SCALE_DIM_SWITCH(
       scale_dim_Y_colwise, SCALE_DIM_Y,
-      TRANSFORMER_ENGINE_MX_SCALE_DIM_SWITCH(
+      TRANSFORMER_ENGINE_MXNV_SCALE_DIM_SWITCH(
           scale_dim_X_rowwise, SCALE_DIM_X,
-          TRANSFORMER_ENGINE_TYPE_SWITCH_FP8ONLY(
+          TRANSFORMER_ENGINE_TYPE_SWITCH_FP8FP4ONLY(
               input.dtype(), IType,
               TRANSFORMER_ENGINE_TYPE_SWITCH_NON_FP8ONLY(
                   output->dtype(), OType,
@@ -323,7 +387,7 @@ static void mxfp8_dequantize(const Tensor &input, Tensor *output, cudaStream_t s
                   create_2D_tensor_map(tensor_map_output, output->data, rows, cols, SHMEM_DIM_Y,
                                        SHMEM_DIM_X, cols, 0, typeToNumBits(output->dtype()));
 
-                  dequantize_mxfp8_kernel<IType, OType, SCALE_DIM_Y, SCALE_DIM_X>
+                  dequantize_mxnv_kernel<IType, OType, SCALE_DIM_Y, SCALE_DIM_X, ScaleType>
                   <<<grid, block, 0, stream>>>(tensor_map_input, tensor_map_output, scales_ptr,
                                                rows, cols, scales_stride););  // NOLINT(*)
           );                                                                  // NOLINT(*)
@@ -340,11 +404,20 @@ void dequantize_helper(const Tensor &input, Tensor *output, cudaStream_t stream)
 
   if (is_tensor_scaling(input.scaling_mode)) {
     dequantization::fp8_dequantize(input, output, stream);
-  } else if (is_mxfp_scaling(input.scaling_mode)) {
+  } else if (is_mxfp_scaling(input.scaling_mode) || is_nvfp_scaling(input.scaling_mode)) {
     if (is_supported_by_CC_100()) {
-      dequantization::mxfp8_dequantize(input, output, stream);
+      switch (input.scaling_mode) {
+        case NVTE_MXFP8_1D_SCALING:
+          dequantization::mxnv_dequantize<32, e8m0_t>(input, output, stream);
+          break;
+        case NVTE_NVFP4_1D_SCALING:
+          dequantization::mxnv_dequantize<16, fp8e4m3>(input, output, stream);
+          break;
+        default:
+          NVTE_ERROR("Not implemented scaling mode: " + to_string(input.scaling_mode) + ".");
+      }
     } else {
-      NVTE_ERROR("MXFP8 Dequantization is NOT supported by architectures < 10.0");
+      NVTE_ERROR("MXFP8/NVFP4 Dequantization is NOT supported by architectures < 10.0");
     }
   } else {
     // TODO(kwyss): Move dequantization code from torch to C++ for NVTE_BLOCK_SCALING

@@ -92,6 +92,7 @@ enum NVTEScalingMode {
     and single MXFP8 scale per block of 32 contiguous elements in backward pass (BWD).
   */
   NVTE_FWD_NVFP4_BWD_MXFP8_SCALING = 4,
+  NVTE_NVFP4_1D_SCALING = 5,
   NVTE_INVALID_SCALING = 100
 };
 
@@ -430,6 +431,15 @@ inline bool is_fp8_dtype(const DType t) {
  *  \param[in] DType      TE Datatype of interest
  */
 inline bool is_fp4_dtype(const DType t) { return t == DType::kFloat4E2M1; }
+
+/*! \brief Check if TE datatype is FP8 or FP4
+ *
+ * Return true if TE datatype is FP8 or FP4
+ *  \param[in] DType      TE Datatype of interest
+ */
+inline bool is_narrow_dtype(const DType t) {
+  return t == DType::kFloat8E4M3 || t == DType::kFloat8E5M2 || t == DType::kFloat4E2M1;
+}
 
 /*! \struct TensorWrapper
  *  \brief C++ wrapper for the NVTETensor class.

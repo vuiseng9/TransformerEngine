@@ -13,6 +13,7 @@
 namespace transformer_engine::pytorch {
 
 constexpr size_t MXFP8_BLOCK_SIZE = 32;
+constexpr size_t NVFP4_BLOCK_SIZE = 16;
 
 Quantizer::Quantizer(const py::handle& quantizer) {
   if (quantizer.is_none()) {
@@ -525,6 +526,79 @@ std::pair<TensorWrapper, py::object> MXFP8Quantizer::create_tensor(
   } else {
     py::handle MXFP8TensorClass(reinterpret_cast<PyObject*>(MXFP8TensorPythonClass));
     ret = MXFP8TensorClass("shape"_a = torch_shape, "dtype"_a = GetATenDType(dtype),
+                           "rowwise_data"_a = data, "columnwise_data"_a = columnwise_data,
+                           "rowwise_scale_inv"_a = rowwise_scale_inv,
+                           "columnwise_scale_inv"_a = columnwise_scale_inv,
+                           "fp8_dtype"_a = this->dtype, "quantizer"_a = this->quantizer);
+  }
+
+  return {std::move(tensor), std::move(ret)};
+}
+
+
+std::pair<TensorWrapper, py::object> NVFP4Quantizer::create_tensor(
+    const std::vector<size_t>& shape, DType dtype, std::optional<at::Tensor> rowwise_data) const {
+  using namespace pybind11::literals;
+
+  NVTE_CHECK(shape.size() == 2, "NVFP4 currently only support 2D tensor, got ndim=", shape.size(), ")");
+
+  size_t numel = 1;
+  for (auto s : shape) {
+    numel *= s;
+  }
+
+  auto last_dim = shape.back();
+  NVTE_CHECK(last_dim % NVFP4_BLOCK_SIZE== 0 && (numel / last_dim) % NVFP4_BLOCK_SIZE == 0,
+             "NVFP4 requires tensor dims that are divisble by ", NVFP4_BLOCK_SIZE,
+             " (got shape=", shape, ")");
+  
+  std::vector<int64_t> rowwise_data_shape    = {static_cast<int64_t>(shape[0])  , static_cast<int64_t>(shape[1]/2)};         
+  std::vector<int64_t> columnwise_data_shape = {static_cast<int64_t>(shape[0])/2, static_cast<int64_t>(shape[1])  };
+
+  TensorWrapper tensor(NVTE_NVFP4_1D_SCALING);
+  at::TensorOptions opts;
+  at::Tensor rowwise_data1, columnwise_data, rowwise_scale_inv, columnwise_scale_inv;  // TODO(pgadzinski) - change
+  opts = opts.dtype(torch::kUInt8).device(torch::kCUDA);
+
+  at::Tensor data;
+  if (rowwise_usage) {
+    if (rowwise_data.has_value()) {
+      data = std::move(*rowwise_data);
+    } else {
+      data = at::empty(rowwise_data_shape, opts);
+    }
+    auto sinv0 = roundup(numel / last_dim, 128);
+    auto sinv1 = roundup(last_dim / NVFP4_BLOCK_SIZE, 4);
+    rowwise_scale_inv = at::zeros({sinv0, sinv1}, opts);
+    tensor.set_rowwise_data(data.data_ptr(), this->dtype, std::vector<size_t>{shape[0], shape[1]/2});
+    tensor.set_rowwise_scale_inv(
+        rowwise_scale_inv.data_ptr(), DType::kFloat8E4M3,
+        std::vector<size_t>{static_cast<size_t>(sinv0), static_cast<size_t>(sinv1)});
+  }
+
+  if (columnwise_usage) {
+    auto sinv0 = roundup(numel / (last_dim * NVFP4_BLOCK_SIZE), 4);
+    auto sinv1 = roundup(last_dim, 128);
+    columnwise_data = at::empty(columnwise_data_shape, opts);
+    columnwise_scale_inv = at::zeros({sinv0, sinv1}, opts);
+
+    tensor.set_columnwise_data(columnwise_data.data_ptr(), this->dtype, std::vector<size_t>{shape[0]/2, shape[1]});
+    tensor.set_columnwise_scale_inv(
+        columnwise_scale_inv.data_ptr(), DType::kFloat8E4M3,
+        std::vector<size_t>{static_cast<size_t>(sinv0), static_cast<size_t>(sinv1)});
+  }
+  this->set_quantization_params(&tensor);
+
+  py::object ret;
+  if (internal) {
+    py::handle NVFP4TensorClass(reinterpret_cast<PyObject*>(NVFP4TensorBasePythonClass));
+    ret = NVFP4TensorClass("rowwise_data"_a = data, "columnwise_data"_a = columnwise_data,
+                           "rowwise_scale_inv"_a = rowwise_scale_inv,
+                           "columnwise_scale_inv"_a = columnwise_scale_inv,
+                           "fp8_dtype"_a = this->dtype, "quantizer"_a = this->quantizer);
+  } else {
+    py::handle NVFP4TensorClass(reinterpret_cast<PyObject*>(NVFP4TensorPythonClass));
+    ret = NVFP4TensorClass("shape"_a = rowwise_data_shape, "dtype"_a = GetATenDType(dtype), // TODO; should we use logical shape? or
                            "rowwise_data"_a = data, "columnwise_data"_a = columnwise_data,
                            "rowwise_scale_inv"_a = rowwise_scale_inv,
                            "columnwise_scale_inv"_a = columnwise_scale_inv,
