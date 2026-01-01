@@ -1,0 +1,56 @@
+
+
+
+* for our forked TE with our implementation of nvf4, use 
+  nvcr.io/nvidia/pytorch:25.06-py3
+
+* a root dir name f4, and open a vscode workspace here.
+* .env with pythonpath to fp4t might be needed.
+
+* build our TE and run code
+    git clone https://github.com/vuiseng9/TransformerEngine te
+    git checkout v2.5+nv4f_mx8b+dbg
+    make clean
+    make submodule-update
+    make debug-build-install
+    ln the vscode folder in te/ to f4/.vscode, note that we dont use fp4-t vscode 
+
+* application code
+    git clone https://github.com/vuiseng9/fp4-training fp4t
+    git checkout 250923-f4prod
+    git submodule update --init --recursive
+    cd custom
+    make re
+
+    export CUBLASLT_LOG_LEVEL=2
+    export CUBLASLT_LOG_FILE=./log.cublaslt 
+    export PYTHONPATH=/path/to/fp4t
+
+    python scripts/05_mxfp8_block_scaling.py    # mxfp8, verify setup, we never touch these codes, should work well
+    # R_8F_E4M3, VEC32_UE8M0 in log.cublaslt
+
+    python scripts/06_nvfp4_forward_mxfp8_backward.py   # nv4f_mx8b
+    # in log.cublaslt
+    # R_4F_E2M1, VEC16_UE4M3
+    # R_8F_E4M3, VEC32_UE8M0
+
+    if NVFP4BlockScaling is invoked,
+    # NotImplementedError: NVFP4BlockScaling is not fully implemented yet, 
+    # limited by TN layout cublaslt gemm support.Please consider NVFP4FwdMXFP8BwdScaling()
+
+* where to debug break at cpp level?
+    f4/te/transformer_engine/common/gemm/cublaslt_gemm.cu
+    cublas_gemm
+    line 250 ish
+
+* where to break at cuda kernel level?
+    f4/te/transformer_engine/common/util/cast_kernels.cuh
+    cast_mxnv_2D_kernel
+    line 158
+
+* some prebuilt TE
+    https://huggingface.co/vuiseng9/te-wheel
+
+* more debug in v2.5+nvfp4+wip, including hf related
+
+* note that we need specific change to enable debug mode. just keep mind although te branch here have them included.
